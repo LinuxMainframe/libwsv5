@@ -1,0 +1,30 @@
+\hypertarget{Parsing-example}{}\doxysection{Parsing}
+Event callback function type -\/ called when OBS sends an event.
+
+Event callback function type -\/ called when OBS sends an event.\+OBS sends events to tell you about things happening -\/ scene changed, recording started, input muted, etc. Events come as JSON in event\+\_\+data. You have to parse it yourself using something like c\+JSON. We don\textquotesingle{}t parse it for you because different applications care about different events, so we save CPU by leaving parsing to you.
+
+
+\begin{DoxyParams}{Parameters}
+{\em conn} & The connection this event came from (useful if you have multiple OBS instances) \\
+\hline
+{\em event\+\_\+type} & String name of the event like \char`\"{}\+Scene\+Changed\char`\"{}, \char`\"{}\+Recording\+State\+Changed\char`\"{} \\
+\hline
+{\em event\+\_\+data} & JSON string with event details -\/ parse this yourself with c\+JSON or json-\/c \\
+\hline
+{\em user\+\_\+data} & Pointer you provided in the config\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+The event\+\_\+data buffer is temporary and freed after this callback returns. If you need to keep the data, copy the string or parse it immediately. 
+
+This callback is called from an internal thread, so synchronize access to shared data structures. 
+
+Don\textquotesingle{}t block or do expensive work in this callback -\/ events could pile up.
+\end{DoxyNote}
+an event might look like\+: c\+JSON $\ast$event\+\_\+obj = c\+JSON\+\_\+\+Parse(event\+\_\+data); if (event\+\_\+obj \&\& c\+JSON\+\_\+\+Has\+Object\+Item(event\+\_\+obj, \char`\"{}event\+Data\char`\"{})) \{ c\+JSON $\ast$data = c\+JSON\+\_\+\+Get\+Object\+Item(event\+\_\+obj, \char`\"{}event\+Data\char`\"{}); // Now examine event\+\_\+obj to see what changed \} if (event\+\_\+obj) c\+JSON\+\_\+\+Delete(event\+\_\+obj);
+
+
+\begin{DoxyCodeInclude}{0}
+
+\end{DoxyCodeInclude}
+ 

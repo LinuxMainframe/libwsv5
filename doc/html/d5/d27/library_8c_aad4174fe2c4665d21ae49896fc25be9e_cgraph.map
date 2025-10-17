@@ -1,0 +1,7 @@
+<map id="handle_identified_message" name="handle_identified_message">
+<area shape="rect" id="node1" title="Handle the IDENTIFIED confirmation message from OBS." alt="" coords="5,56,205,83"/>
+<area shape="rect" id="node2" href="$d5/d27/library_8c.html#a3682ffd7f6175dbc796f5750172c99bf" title=" " alt="" coords="278,5,389,32"/>
+<area shape="rect" id="node3" href="$d5/d27/library_8c.html#a1d8529feb33753ebb45d896c4c125642" title=" " alt="" coords="489,56,580,83"/>
+<area shape="rect" id="node4" href="$d5/d27/library_8c.html#a2f13308e49322d01e479cbe14da7b575" title=" " alt="" coords="253,107,413,133"/>
+<area shape="rect" id="node5" href="$d5/d27/library_8c.html#a69f8fcc1732533a2ebe573ac65effa04" title="Convert a connection state to a human&#45;readable string." alt="" coords="461,107,608,133"/>
+</map>

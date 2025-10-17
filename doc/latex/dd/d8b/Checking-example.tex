@@ -1,0 +1,35 @@
+\hypertarget{Checking-example}{}\doxysection{Checking}
+Get whether OBS is currently streaming.
+
+Get whether OBS is currently streaming.\+Returns true if a stream is active (connected to the streaming server), false otherwise. The response parameter (if provided) has more detailed info like bandwidth, frames rendered, etc.
+
+This is useful to check state after startup -\/ maybe OBS was already streaming before your app connected, and you want to know about it.
+
+
+\begin{DoxyParams}{Parameters}
+{\em conn} & Connection handle (must be in CONNECTED state) \\
+\hline
+{\em is\+\_\+streaming} & Output parameter -\/ true if streaming, false if not \\
+\hline
+{\em response} & Optional pointer to receive full response with stats \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OBSWS\+\_\+\+OK on success 
+
+OBSWS\+\_\+\+ERROR\+\_\+\+NOT\+\_\+\+CONNECTED if not connected 
+
+OBSWS\+\_\+\+ERROR\+\_\+\+INVALID\+\_\+\+PARAM if is\+\_\+streaming is NULL
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+is\+\_\+streaming must be non-\/\+NULL, but response can be NULL. 
+
+Fast operation -\/ just queries current state.
+\end{DoxyNote}
+if streaming\+: bool streaming = false; if (obsws\+\_\+get\+\_\+streaming\+\_\+status(conn, \&streaming, NULL) == OBSWS\+\_\+\+OK) \{ printf(\char`\"{}\+Streaming\+: \%s\textbackslash{}n\char`\"{}, streaming ? \char`\"{}yes\char`\"{} \+: \char`\"{}no\char`\"{}); \}
+
+
+\begin{DoxyCodeInclude}{0}
+
+\end{DoxyCodeInclude}
+ 

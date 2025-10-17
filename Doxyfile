@@ -1,0 +1,119 @@
+# Doxyfile for libwsv5 - OBS WebSocket v5 Protocol Library
+# Generate comprehensive documentation from all source code with rich details
+
+PROJECT_NAME           = "libwsv5"
+PROJECT_NUMBER         = "1.0.0"
+PROJECT_BRIEF          = "A simple C library for OBS WebSocket v5 protocol communication with async request/response handling"
+
+# Output directories
+OUTPUT_DIRECTORY       = ./doc
+HTML_OUTPUT            = html
+LATEX_OUTPUT           = latex
+
+# Input files - process both headers and implementation
+INPUT                  = ./library.h ./library.c
+FILE_PATTERNS          = *.h *.c
+RECURSIVE              = NO
+
+# === DOCUMENTATION EXTRACTION SETTINGS ===
+# Extract all entities - critical for comprehensive documentation
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+EXTRACT_LOCAL_CLASSES  = YES
+EXTRACT_LOCAL_METHODS  = YES
+EXTRACT_ANON_NSPACES   = YES
+
+# Generate additional lists for comprehensive documentation
+GENERATE_TODOLIST      = YES
+GENERATE_TESTLIST      = YES
+GENERATE_BUGLIST       = YES
+GENERATE_DEPRECATEDLIST = YES
+GENERATE_LEGEND        = YES
+
+# === C-SPECIFIC OPTIMIZATIONS ===
+OPTIMIZE_OUTPUT_FOR_C  = YES
+SHOW_USED_FILES        = YES
+SHOW_FILES             = YES
+
+# Include all namespaces and groups
+SHOW_NAMESPACES        = YES
+SHOW_GROUPED_MEMBVARS  = YES
+
+# === HTML GENERATION ===
+GENERATE_HTML          = YES
+HTML_DYNAMIC_SECTIONS  = YES
+
+# HTML index settings
+DISABLE_INDEX          = NO
+GENERATE_TREEVIEW      = YES
+ENUM_VALUES_PER_LINE   = 4
+
+# === PDF/LATEX GENERATION ===
+GENERATE_LATEX         = YES
+LATEX_OUTPUT           = latex
+
+# Critical PDF generation settings
+LATEX_BATCHMODE        = YES
+LATEX_HIDE_INDICES     = NO
+LATEX_SOURCE_CODE      = YES
+
+# === MARKDOWN AND FORMATTING ===
+MARKDOWN_SUPPORT       = YES
+JAVADOC_AUTOBRIEF      = YES
+
+# === SORTING ===
+SORT_BY_SCOPE_NAME     = YES
+SORT_MEMBER_DOCS       = YES
+SORT_GROUP_NAMES       = YES
+
+# === DETAILED SETTINGS ===
+DETAILS_AT_TOP         = YES
+REPEAT_BRIEF           = YES
+BRIEF_MEMBER_DESC      = YES
+
+# Multi-line brief descriptions
+MULTILINE_CPP_IS_BRIEF = YES
+
+# === SOURCE CODE DISPLAY ===
+SOURCE_BROWSER         = YES
+INLINE_SOURCES         = YES
+STRIP_CODE_COMMENTS    = NO
+
+# === CALL GRAPHS - CRITICAL FOR ARCHITECTURE VISUALIZATION ===
+CALL_GRAPH             = YES
+CALLER_GRAPH           = YES
+GRAPHICAL_HIERARCHY    = YES
+DIRECTORY_GRAPH        = YES
+
+# Graphviz/DOT configuration
+HAVE_DOT               = YES
+DOT_GRAPH_MAX_NODES    = 200
+DOT_TRANSPARENT        = NO
+DOT_IMAGE_FORMAT       = svg
+
+# === CROSS-REFERENCING ===
+CREATE_SUBDIRS         = YES
+CASE_SENSE_FILENAMES   = YES
+
+# === VISIBILITY AND RELATIONSHIPS ===
+HIDE_UNDOC_MEMBERS     = NO
+HIDE_UNDOC_CLASSES     = NO
+HIDE_FRIEND_COMPOUNDS  = NO
+
+# === MEMBER AND CLASS OPTIONS ===
+INTERNAL_DOCS          = YES
+
+# === SEARCH FUNCTIONALITY ===
+SEARCHENGINE           = YES
+
+# === DOCUMENTATION LANGUAGE ===
+OUTPUT_LANGUAGE        = English
+USE_WINDOWS_ENCODING   = NO
+
+# === PERFORMANCE SETTINGS ===
+QUIET                  = NO
+WARNINGS               = YES
+WARN_IF_UNDOCUMENTED   = YES
+
+# End of Doxyfile - optimized for publication

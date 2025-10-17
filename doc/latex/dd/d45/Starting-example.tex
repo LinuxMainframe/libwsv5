@@ -1,0 +1,35 @@
+\hypertarget{Starting-example}{}\doxysection{Starting}
+Start recording to disk.
+
+Start recording to disk.\+Tells OBS to begin recording the current scene and audio to the configured output file (usually somewhere in your Videos folder). This is separate from streaming -\/ you can record without streaming, stream without recording, or do both.
+
+The actual file path is configured in OBS settings -\/ this library doesn\textquotesingle{}t control where the file goes or what format it uses. Those are OBS preferences.
+
+
+\begin{DoxyParams}{Parameters}
+{\em conn} & Connection handle (must be in CONNECTED state) \\
+\hline
+{\em response} & Optional pointer to receive response \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OBSWS\+\_\+\+OK if request sent successfully (doesn\textquotesingle{}t mean recording started yet) 
+
+OBSWS\+\_\+\+ERROR\+\_\+\+NOT\+\_\+\+CONNECTED if not connected
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This is async -\/ function returns immediately, recording starts in background. 
+
+You\textquotesingle{}ll get a Recording\+State\+Changed event when recording actually starts. 
+
+If recording is already running, OBS ignores this request (no error). 
+
+The recorded file format depends on OBS configuration (usually MP4 or MKV).
+\end{DoxyNote}
+to record\+: if (obsws\+\_\+start\+\_\+recording(conn, NULL) == OBSWS\+\_\+\+OK) \{ printf(\char`\"{}\+Recording start request sent\textbackslash{}n\char`\"{}); \}
+
+
+\begin{DoxyCodeInclude}{0}
+
+\end{DoxyCodeInclude}
+ 

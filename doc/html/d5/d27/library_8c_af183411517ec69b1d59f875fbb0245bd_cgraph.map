@@ -1,0 +1,10 @@
+<map id="handle_hello_message" name="handle_hello_message">
+<area shape="rect" id="node1" title="Handle the initial HELLO handshake message from OBS." alt="" coords="5,107,176,133"/>
+<area shape="rect" id="node2" href="$d5/d27/library_8c.html#acab761db577bf6b074b4e9be8be845b5" title=" " alt="" coords="224,31,407,57"/>
+<area shape="rect" id="node5" href="$d5/d27/library_8c.html#a3682ffd7f6175dbc796f5750172c99bf" title=" " alt="" coords="260,81,371,108"/>
+<area shape="rect" id="node6" href="$d5/d27/library_8c.html#a1d8529feb33753ebb45d896c4c125642" title=" " alt="" coords="483,132,573,159"/>
+<area shape="rect" id="node7" href="$d5/d27/library_8c.html#a2f13308e49322d01e479cbe14da7b575" title=" " alt="" coords="235,183,395,209"/>
+<area shape="rect" id="node3" href="$d5/d27/library_8c.html#aab5c2995d6518ef254538795c00afdbb" title=" " alt="" coords="467,5,589,32"/>
+<area shape="rect" id="node4" href="$d5/d27/library_8c.html#aaaa872a3d93d0ce3d5d4346f4b1c763e" title=" " alt="" coords="475,56,581,83"/>
+<area shape="rect" id="node8" href="$d5/d27/library_8c.html#a69f8fcc1732533a2ebe573ac65effa04" title="Convert a connection state to a human&#45;readable string." alt="" coords="455,183,601,209"/>
+</map>

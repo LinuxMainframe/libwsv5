@@ -1,0 +1,114 @@
+\hypertarget{structpending__request}{}\doxysection{pending\+\_\+request Struct Reference}
+\label{structpending__request}\index{pending\_request@{pending\_request}}
+
+
+Collaboration diagram for pending\+\_\+request\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=225pt]{db/dd9/structpending__request__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+char \mbox{\hyperlink{structpending__request_ae33cc3402bf8463415de7e57eac346af}{request\+\_\+id}} \mbox{[}\mbox{\hyperlink{library_8c_a25b13264018fd1dc7b1f2bbd93bdc7cc}{OBSWS\+\_\+\+UUID\+\_\+\+LENGTH}}\mbox{]}
+\item 
+\mbox{\hyperlink{structobsws__response__t}{obsws\+\_\+response\+\_\+t}} $\ast$ \mbox{\hyperlink{structpending__request_a4b37104673cb81e3f2825c8f6df372ba}{response}}
+\item 
+bool \mbox{\hyperlink{structpending__request_af74dd3c97a064175b9dcf3dbfe3665cc}{completed}}
+\item 
+pthread\+\_\+mutex\+\_\+t \mbox{\hyperlink{structpending__request_a30b4636ccd06e4f775ee0dcc29ba3a69}{mutex}}
+\item 
+pthread\+\_\+cond\+\_\+t \mbox{\hyperlink{structpending__request_a619500d05293ec1f654ea803139941de}{cond}}
+\item 
+time\+\_\+t \mbox{\hyperlink{structpending__request_a0fab8de980618cc4e6cea21fbed2eef4}{timestamp}}
+\item 
+struct \mbox{\hyperlink{structpending__request}{pending\+\_\+request}} $\ast$ \mbox{\hyperlink{structpending__request_a49161e43ef29129c11fe643e85338df2}{next}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{library_8c_source_l00127}{127}} of file \mbox{\hyperlink{library_8c_source}{library.\+c}}.
+
+
+
+\doxysubsection{Field Documentation}
+\mbox{\Hypertarget{structpending__request_af74dd3c97a064175b9dcf3dbfe3665cc}\label{structpending__request_af74dd3c97a064175b9dcf3dbfe3665cc}} 
+\index{pending\_request@{pending\_request}!completed@{completed}}
+\index{completed@{completed}!pending\_request@{pending\_request}}
+\doxysubsubsection{\texorpdfstring{completed}{completed}}
+{\footnotesize\ttfamily bool pending\+\_\+request\+::completed}
+
+
+
+Definition at line \mbox{\hyperlink{library_8c_source_l00130}{130}} of file \mbox{\hyperlink{library_8c_source}{library.\+c}}.
+
+\mbox{\Hypertarget{structpending__request_a619500d05293ec1f654ea803139941de}\label{structpending__request_a619500d05293ec1f654ea803139941de}} 
+\index{pending\_request@{pending\_request}!cond@{cond}}
+\index{cond@{cond}!pending\_request@{pending\_request}}
+\doxysubsubsection{\texorpdfstring{cond}{cond}}
+{\footnotesize\ttfamily pthread\+\_\+cond\+\_\+t pending\+\_\+request\+::cond}
+
+
+
+Definition at line \mbox{\hyperlink{library_8c_source_l00132}{132}} of file \mbox{\hyperlink{library_8c_source}{library.\+c}}.
+
+\mbox{\Hypertarget{structpending__request_a30b4636ccd06e4f775ee0dcc29ba3a69}\label{structpending__request_a30b4636ccd06e4f775ee0dcc29ba3a69}} 
+\index{pending\_request@{pending\_request}!mutex@{mutex}}
+\index{mutex@{mutex}!pending\_request@{pending\_request}}
+\doxysubsubsection{\texorpdfstring{mutex}{mutex}}
+{\footnotesize\ttfamily pthread\+\_\+mutex\+\_\+t pending\+\_\+request\+::mutex}
+
+
+
+Definition at line \mbox{\hyperlink{library_8c_source_l00131}{131}} of file \mbox{\hyperlink{library_8c_source}{library.\+c}}.
+
+\mbox{\Hypertarget{structpending__request_a49161e43ef29129c11fe643e85338df2}\label{structpending__request_a49161e43ef29129c11fe643e85338df2}} 
+\index{pending\_request@{pending\_request}!next@{next}}
+\index{next@{next}!pending\_request@{pending\_request}}
+\doxysubsubsection{\texorpdfstring{next}{next}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structpending__request}{pending\+\_\+request}}$\ast$ pending\+\_\+request\+::next}
+
+
+
+Definition at line \mbox{\hyperlink{library_8c_source_l00134}{134}} of file \mbox{\hyperlink{library_8c_source}{library.\+c}}.
+
+\mbox{\Hypertarget{structpending__request_ae33cc3402bf8463415de7e57eac346af}\label{structpending__request_ae33cc3402bf8463415de7e57eac346af}} 
+\index{pending\_request@{pending\_request}!request\_id@{request\_id}}
+\index{request\_id@{request\_id}!pending\_request@{pending\_request}}
+\doxysubsubsection{\texorpdfstring{request\_id}{request\_id}}
+{\footnotesize\ttfamily char pending\+\_\+request\+::request\+\_\+id\mbox{[}\mbox{\hyperlink{library_8c_a25b13264018fd1dc7b1f2bbd93bdc7cc}{OBSWS\+\_\+\+UUID\+\_\+\+LENGTH}}\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{library_8c_source_l00128}{128}} of file \mbox{\hyperlink{library_8c_source}{library.\+c}}.
+
+\mbox{\Hypertarget{structpending__request_a4b37104673cb81e3f2825c8f6df372ba}\label{structpending__request_a4b37104673cb81e3f2825c8f6df372ba}} 
+\index{pending\_request@{pending\_request}!response@{response}}
+\index{response@{response}!pending\_request@{pending\_request}}
+\doxysubsubsection{\texorpdfstring{response}{response}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structobsws__response__t}{obsws\+\_\+response\+\_\+t}}$\ast$ pending\+\_\+request\+::response}
+
+
+
+Definition at line \mbox{\hyperlink{library_8c_source_l00129}{129}} of file \mbox{\hyperlink{library_8c_source}{library.\+c}}.
+
+\mbox{\Hypertarget{structpending__request_a0fab8de980618cc4e6cea21fbed2eef4}\label{structpending__request_a0fab8de980618cc4e6cea21fbed2eef4}} 
+\index{pending\_request@{pending\_request}!timestamp@{timestamp}}
+\index{timestamp@{timestamp}!pending\_request@{pending\_request}}
+\doxysubsubsection{\texorpdfstring{timestamp}{timestamp}}
+{\footnotesize\ttfamily time\+\_\+t pending\+\_\+request\+::timestamp}
+
+
+
+Definition at line \mbox{\hyperlink{library_8c_source_l00133}{133}} of file \mbox{\hyperlink{library_8c_source}{library.\+c}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{library_8c}{library.\+c}}\end{DoxyCompactItemize}

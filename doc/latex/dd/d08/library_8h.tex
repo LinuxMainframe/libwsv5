@@ -1,0 +1,2666 @@
+\hypertarget{library_8h}{}\doxysection{library.\+h File Reference}
+\label{library_8h}\index{library.h@{library.h}}
+{\ttfamily \#include $<$stddef.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+Include dependency graph for library.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{df/d8b/library_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=136pt]{db/d97/library_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structobsws__config__t}{obsws\+\_\+config\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Connection configuration structure. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structobsws__stats__t}{obsws\+\_\+stats\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Connection statistics -\/ useful for monitoring and debugging connection health. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structobsws__response__t}{obsws\+\_\+response\+\_\+t}}
+\begin{DoxyCompactList}\small\item\em Response structure for requests to OBS. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{library_8h_a3024ccd4a9af5109d24e6c57565d74a1}{\+\_\+\+POSIX\+\_\+\+C\+\_\+\+SOURCE}}~200809L
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structobsws__connection}{obsws\+\_\+connection}} \mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}}
+\item 
+typedef void($\ast$ \mbox{\hyperlink{library_8h_a1cd53dbb56b26952688e258c02fc7325}{obsws\+\_\+log\+\_\+callback\+\_\+t}}) (\mbox{\hyperlink{library_8h_afbee3b6b991e705309ea19fd5fb0bff9}{obsws\+\_\+log\+\_\+level\+\_\+t}} level, const char $\ast$message, void $\ast$user\+\_\+data)
+\begin{DoxyCompactList}\small\item\em Log callback function type -\/ called when the library generates log messages. \end{DoxyCompactList}\item 
+typedef void($\ast$ \mbox{\hyperlink{library_8h_a5e76bfe94664a2648ae9c1fcfeb83a08}{obsws\+\_\+event\+\_\+callback\+\_\+t}}) (\mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$conn, const char $\ast$event\+\_\+type, const char $\ast$event\+\_\+data, void $\ast$user\+\_\+data)
+\item 
+typedef void($\ast$ \mbox{\hyperlink{library_8h_ad3b0a6981e0c04dbf4de858972894a3d}{obsws\+\_\+state\+\_\+callback\+\_\+t}}) (\mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$conn, \mbox{\hyperlink{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991}{obsws\+\_\+state\+\_\+t}} old\+\_\+state, \mbox{\hyperlink{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991}{obsws\+\_\+state\+\_\+t}} new\+\_\+state, void $\ast$user\+\_\+data)
+\begin{DoxyCompactList}\small\item\em State callback function type -\/ called when connection state changes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6}{obsws\+\_\+error\+\_\+t}} \{ \newline
+\mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6aa43b9a59f39db094a477cb25a638e5a1}{OBSWS\+\_\+\+OK}} = 0
+, \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6a8944fe1379e71d22a82399c21107ebf6}{OBSWS\+\_\+\+ERROR\+\_\+\+INVALID\+\_\+\+PARAM}} = -\/1
+, \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6aa99054291b32e3476d521ea9efeb83a2}{OBSWS\+\_\+\+ERROR\+\_\+\+CONNECTION\+\_\+\+FAILED}} = -\/2
+, \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6abab3c6691cc119a7b875d967f0fc565f}{OBSWS\+\_\+\+ERROR\+\_\+\+SEND\+\_\+\+FAILED}} = -\/5
+, \newline
+\mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6a312613cd84331a653e2c1de24b94c52b}{OBSWS\+\_\+\+ERROR\+\_\+\+RECV\+\_\+\+FAILED}} = -\/6
+, \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6aea7cb95255efa1d01e6761d676ab599c}{OBSWS\+\_\+\+ERROR\+\_\+\+SSL\+\_\+\+FAILED}} = -\/11
+, \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6a3132520f4e5efcd0e07668b4afcd5c4c}{OBSWS\+\_\+\+ERROR\+\_\+\+AUTH\+\_\+\+FAILED}} = -\/3
+, \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6a72ca999664bea413857d7901acf2d598}{OBSWS\+\_\+\+ERROR\+\_\+\+PARSE\+\_\+\+FAILED}} = -\/7
+, \newline
+\mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6ace2eb9908cf7d65109788a2593582982}{OBSWS\+\_\+\+ERROR\+\_\+\+NOT\+\_\+\+CONNECTED}} = -\/8
+, \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6a6b4348384a97af637d6361e38a5de052}{OBSWS\+\_\+\+ERROR\+\_\+\+ALREADY\+\_\+\+CONNECTED}} = -\/9
+, \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6a852a5a13d07531a60aedc6e3cc1ae86d}{OBSWS\+\_\+\+ERROR\+\_\+\+TIMEOUT}} = -\/4
+, \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6a976f03f9cfc1de7d7172732454829e15}{OBSWS\+\_\+\+ERROR\+\_\+\+OUT\+\_\+\+OF\+\_\+\+MEMORY}} = -\/10
+, \newline
+\mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6a8988f38a0e1e83701ffc075686bb3395}{OBSWS\+\_\+\+ERROR\+\_\+\+UNKNOWN}} = -\/99
+ \}
+\begin{DoxyCompactList}\small\item\em Error codes returned by library functions. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991}{obsws\+\_\+state\+\_\+t}} \{ \newline
+\mbox{\hyperlink{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991af973d2b8b0a498d0bbffb40ccab1ef2d}{OBSWS\+\_\+\+STATE\+\_\+\+DISCONNECTED}} = 0
+, \mbox{\hyperlink{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991a88276a1a9f595735a2b242f0eab1524a}{OBSWS\+\_\+\+STATE\+\_\+\+CONNECTING}} = 1
+, \mbox{\hyperlink{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991ac9c5d9c3aab50d7e6d1d38b1bb7d6d0f}{OBSWS\+\_\+\+STATE\+\_\+\+AUTHENTICATING}} = 2
+, \mbox{\hyperlink{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991adbaae08035175b470fb9f543414672b8}{OBSWS\+\_\+\+STATE\+\_\+\+CONNECTED}} = 3
+, \newline
+\mbox{\hyperlink{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991ae13bce21841139a7510b1c8b10a694ac}{OBSWS\+\_\+\+STATE\+\_\+\+ERROR}} = 4
+ \}
+\begin{DoxyCompactList}\small\item\em Connection state -\/ represents the current phase of the connection lifecycle. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{library_8h_afbee3b6b991e705309ea19fd5fb0bff9}{obsws\+\_\+log\+\_\+level\+\_\+t}} \{ \newline
+\mbox{\hyperlink{library_8h_afbee3b6b991e705309ea19fd5fb0bff9a565d702d35e780d080b14dd8f1c8e299}{OBSWS\+\_\+\+LOG\+\_\+\+NONE}} = 0
+, \mbox{\hyperlink{library_8h_afbee3b6b991e705309ea19fd5fb0bff9a6a2a374e4af0446011df30bfd09e329e}{OBSWS\+\_\+\+LOG\+\_\+\+ERROR}} = 1
+, \mbox{\hyperlink{library_8h_afbee3b6b991e705309ea19fd5fb0bff9a7db7d387859c4786d8eb303e5bbafef7}{OBSWS\+\_\+\+LOG\+\_\+\+WARNING}} = 2
+, \mbox{\hyperlink{library_8h_afbee3b6b991e705309ea19fd5fb0bff9ae48017bf78390a3df8cd87a24782c421}{OBSWS\+\_\+\+LOG\+\_\+\+INFO}} = 3
+, \newline
+\mbox{\hyperlink{library_8h_afbee3b6b991e705309ea19fd5fb0bff9aa69cfac4b3acbd5968bfab9ef5759cd2}{OBSWS\+\_\+\+LOG\+\_\+\+DEBUG}} = 4
+ \}
+\begin{DoxyCompactList}\small\item\em Log levels for filtering library output. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{library_8h_a1997a985daa6bfb4117e885d9bb81668}{obsws\+\_\+debug\+\_\+level\+\_\+t}} \{ \mbox{\hyperlink{library_8h_a1997a985daa6bfb4117e885d9bb81668a0f96dd454f8efb9a755ebda2e81919aa}{OBSWS\+\_\+\+DEBUG\+\_\+\+NONE}} = 0
+, \mbox{\hyperlink{library_8h_a1997a985daa6bfb4117e885d9bb81668a50fd66057e634b5bd51441ba3fdeaf50}{OBSWS\+\_\+\+DEBUG\+\_\+\+LOW}} = 1
+, \mbox{\hyperlink{library_8h_a1997a985daa6bfb4117e885d9bb81668aa6c8d9d070b4d69beeadf605bc03eee1}{OBSWS\+\_\+\+DEBUG\+\_\+\+MEDIUM}} = 2
+, \mbox{\hyperlink{library_8h_a1997a985daa6bfb4117e885d9bb81668aceb0431d743cdecf0848564f388d51bd}{OBSWS\+\_\+\+DEBUG\+\_\+\+HIGH}} = 3
+ \}
+\begin{DoxyCompactList}\small\item\em Debug levels -\/ fine-\/grained control for troubleshooting connection issues. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6}{obsws\+\_\+error\+\_\+t}} \mbox{\hyperlink{library_8h_aff3d6c035330741df84552800c0d0124}{obsws\+\_\+init}} (void)
+\begin{DoxyCompactList}\small\item\em Initialize the OBS Web\+Socket library. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{library_8h_ad3afe1c77e8b8f26a8281186379790a1}{obsws\+\_\+cleanup}} (void)
+\begin{DoxyCompactList}\small\item\em Cleanup the OBS Web\+Socket library. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{library_8h_af3afc203f99395c187faf3fba0477bf9}{obsws\+\_\+version}} (void)
+\begin{DoxyCompactList}\small\item\em Get the library version string. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{library_8h_a6720460e577d2afe3c0691a2d6e055e9}{obsws\+\_\+set\+\_\+log\+\_\+level}} (\mbox{\hyperlink{library_8h_afbee3b6b991e705309ea19fd5fb0bff9}{obsws\+\_\+log\+\_\+level\+\_\+t}} level)
+\begin{DoxyCompactList}\small\item\em Set the global log level for the library. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{library_8h_adde8bcb270d34f560ae99047e0524a1d}{obsws\+\_\+set\+\_\+debug\+\_\+level}} (\mbox{\hyperlink{library_8h_a1997a985daa6bfb4117e885d9bb81668}{obsws\+\_\+debug\+\_\+level\+\_\+t}} level)
+\begin{DoxyCompactList}\small\item\em Set the global debug level for the library. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{library_8h_a1997a985daa6bfb4117e885d9bb81668}{obsws\+\_\+debug\+\_\+level\+\_\+t}} \mbox{\hyperlink{library_8h_a17d68299d8070c22f5cb04e2c4af28a1}{obsws\+\_\+get\+\_\+debug\+\_\+level}} (void)
+\begin{DoxyCompactList}\small\item\em Get the current global debug level. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{library_8h_a1f1c69172bbf706ac225b718797d30c6}{obsws\+\_\+config\+\_\+init}} (\mbox{\hyperlink{structobsws__config__t}{obsws\+\_\+config\+\_\+t}} $\ast$config)
+\begin{DoxyCompactList}\small\item\em Create a default configuration structure with reasonable defaults. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$ \mbox{\hyperlink{library_8h_a7ed7225961f0989acb31ebbd9c099626}{obsws\+\_\+connect}} (const \mbox{\hyperlink{structobsws__config__t}{obsws\+\_\+config\+\_\+t}} $\ast$config)
+\begin{DoxyCompactList}\small\item\em Establish a connection to OBS. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{library_8h_aa8389ba6731e01a9426bd921180b7195}{obsws\+\_\+disconnect}} (\mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$conn)
+\begin{DoxyCompactList}\small\item\em Disconnect and destroy a connection. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{library_8h_ad9894e72ee8510f4eaf7d42feaf0cf9a}{obsws\+\_\+is\+\_\+connected}} (const \mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$conn)
+\begin{DoxyCompactList}\small\item\em Check if connection is currently authenticated and ready to use. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991}{obsws\+\_\+state\+\_\+t}} \mbox{\hyperlink{library_8h_a61a10e31041532a9da0c1c1993f84a79}{obsws\+\_\+get\+\_\+state}} (const \mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$conn)
+\begin{DoxyCompactList}\small\item\em Get the detailed current connection state. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6}{obsws\+\_\+error\+\_\+t}} \mbox{\hyperlink{library_8h_a5cce41cb6c70229eaab8b1b3afba57a9}{obsws\+\_\+get\+\_\+stats}} (const \mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$conn, \mbox{\hyperlink{structobsws__stats__t}{obsws\+\_\+stats\+\_\+t}} $\ast$stats)
+\begin{DoxyCompactList}\small\item\em Get connection statistics and performance metrics. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6}{obsws\+\_\+error\+\_\+t}} \mbox{\hyperlink{library_8h_aab2a1b2b1c4a2a19609abfdb4b42f733}{obsws\+\_\+reconnect}} (\mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$conn)
+\begin{DoxyCompactList}\small\item\em Manually trigger a reconnection attempt. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{library_8h_aa9d2065acacec30d240d753e422f2de3}{obsws\+\_\+ping}} (\mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$conn, uint32\+\_\+t timeout\+\_\+ms)
+\begin{DoxyCompactList}\small\item\em Send a ping and measure round-\/trip time to check connection health. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6}{obsws\+\_\+error\+\_\+t}} \mbox{\hyperlink{library_8h_a7cb91bbce42b458f267f79b9a7b293bf}{obsws\+\_\+set\+\_\+current\+\_\+scene}} (\mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$conn, const char $\ast$scene\+\_\+name, \mbox{\hyperlink{structobsws__response__t}{obsws\+\_\+response\+\_\+t}} $\ast$$\ast$response)
+\begin{DoxyCompactList}\small\item\em Switch OBS to a specific scene. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6}{obsws\+\_\+error\+\_\+t}} \mbox{\hyperlink{library_8h_a91bd5ceb5878431131513cb4624e935a}{obsws\+\_\+get\+\_\+current\+\_\+scene}} (\mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$conn, char $\ast$scene\+\_\+name, size\+\_\+t buffer\+\_\+size)
+\begin{DoxyCompactList}\small\item\em Query the currently active scene in OBS. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6}{obsws\+\_\+error\+\_\+t}} \mbox{\hyperlink{library_8h_a07a41289dbce951ffead9d15b467d7c5}{obsws\+\_\+get\+\_\+scene\+\_\+list}} (\mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$conn, char $\ast$$\ast$$\ast$scenes, size\+\_\+t $\ast$count)
+\item 
+\mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6}{obsws\+\_\+error\+\_\+t}} \mbox{\hyperlink{library_8h_a1799c10d0165cea5792868aaa45cc138}{obsws\+\_\+set\+\_\+scene\+\_\+collection}} (\mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$conn, const char $\ast$collection\+\_\+name, \mbox{\hyperlink{structobsws__response__t}{obsws\+\_\+response\+\_\+t}} $\ast$$\ast$response)
+\begin{DoxyCompactList}\small\item\em Switch to a different scene collection. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6}{obsws\+\_\+error\+\_\+t}} \mbox{\hyperlink{library_8h_a8643e2027afb1907122ce4d3bfe65c6e}{obsws\+\_\+start\+\_\+recording}} (\mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$conn, \mbox{\hyperlink{structobsws__response__t}{obsws\+\_\+response\+\_\+t}} $\ast$$\ast$response)
+\begin{DoxyCompactList}\small\item\em Start recording in OBS. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6}{obsws\+\_\+error\+\_\+t}} \mbox{\hyperlink{library_8h_a30001811f4cf8501e006ca46bcb8b329}{obsws\+\_\+stop\+\_\+recording}} (\mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$conn, \mbox{\hyperlink{structobsws__response__t}{obsws\+\_\+response\+\_\+t}} $\ast$$\ast$response)
+\begin{DoxyCompactList}\small\item\em Stop recording. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6}{obsws\+\_\+error\+\_\+t}} \mbox{\hyperlink{library_8h_a86a35ee2d7aef7a0569b4111bd663d22}{obsws\+\_\+start\+\_\+streaming}} (\mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$conn, \mbox{\hyperlink{structobsws__response__t}{obsws\+\_\+response\+\_\+t}} $\ast$$\ast$response)
+\begin{DoxyCompactList}\small\item\em Start streaming in OBS. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6}{obsws\+\_\+error\+\_\+t}} \mbox{\hyperlink{library_8h_a2cfe9b46f435aa7986b5e772b99c464e}{obsws\+\_\+stop\+\_\+streaming}} (\mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$conn, \mbox{\hyperlink{structobsws__response__t}{obsws\+\_\+response\+\_\+t}} $\ast$$\ast$response)
+\begin{DoxyCompactList}\small\item\em Stop streaming. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6}{obsws\+\_\+error\+\_\+t}} \mbox{\hyperlink{library_8h_ae1192f8018768dc070926702f0958a61}{obsws\+\_\+get\+\_\+streaming\+\_\+status}} (\mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$conn, bool $\ast$is\+\_\+streaming, \mbox{\hyperlink{structobsws__response__t}{obsws\+\_\+response\+\_\+t}} $\ast$$\ast$response)
+\item 
+\mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6}{obsws\+\_\+error\+\_\+t}} \mbox{\hyperlink{library_8h_a845b9465a0b58952402d9ee021dbb003}{obsws\+\_\+get\+\_\+recording\+\_\+status}} (\mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$conn, bool $\ast$is\+\_\+recording, \mbox{\hyperlink{structobsws__response__t}{obsws\+\_\+response\+\_\+t}} $\ast$$\ast$response)
+\begin{DoxyCompactList}\small\item\em Get whether OBS is currently recording. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6}{obsws\+\_\+error\+\_\+t}} \mbox{\hyperlink{library_8h_a08f17f3a7dbfdd402c4460c13e33463b}{obsws\+\_\+set\+\_\+source\+\_\+visibility}} (\mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$conn, const char $\ast$scene\+\_\+name, const char $\ast$source\+\_\+name, bool visible, \mbox{\hyperlink{structobsws__response__t}{obsws\+\_\+response\+\_\+t}} $\ast$$\ast$response)
+\item 
+\mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6}{obsws\+\_\+error\+\_\+t}} \mbox{\hyperlink{library_8h_a75fc4d620b8032c882514b40ea525314}{obsws\+\_\+set\+\_\+source\+\_\+filter\+\_\+enabled}} (\mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$conn, const char $\ast$source\+\_\+name, const char $\ast$filter\+\_\+name, bool enabled, \mbox{\hyperlink{structobsws__response__t}{obsws\+\_\+response\+\_\+t}} $\ast$$\ast$response)
+\item 
+\mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6}{obsws\+\_\+error\+\_\+t}} \mbox{\hyperlink{library_8h_af2fd7f8dd928e03b38a3e2c5b5745417}{obsws\+\_\+send\+\_\+request}} (\mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$conn, const char $\ast$request\+\_\+type, const char $\ast$request\+\_\+data, \mbox{\hyperlink{structobsws__response__t}{obsws\+\_\+response\+\_\+t}} $\ast$$\ast$response, uint32\+\_\+t timeout\+\_\+ms)
+\begin{DoxyCompactList}\small\item\em Send a synchronous request to OBS and wait for the response. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{library_8h_abe53062a781ca1cd537f799c075b3e2e}{obsws\+\_\+process\+\_\+events}} (\mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$conn, uint32\+\_\+t timeout\+\_\+ms)
+\begin{DoxyCompactList}\small\item\em Process pending events from the Web\+Socket connection. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{library_8h_a53067e61dc0ddcf1134d46b275d7ce6b}{obsws\+\_\+response\+\_\+free}} (\mbox{\hyperlink{structobsws__response__t}{obsws\+\_\+response\+\_\+t}} $\ast$response)
+\begin{DoxyCompactList}\small\item\em Free a response structure and all its allocated memory. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{library_8h_a39534944f30eaed9a0f2d7de19be0c3e}{obsws\+\_\+error\+\_\+string}} (\mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6}{obsws\+\_\+error\+\_\+t}} error)
+\begin{DoxyCompactList}\small\item\em Convert an error code to a human-\/readable string. \end{DoxyCompactList}\item 
+const char $\ast$ \mbox{\hyperlink{library_8h_a69f8fcc1732533a2ebe573ac65effa04}{obsws\+\_\+state\+\_\+string}} (\mbox{\hyperlink{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991}{obsws\+\_\+state\+\_\+t}} state)
+\begin{DoxyCompactList}\small\item\em Convert a connection state to a human-\/readable string. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{library_8h_ac26d8f108d875f8213a73e23ae46068b}{obsws\+\_\+free\+\_\+scene\+\_\+list}} (char $\ast$$\ast$scenes, size\+\_\+t count)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{library_8h_a3024ccd4a9af5109d24e6c57565d74a1}\label{library_8h_a3024ccd4a9af5109d24e6c57565d74a1}} 
+\index{library.h@{library.h}!\_POSIX\_C\_SOURCE@{\_POSIX\_C\_SOURCE}}
+\index{\_POSIX\_C\_SOURCE@{\_POSIX\_C\_SOURCE}!library.h@{library.h}}
+\doxysubsubsection{\texorpdfstring{\_POSIX\_C\_SOURCE}{\_POSIX\_C\_SOURCE}}
+{\footnotesize\ttfamily \#define \+\_\+\+POSIX\+\_\+\+C\+\_\+\+SOURCE~200809L}
+
+
+
+Definition at line \mbox{\hyperlink{library_8h_source_l00005}{5}} of file \mbox{\hyperlink{library_8h_source}{library.\+h}}.
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{library_8h_a81ecb6b2403c8155af2e4edb4716c141}\label{library_8h_a81ecb6b2403c8155af2e4edb4716c141}} 
+\index{library.h@{library.h}!obsws\_connection\_t@{obsws\_connection\_t}}
+\index{obsws\_connection\_t@{obsws\_connection\_t}!library.h@{library.h}}
+\doxysubsubsection{\texorpdfstring{obsws\_connection\_t}{obsws\_connection\_t}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structobsws__connection}{obsws\+\_\+connection}} \mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}}}
+
+
+
+Definition at line \mbox{\hyperlink{library_8h_source_l00142}{142}} of file \mbox{\hyperlink{library_8h_source}{library.\+h}}.
+
+\mbox{\Hypertarget{library_8h_a5e76bfe94664a2648ae9c1fcfeb83a08}\label{library_8h_a5e76bfe94664a2648ae9c1fcfeb83a08}} 
+\index{library.h@{library.h}!obsws\_event\_callback\_t@{obsws\_event\_callback\_t}}
+\index{obsws\_event\_callback\_t@{obsws\_event\_callback\_t}!library.h@{library.h}}
+\doxysubsubsection{\texorpdfstring{obsws\_event\_callback\_t}{obsws\_event\_callback\_t}}
+{\footnotesize\ttfamily typedef void($\ast$ obsws\+\_\+event\+\_\+callback\+\_\+t) (\mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$conn, const char $\ast$event\+\_\+type, const char $\ast$event\+\_\+data, void $\ast$user\+\_\+data)}
+
+
+
+Definition at line \mbox{\hyperlink{library_8h_source_l00190}{190}} of file \mbox{\hyperlink{library_8h_source}{library.\+h}}.
+
+\mbox{\Hypertarget{library_8h_a1cd53dbb56b26952688e258c02fc7325}\label{library_8h_a1cd53dbb56b26952688e258c02fc7325}} 
+\index{library.h@{library.h}!obsws\_log\_callback\_t@{obsws\_log\_callback\_t}}
+\index{obsws\_log\_callback\_t@{obsws\_log\_callback\_t}!library.h@{library.h}}
+\doxysubsubsection{\texorpdfstring{obsws\_log\_callback\_t}{obsws\_log\_callback\_t}}
+{\footnotesize\ttfamily typedef void($\ast$ obsws\+\_\+log\+\_\+callback\+\_\+t) (\mbox{\hyperlink{library_8h_afbee3b6b991e705309ea19fd5fb0bff9}{obsws\+\_\+log\+\_\+level\+\_\+t}} level, const char $\ast$message, void $\ast$user\+\_\+data)}
+
+
+
+Log callback function type -\/ called when the library generates log messages. 
+
+This callback gives you a chance to handle logging however you want -\/ write to a file, display in a GUI, send to a remote server, etc. If you don\textquotesingle{}t provide a log callback, messages go to stderr by default.
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & The severity level of this log message (error, warning, info, debug) \\
+\hline
+{\em message} & The actual log message text (null-\/terminated string) \\
+\hline
+{\em user\+\_\+data} & Pointer you provided in the config -\/ use for context\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+The message buffer is temporary and may be freed after this callback returns. If you need to keep the message, copy it with strdup() or similar. 
+
+This callback is called from an internal thread, so if you access shared data structures, protect them with mutexes. 
+
+Avoid doing expensive operations in this callback -\/ logging should be fast. 
+\end{DoxyNote}
+
+
+Definition at line \mbox{\hyperlink{library_8h_source_l00161}{161}} of file \mbox{\hyperlink{library_8h_source}{library.\+h}}.
+
+\mbox{\Hypertarget{library_8h_ad3b0a6981e0c04dbf4de858972894a3d}\label{library_8h_ad3b0a6981e0c04dbf4de858972894a3d}} 
+\index{library.h@{library.h}!obsws\_state\_callback\_t@{obsws\_state\_callback\_t}}
+\index{obsws\_state\_callback\_t@{obsws\_state\_callback\_t}!library.h@{library.h}}
+\doxysubsubsection{\texorpdfstring{obsws\_state\_callback\_t}{obsws\_state\_callback\_t}}
+{\footnotesize\ttfamily typedef void($\ast$ obsws\+\_\+state\+\_\+callback\+\_\+t) (\mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$conn, \mbox{\hyperlink{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991}{obsws\+\_\+state\+\_\+t}} old\+\_\+state, \mbox{\hyperlink{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991}{obsws\+\_\+state\+\_\+t}} new\+\_\+state, void $\ast$user\+\_\+data)}
+
+
+
+State callback function type -\/ called when connection state changes. 
+
+This is how you know when the connection comes up or goes down. Use this to update your UI -\/ disable buttons when disconnected, enable them when connected, show spinners during connecting, etc.
+
+The callback receives both the old and new states so you can see the transition. For example, if old\+\_\+state is DISCONNECTED and new\+\_\+state is CONNECTING, you might show a \char`\"{}connecting...\char`\"{} message. If old\+\_\+state is CONNECTED and new\+\_\+state is DISCONNECTED, you might show \char`\"{}disconnected\char`\"{} and disable sending commands.
+
+
+\begin{DoxyParams}{Parameters}
+{\em conn} & The connection whose state changed \\
+\hline
+{\em old\+\_\+state} & Previous state (what it was before) \\
+\hline
+{\em new\+\_\+state} & Current state (what it is now) \\
+\hline
+{\em user\+\_\+data} & Pointer you provided in the config\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+This callback is called from an internal thread, so protect shared data. 
+
+Don\textquotesingle{}t do slow operations here -\/ state changes should be handled quickly.
+\end{DoxyNote}
+State transitions\+:
+\begin{DoxyItemize}
+\item DISCONNECTED -\/\texorpdfstring{$>$}{>} CONNECTING (connection attempt starting)
+\item CONNECTING -\/\texorpdfstring{$>$}{>} AUTHENTICATING (Web\+Socket connected, checking auth)
+\item AUTHENTICATING -\/\texorpdfstring{$>$}{>} CONNECTED (ready to use)
+\item CONNECTING -\/\texorpdfstring{$>$}{>} ERROR (connection failed)
+\item AUTHENTICATING -\/\texorpdfstring{$>$}{>} ERROR (auth failed)
+\item CONNECTED -\/\texorpdfstring{$>$}{>} DISCONNECTED (user disconnected or connection lost)
+\item CONNECTED -\/\texorpdfstring{$>$}{>} ERROR (unexpected connection drop)
+\item ERROR -\/\texorpdfstring{$>$}{>} DISCONNECTED (after cleanup)
+\item Any state -\/\texorpdfstring{$>$}{>} DISCONNECTED (when you call obsws\+\_\+disconnect) 
+\end{DoxyItemize}
+
+Definition at line \mbox{\hyperlink{library_8h_source_l00223}{223}} of file \mbox{\hyperlink{library_8h_source}{library.\+h}}.
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{library_8h_a1997a985daa6bfb4117e885d9bb81668}\label{library_8h_a1997a985daa6bfb4117e885d9bb81668}} 
+\index{library.h@{library.h}!obsws\_debug\_level\_t@{obsws\_debug\_level\_t}}
+\index{obsws\_debug\_level\_t@{obsws\_debug\_level\_t}!library.h@{library.h}}
+\doxysubsubsection{\texorpdfstring{obsws\_debug\_level\_t}{obsws\_debug\_level\_t}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{library_8h_a1997a985daa6bfb4117e885d9bb81668}{obsws\+\_\+debug\+\_\+level\+\_\+t}}}
+
+
+
+Debug levels -\/ fine-\/grained control for troubleshooting connection issues. 
+
+Debug output is separate from log output because it\textquotesingle{}s meant for developers debugging the library itself. It shows low-\/level protocol details. You probably only need this if something seems broken or you\textquotesingle{}re curious about the protocol.
+
+WARNING\+: Debug level HIGH will log passwords and raw messages. Never use in production or with untrusted users watching the output. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OBSWS\_DEBUG\_NONE@{OBSWS\_DEBUG\_NONE}!library.h@{library.h}}\index{library.h@{library.h}!OBSWS\_DEBUG\_NONE@{OBSWS\_DEBUG\_NONE}}}\mbox{\Hypertarget{library_8h_a1997a985daa6bfb4117e885d9bb81668a0f96dd454f8efb9a755ebda2e81919aa}\label{library_8h_a1997a985daa6bfb4117e885d9bb81668a0f96dd454f8efb9a755ebda2e81919aa}} 
+OBSWS\+\_\+\+DEBUG\+\_\+\+NONE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OBSWS\_DEBUG\_LOW@{OBSWS\_DEBUG\_LOW}!library.h@{library.h}}\index{library.h@{library.h}!OBSWS\_DEBUG\_LOW@{OBSWS\_DEBUG\_LOW}}}\mbox{\Hypertarget{library_8h_a1997a985daa6bfb4117e885d9bb81668a50fd66057e634b5bd51441ba3fdeaf50}\label{library_8h_a1997a985daa6bfb4117e885d9bb81668a50fd66057e634b5bd51441ba3fdeaf50}} 
+OBSWS\+\_\+\+DEBUG\+\_\+\+LOW&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OBSWS\_DEBUG\_MEDIUM@{OBSWS\_DEBUG\_MEDIUM}!library.h@{library.h}}\index{library.h@{library.h}!OBSWS\_DEBUG\_MEDIUM@{OBSWS\_DEBUG\_MEDIUM}}}\mbox{\Hypertarget{library_8h_a1997a985daa6bfb4117e885d9bb81668aa6c8d9d070b4d69beeadf605bc03eee1}\label{library_8h_a1997a985daa6bfb4117e885d9bb81668aa6c8d9d070b4d69beeadf605bc03eee1}} 
+OBSWS\+\_\+\+DEBUG\+\_\+\+MEDIUM&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OBSWS\_DEBUG\_HIGH@{OBSWS\_DEBUG\_HIGH}!library.h@{library.h}}\index{library.h@{library.h}!OBSWS\_DEBUG\_HIGH@{OBSWS\_DEBUG\_HIGH}}}\mbox{\Hypertarget{library_8h_a1997a985daa6bfb4117e885d9bb81668aceb0431d743cdecf0848564f388d51bd}\label{library_8h_a1997a985daa6bfb4117e885d9bb81668aceb0431d743cdecf0848564f388d51bd}} 
+OBSWS\+\_\+\+DEBUG\+\_\+\+HIGH&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line \mbox{\hyperlink{library_8h_source_l00134}{134}} of file \mbox{\hyperlink{library_8h_source}{library.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00134              \{}
+\DoxyCodeLine{00135     \mbox{\hyperlink{library_8h_a1997a985daa6bfb4117e885d9bb81668a0f96dd454f8efb9a755ebda2e81919aa}{OBSWS\_DEBUG\_NONE}} = 0,       \textcolor{comment}{/* No debug output -\/ production mode */}}
+\DoxyCodeLine{00136     \mbox{\hyperlink{library_8h_a1997a985daa6bfb4117e885d9bb81668a50fd66057e634b5bd51441ba3fdeaf50}{OBSWS\_DEBUG\_LOW}} = 1,        \textcolor{comment}{/* Connection events, auth success/failure, major state changes */}}
+\DoxyCodeLine{00137     \mbox{\hyperlink{library_8h_a1997a985daa6bfb4117e885d9bb81668aa6c8d9d070b4d69beeadf605bc03eee1}{OBSWS\_DEBUG\_MEDIUM}} = 2,     \textcolor{comment}{/* Low + WebSocket opcodes, event type names, request IDs */}}
+\DoxyCodeLine{00138     \mbox{\hyperlink{library_8h_a1997a985daa6bfb4117e885d9bb81668aceb0431d743cdecf0848564f388d51bd}{OBSWS\_DEBUG\_HIGH}} = 3        \textcolor{comment}{/* Medium + full message contents -\/ can include passwords! */}}
+\DoxyCodeLine{00139 \} \mbox{\hyperlink{library_8h_a1997a985daa6bfb4117e885d9bb81668}{obsws\_debug\_level\_t}};}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{library_8h_a4820ea98988736a81d6695a51f74acd6}\label{library_8h_a4820ea98988736a81d6695a51f74acd6}} 
+\index{library.h@{library.h}!obsws\_error\_t@{obsws\_error\_t}}
+\index{obsws\_error\_t@{obsws\_error\_t}!library.h@{library.h}}
+\doxysubsubsection{\texorpdfstring{obsws\_error\_t}{obsws\_error\_t}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6}{obsws\+\_\+error\+\_\+t}}}
+
+
+
+Error codes returned by library functions. 
+
+These error codes provide detailed information about what went wrong during library operations. Unlike generic error codes, they help distinguish between different failure modes so you can implement proper error handling and recovery strategies. For example, OBSWS\+\_\+\+ERROR\+\_\+\+TIMEOUT means you should probably retry the operation, while OBSWS\+\_\+\+ERROR\+\_\+\+AUTH\+\_\+\+FAILED means retrying won\textquotesingle{}t help -\/ the password is just wrong.
+
+The library uses negative error codes following POSIX conventions. Zero is always success. This makes it easy to check errors with simple conditions like if (error \texorpdfstring{$<$}{<} 0).
+
+Note that some errors are recoverable (network timeouts, temporary connection failures) while others are not (invalid parameters, authentication failure). The auto-\/reconnect feature only applies to network-\/level errors, not application errors like wrong scene names. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OBSWS\_OK@{OBSWS\_OK}!library.h@{library.h}}\index{library.h@{library.h}!OBSWS\_OK@{OBSWS\_OK}}}\mbox{\Hypertarget{library_8h_a4820ea98988736a81d6695a51f74acd6aa43b9a59f39db094a477cb25a638e5a1}\label{library_8h_a4820ea98988736a81d6695a51f74acd6aa43b9a59f39db094a477cb25a638e5a1}} 
+OBSWS\+\_\+\+OK&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OBSWS\_ERROR\_INVALID\_PARAM@{OBSWS\_ERROR\_INVALID\_PARAM}!library.h@{library.h}}\index{library.h@{library.h}!OBSWS\_ERROR\_INVALID\_PARAM@{OBSWS\_ERROR\_INVALID\_PARAM}}}\mbox{\Hypertarget{library_8h_a4820ea98988736a81d6695a51f74acd6a8944fe1379e71d22a82399c21107ebf6}\label{library_8h_a4820ea98988736a81d6695a51f74acd6a8944fe1379e71d22a82399c21107ebf6}} 
+OBSWS\+\_\+\+ERROR\+\_\+\+INVALID\+\_\+\+PARAM&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OBSWS\_ERROR\_CONNECTION\_FAILED@{OBSWS\_ERROR\_CONNECTION\_FAILED}!library.h@{library.h}}\index{library.h@{library.h}!OBSWS\_ERROR\_CONNECTION\_FAILED@{OBSWS\_ERROR\_CONNECTION\_FAILED}}}\mbox{\Hypertarget{library_8h_a4820ea98988736a81d6695a51f74acd6aa99054291b32e3476d521ea9efeb83a2}\label{library_8h_a4820ea98988736a81d6695a51f74acd6aa99054291b32e3476d521ea9efeb83a2}} 
+OBSWS\+\_\+\+ERROR\+\_\+\+CONNECTION\+\_\+\+FAILED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OBSWS\_ERROR\_SEND\_FAILED@{OBSWS\_ERROR\_SEND\_FAILED}!library.h@{library.h}}\index{library.h@{library.h}!OBSWS\_ERROR\_SEND\_FAILED@{OBSWS\_ERROR\_SEND\_FAILED}}}\mbox{\Hypertarget{library_8h_a4820ea98988736a81d6695a51f74acd6abab3c6691cc119a7b875d967f0fc565f}\label{library_8h_a4820ea98988736a81d6695a51f74acd6abab3c6691cc119a7b875d967f0fc565f}} 
+OBSWS\+\_\+\+ERROR\+\_\+\+SEND\+\_\+\+FAILED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OBSWS\_ERROR\_RECV\_FAILED@{OBSWS\_ERROR\_RECV\_FAILED}!library.h@{library.h}}\index{library.h@{library.h}!OBSWS\_ERROR\_RECV\_FAILED@{OBSWS\_ERROR\_RECV\_FAILED}}}\mbox{\Hypertarget{library_8h_a4820ea98988736a81d6695a51f74acd6a312613cd84331a653e2c1de24b94c52b}\label{library_8h_a4820ea98988736a81d6695a51f74acd6a312613cd84331a653e2c1de24b94c52b}} 
+OBSWS\+\_\+\+ERROR\+\_\+\+RECV\+\_\+\+FAILED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OBSWS\_ERROR\_SSL\_FAILED@{OBSWS\_ERROR\_SSL\_FAILED}!library.h@{library.h}}\index{library.h@{library.h}!OBSWS\_ERROR\_SSL\_FAILED@{OBSWS\_ERROR\_SSL\_FAILED}}}\mbox{\Hypertarget{library_8h_a4820ea98988736a81d6695a51f74acd6aea7cb95255efa1d01e6761d676ab599c}\label{library_8h_a4820ea98988736a81d6695a51f74acd6aea7cb95255efa1d01e6761d676ab599c}} 
+OBSWS\+\_\+\+ERROR\+\_\+\+SSL\+\_\+\+FAILED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OBSWS\_ERROR\_AUTH\_FAILED@{OBSWS\_ERROR\_AUTH\_FAILED}!library.h@{library.h}}\index{library.h@{library.h}!OBSWS\_ERROR\_AUTH\_FAILED@{OBSWS\_ERROR\_AUTH\_FAILED}}}\mbox{\Hypertarget{library_8h_a4820ea98988736a81d6695a51f74acd6a3132520f4e5efcd0e07668b4afcd5c4c}\label{library_8h_a4820ea98988736a81d6695a51f74acd6a3132520f4e5efcd0e07668b4afcd5c4c}} 
+OBSWS\+\_\+\+ERROR\+\_\+\+AUTH\+\_\+\+FAILED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OBSWS\_ERROR\_PARSE\_FAILED@{OBSWS\_ERROR\_PARSE\_FAILED}!library.h@{library.h}}\index{library.h@{library.h}!OBSWS\_ERROR\_PARSE\_FAILED@{OBSWS\_ERROR\_PARSE\_FAILED}}}\mbox{\Hypertarget{library_8h_a4820ea98988736a81d6695a51f74acd6a72ca999664bea413857d7901acf2d598}\label{library_8h_a4820ea98988736a81d6695a51f74acd6a72ca999664bea413857d7901acf2d598}} 
+OBSWS\+\_\+\+ERROR\+\_\+\+PARSE\+\_\+\+FAILED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OBSWS\_ERROR\_NOT\_CONNECTED@{OBSWS\_ERROR\_NOT\_CONNECTED}!library.h@{library.h}}\index{library.h@{library.h}!OBSWS\_ERROR\_NOT\_CONNECTED@{OBSWS\_ERROR\_NOT\_CONNECTED}}}\mbox{\Hypertarget{library_8h_a4820ea98988736a81d6695a51f74acd6ace2eb9908cf7d65109788a2593582982}\label{library_8h_a4820ea98988736a81d6695a51f74acd6ace2eb9908cf7d65109788a2593582982}} 
+OBSWS\+\_\+\+ERROR\+\_\+\+NOT\+\_\+\+CONNECTED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OBSWS\_ERROR\_ALREADY\_CONNECTED@{OBSWS\_ERROR\_ALREADY\_CONNECTED}!library.h@{library.h}}\index{library.h@{library.h}!OBSWS\_ERROR\_ALREADY\_CONNECTED@{OBSWS\_ERROR\_ALREADY\_CONNECTED}}}\mbox{\Hypertarget{library_8h_a4820ea98988736a81d6695a51f74acd6a6b4348384a97af637d6361e38a5de052}\label{library_8h_a4820ea98988736a81d6695a51f74acd6a6b4348384a97af637d6361e38a5de052}} 
+OBSWS\+\_\+\+ERROR\+\_\+\+ALREADY\+\_\+\+CONNECTED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OBSWS\_ERROR\_TIMEOUT@{OBSWS\_ERROR\_TIMEOUT}!library.h@{library.h}}\index{library.h@{library.h}!OBSWS\_ERROR\_TIMEOUT@{OBSWS\_ERROR\_TIMEOUT}}}\mbox{\Hypertarget{library_8h_a4820ea98988736a81d6695a51f74acd6a852a5a13d07531a60aedc6e3cc1ae86d}\label{library_8h_a4820ea98988736a81d6695a51f74acd6a852a5a13d07531a60aedc6e3cc1ae86d}} 
+OBSWS\+\_\+\+ERROR\+\_\+\+TIMEOUT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OBSWS\_ERROR\_OUT\_OF\_MEMORY@{OBSWS\_ERROR\_OUT\_OF\_MEMORY}!library.h@{library.h}}\index{library.h@{library.h}!OBSWS\_ERROR\_OUT\_OF\_MEMORY@{OBSWS\_ERROR\_OUT\_OF\_MEMORY}}}\mbox{\Hypertarget{library_8h_a4820ea98988736a81d6695a51f74acd6a976f03f9cfc1de7d7172732454829e15}\label{library_8h_a4820ea98988736a81d6695a51f74acd6a976f03f9cfc1de7d7172732454829e15}} 
+OBSWS\+\_\+\+ERROR\+\_\+\+OUT\+\_\+\+OF\+\_\+\+MEMORY&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OBSWS\_ERROR\_UNKNOWN@{OBSWS\_ERROR\_UNKNOWN}!library.h@{library.h}}\index{library.h@{library.h}!OBSWS\_ERROR\_UNKNOWN@{OBSWS\_ERROR\_UNKNOWN}}}\mbox{\Hypertarget{library_8h_a4820ea98988736a81d6695a51f74acd6a8988f38a0e1e83701ffc075686bb3395}\label{library_8h_a4820ea98988736a81d6695a51f74acd6a8988f38a0e1e83701ffc075686bb3395}} 
+OBSWS\+\_\+\+ERROR\+\_\+\+UNKNOWN&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line \mbox{\hyperlink{library_8h_source_l00051}{51}} of file \mbox{\hyperlink{library_8h_source}{library.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00051              \{}
+\DoxyCodeLine{00052     \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6aa43b9a59f39db094a477cb25a638e5a1}{OBSWS\_OK}} = 0,}
+\DoxyCodeLine{00053     }
+\DoxyCodeLine{00054     \textcolor{comment}{/* Parameter validation errors (application layer) -\/ not recoverable by retrying */}}
+\DoxyCodeLine{00055     \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6a8944fe1379e71d22a82399c21107ebf6}{OBSWS\_ERROR\_INVALID\_PARAM}} = -\/1,}
+\DoxyCodeLine{00056     }
+\DoxyCodeLine{00057     \textcolor{comment}{/* Network-\/level errors (can be recovered with reconnection) */}}
+\DoxyCodeLine{00058     \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6aa99054291b32e3476d521ea9efeb83a2}{OBSWS\_ERROR\_CONNECTION\_FAILED}} = -\/2,}
+\DoxyCodeLine{00059     \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6abab3c6691cc119a7b875d967f0fc565f}{OBSWS\_ERROR\_SEND\_FAILED}} = -\/5,}
+\DoxyCodeLine{00060     \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6a312613cd84331a653e2c1de24b94c52b}{OBSWS\_ERROR\_RECV\_FAILED}} = -\/6,}
+\DoxyCodeLine{00061     \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6aea7cb95255efa1d01e6761d676ab599c}{OBSWS\_ERROR\_SSL\_FAILED}} = -\/11,}
+\DoxyCodeLine{00062     }
+\DoxyCodeLine{00063     \textcolor{comment}{/* Authentication errors (recoverable only by fixing the password) */}}
+\DoxyCodeLine{00064     \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6a3132520f4e5efcd0e07668b4afcd5c4c}{OBSWS\_ERROR\_AUTH\_FAILED}} = -\/3,}
+\DoxyCodeLine{00065     }
+\DoxyCodeLine{00066     \textcolor{comment}{/* Protocol/messaging errors (typically indicate bad request data or OBS issues) */}}
+\DoxyCodeLine{00067     \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6a72ca999664bea413857d7901acf2d598}{OBSWS\_ERROR\_PARSE\_FAILED}} = -\/7,}
+\DoxyCodeLine{00068     \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6ace2eb9908cf7d65109788a2593582982}{OBSWS\_ERROR\_NOT\_CONNECTED}} = -\/8,}
+\DoxyCodeLine{00069     \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6a6b4348384a97af637d6361e38a5de052}{OBSWS\_ERROR\_ALREADY\_CONNECTED}} = -\/9,}
+\DoxyCodeLine{00070     }
+\DoxyCodeLine{00071     \textcolor{comment}{/* Timeout errors (recoverable by retrying with patience) */}}
+\DoxyCodeLine{00072     \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6a852a5a13d07531a60aedc6e3cc1ae86d}{OBSWS\_ERROR\_TIMEOUT}} = -\/4,}
+\DoxyCodeLine{00073     }
+\DoxyCodeLine{00074     \textcolor{comment}{/* System resource errors (usually indicates system-\/wide issues) */}}
+\DoxyCodeLine{00075     \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6a976f03f9cfc1de7d7172732454829e15}{OBSWS\_ERROR\_OUT\_OF\_MEMORY}} = -\/10,}
+\DoxyCodeLine{00076     }
+\DoxyCodeLine{00077     \textcolor{comment}{/* Catch-\/all for things we didn't expect */}}
+\DoxyCodeLine{00078     \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6a8988f38a0e1e83701ffc075686bb3395}{OBSWS\_ERROR\_UNKNOWN}} = -\/99}
+\DoxyCodeLine{00079 \} \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6}{obsws\_error\_t}};}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{library_8h_afbee3b6b991e705309ea19fd5fb0bff9}\label{library_8h_afbee3b6b991e705309ea19fd5fb0bff9}} 
+\index{library.h@{library.h}!obsws\_log\_level\_t@{obsws\_log\_level\_t}}
+\index{obsws\_log\_level\_t@{obsws\_log\_level\_t}!library.h@{library.h}}
+\doxysubsubsection{\texorpdfstring{obsws\_log\_level\_t}{obsws\_log\_level\_t}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{library_8h_afbee3b6b991e705309ea19fd5fb0bff9}{obsws\+\_\+log\+\_\+level\+\_\+t}}}
+
+
+
+Log levels for filtering library output. 
+
+Think of log levels like a funnel -\/ higher levels include all the output from lower levels plus more. So LOG\+\_\+\+DEBUG includes everything, while LOG\+\_\+\+ERROR only shows when things go wrong.
+
+For production, use OBSWS\+\_\+\+LOG\+\_\+\+ERROR or OBSWS\+\_\+\+LOG\+\_\+\+WARNING to avoid spam. For development/debugging, use OBSWS\+\_\+\+LOG\+\_\+\+DEBUG to see everything happening. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OBSWS\_LOG\_NONE@{OBSWS\_LOG\_NONE}!library.h@{library.h}}\index{library.h@{library.h}!OBSWS\_LOG\_NONE@{OBSWS\_LOG\_NONE}}}\mbox{\Hypertarget{library_8h_afbee3b6b991e705309ea19fd5fb0bff9a565d702d35e780d080b14dd8f1c8e299}\label{library_8h_afbee3b6b991e705309ea19fd5fb0bff9a565d702d35e780d080b14dd8f1c8e299}} 
+OBSWS\+\_\+\+LOG\+\_\+\+NONE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OBSWS\_LOG\_ERROR@{OBSWS\_LOG\_ERROR}!library.h@{library.h}}\index{library.h@{library.h}!OBSWS\_LOG\_ERROR@{OBSWS\_LOG\_ERROR}}}\mbox{\Hypertarget{library_8h_afbee3b6b991e705309ea19fd5fb0bff9a6a2a374e4af0446011df30bfd09e329e}\label{library_8h_afbee3b6b991e705309ea19fd5fb0bff9a6a2a374e4af0446011df30bfd09e329e}} 
+OBSWS\+\_\+\+LOG\+\_\+\+ERROR&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OBSWS\_LOG\_WARNING@{OBSWS\_LOG\_WARNING}!library.h@{library.h}}\index{library.h@{library.h}!OBSWS\_LOG\_WARNING@{OBSWS\_LOG\_WARNING}}}\mbox{\Hypertarget{library_8h_afbee3b6b991e705309ea19fd5fb0bff9a7db7d387859c4786d8eb303e5bbafef7}\label{library_8h_afbee3b6b991e705309ea19fd5fb0bff9a7db7d387859c4786d8eb303e5bbafef7}} 
+OBSWS\+\_\+\+LOG\+\_\+\+WARNING&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OBSWS\_LOG\_INFO@{OBSWS\_LOG\_INFO}!library.h@{library.h}}\index{library.h@{library.h}!OBSWS\_LOG\_INFO@{OBSWS\_LOG\_INFO}}}\mbox{\Hypertarget{library_8h_afbee3b6b991e705309ea19fd5fb0bff9ae48017bf78390a3df8cd87a24782c421}\label{library_8h_afbee3b6b991e705309ea19fd5fb0bff9ae48017bf78390a3df8cd87a24782c421}} 
+OBSWS\+\_\+\+LOG\+\_\+\+INFO&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OBSWS\_LOG\_DEBUG@{OBSWS\_LOG\_DEBUG}!library.h@{library.h}}\index{library.h@{library.h}!OBSWS\_LOG\_DEBUG@{OBSWS\_LOG\_DEBUG}}}\mbox{\Hypertarget{library_8h_afbee3b6b991e705309ea19fd5fb0bff9aa69cfac4b3acbd5968bfab9ef5759cd2}\label{library_8h_afbee3b6b991e705309ea19fd5fb0bff9aa69cfac4b3acbd5968bfab9ef5759cd2}} 
+OBSWS\+\_\+\+LOG\+\_\+\+DEBUG&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line \mbox{\hyperlink{library_8h_source_l00116}{116}} of file \mbox{\hyperlink{library_8h_source}{library.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00116              \{}
+\DoxyCodeLine{00117     \mbox{\hyperlink{library_8h_afbee3b6b991e705309ea19fd5fb0bff9a565d702d35e780d080b14dd8f1c8e299}{OBSWS\_LOG\_NONE}} = 0,         \textcolor{comment}{/* Silence the library completely */}}
+\DoxyCodeLine{00118     \mbox{\hyperlink{library_8h_afbee3b6b991e705309ea19fd5fb0bff9a6a2a374e4af0446011df30bfd09e329e}{OBSWS\_LOG\_ERROR}} = 1,        \textcolor{comment}{/* Only errors -\/ something went wrong */}}
+\DoxyCodeLine{00119     \mbox{\hyperlink{library_8h_afbee3b6b991e705309ea19fd5fb0bff9a7db7d387859c4786d8eb303e5bbafef7}{OBSWS\_LOG\_WARNING}} = 2,      \textcolor{comment}{/* Errors + warnings -\/ potential issues but still working */}}
+\DoxyCodeLine{00120     \mbox{\hyperlink{library_8h_afbee3b6b991e705309ea19fd5fb0bff9ae48017bf78390a3df8cd87a24782c421}{OBSWS\_LOG\_INFO}} = 3,         \textcolor{comment}{/* Normal operation info, good for seeing what's happening */}}
+\DoxyCodeLine{00121     \mbox{\hyperlink{library_8h_afbee3b6b991e705309ea19fd5fb0bff9aa69cfac4b3acbd5968bfab9ef5759cd2}{OBSWS\_LOG\_DEBUG}} = 4         \textcolor{comment}{/* Very verbose, includes internal decisions and state changes */}}
+\DoxyCodeLine{00122 \} \mbox{\hyperlink{library_8h_afbee3b6b991e705309ea19fd5fb0bff9}{obsws\_log\_level\_t}};}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991}\label{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991}} 
+\index{library.h@{library.h}!obsws\_state\_t@{obsws\_state\_t}}
+\index{obsws\_state\_t@{obsws\_state\_t}!library.h@{library.h}}
+\doxysubsubsection{\texorpdfstring{obsws\_state\_t}{obsws\_state\_t}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991}{obsws\+\_\+state\+\_\+t}}}
+
+
+
+Connection state -\/ represents the current phase of the connection lifecycle. 
+
+The connection goes through several states as it initializes. Understanding these states is important because different operations are only valid in certain states. For example, you can\textquotesingle{}t send scene-\/switching commands when the state is CONNECTING
+\begin{DoxyItemize}
+\item you have to wait until CONNECTED.
+\end{DoxyItemize}
+
+The state machine looks like this\+: DISCONNECTED -\/\texorpdfstring{$>$}{>} CONNECTING -\/\texorpdfstring{$>$}{>} AUTHENTICATING -\/\texorpdfstring{$>$}{>} CONNECTED Any state can transition to ERROR if something goes wrong CONNECTED or ERROR can go back to DISCONNECTED when closing
+
+When you get a state callback, it tells you the old and new states so you can react appropriately. For example, you might want to disable UI buttons when moving from CONNECTED to DISCONNECTED. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OBSWS\_STATE\_DISCONNECTED@{OBSWS\_STATE\_DISCONNECTED}!library.h@{library.h}}\index{library.h@{library.h}!OBSWS\_STATE\_DISCONNECTED@{OBSWS\_STATE\_DISCONNECTED}}}\mbox{\Hypertarget{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991af973d2b8b0a498d0bbffb40ccab1ef2d}\label{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991af973d2b8b0a498d0bbffb40ccab1ef2d}} 
+OBSWS\+\_\+\+STATE\+\_\+\+DISCONNECTED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OBSWS\_STATE\_CONNECTING@{OBSWS\_STATE\_CONNECTING}!library.h@{library.h}}\index{library.h@{library.h}!OBSWS\_STATE\_CONNECTING@{OBSWS\_STATE\_CONNECTING}}}\mbox{\Hypertarget{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991a88276a1a9f595735a2b242f0eab1524a}\label{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991a88276a1a9f595735a2b242f0eab1524a}} 
+OBSWS\+\_\+\+STATE\+\_\+\+CONNECTING&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OBSWS\_STATE\_AUTHENTICATING@{OBSWS\_STATE\_AUTHENTICATING}!library.h@{library.h}}\index{library.h@{library.h}!OBSWS\_STATE\_AUTHENTICATING@{OBSWS\_STATE\_AUTHENTICATING}}}\mbox{\Hypertarget{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991ac9c5d9c3aab50d7e6d1d38b1bb7d6d0f}\label{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991ac9c5d9c3aab50d7e6d1d38b1bb7d6d0f}} 
+OBSWS\+\_\+\+STATE\+\_\+\+AUTHENTICATING&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OBSWS\_STATE\_CONNECTED@{OBSWS\_STATE\_CONNECTED}!library.h@{library.h}}\index{library.h@{library.h}!OBSWS\_STATE\_CONNECTED@{OBSWS\_STATE\_CONNECTED}}}\mbox{\Hypertarget{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991adbaae08035175b470fb9f543414672b8}\label{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991adbaae08035175b470fb9f543414672b8}} 
+OBSWS\+\_\+\+STATE\+\_\+\+CONNECTED&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OBSWS\_STATE\_ERROR@{OBSWS\_STATE\_ERROR}!library.h@{library.h}}\index{library.h@{library.h}!OBSWS\_STATE\_ERROR@{OBSWS\_STATE\_ERROR}}}\mbox{\Hypertarget{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991ae13bce21841139a7510b1c8b10a694ac}\label{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991ae13bce21841139a7510b1c8b10a694ac}} 
+OBSWS\+\_\+\+STATE\+\_\+\+ERROR&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+Definition at line \mbox{\hyperlink{library_8h_source_l00098}{98}} of file \mbox{\hyperlink{library_8h_source}{library.\+h}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00098              \{}
+\DoxyCodeLine{00099     \mbox{\hyperlink{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991af973d2b8b0a498d0bbffb40ccab1ef2d}{OBSWS\_STATE\_DISCONNECTED}} = 0,       \textcolor{comment}{/* Not connected to OBS, no operations possible */}}
+\DoxyCodeLine{00100     \mbox{\hyperlink{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991a88276a1a9f595735a2b242f0eab1524a}{OBSWS\_STATE\_CONNECTING}} = 1,         \textcolor{comment}{/* WebSocket handshake in progress, wait for AUTHENTICATING */}}
+\DoxyCodeLine{00101     \mbox{\hyperlink{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991ac9c5d9c3aab50d7e6d1d38b1bb7d6d0f}{OBSWS\_STATE\_AUTHENTICATING}} = 2,     \textcolor{comment}{/* Connected but still doing auth, wait for CONNECTED */}}
+\DoxyCodeLine{00102     \mbox{\hyperlink{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991adbaae08035175b470fb9f543414672b8}{OBSWS\_STATE\_CONNECTED}} = 3,          \textcolor{comment}{/* Ready -\/ authentication complete, send commands now */}}
+\DoxyCodeLine{00103     \mbox{\hyperlink{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991ae13bce21841139a7510b1c8b10a694ac}{OBSWS\_STATE\_ERROR}} = 4               \textcolor{comment}{/* Unrecoverable error occurred, reconnection might help */}}
+\DoxyCodeLine{00104 \} \mbox{\hyperlink{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991}{obsws\_state\_t}};}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{library_8h_ad3afe1c77e8b8f26a8281186379790a1}\label{library_8h_ad3afe1c77e8b8f26a8281186379790a1}} 
+\index{library.h@{library.h}!obsws\_cleanup@{obsws\_cleanup}}
+\index{obsws\_cleanup@{obsws\_cleanup}!library.h@{library.h}}
+\doxysubsubsection{\texorpdfstring{obsws\_cleanup()}{obsws\_cleanup()}}
+{\footnotesize\ttfamily void obsws\+\_\+cleanup (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Cleanup the OBS Web\+Socket library. 
+
+Call this when done using the library to release resources. Any connections should be disconnected before cleanup, though the library will try to clean them up if they\textquotesingle{}re not. After calling this, don\textquotesingle{}t use any library functions until you call \mbox{\hyperlink{library_8h_aff3d6c035330741df84552800c0d0124}{obsws\+\_\+init()}} again.
+
+\begin{DoxyNote}{Note}
+It\textquotesingle{}s safe to call this multiple times. 
+
+You should \mbox{\hyperlink{library_8h_aa8389ba6731e01a9426bd921180b7195}{obsws\+\_\+disconnect()}} all connections before calling this. 
+
+Threads should exit before calling cleanup -\/ don\textquotesingle{}t cleanup while callbacks are running.
+\end{DoxyNote}
+Cleanup the OBS Web\+Socket library.
+
+Call this when you\textquotesingle{}re done with the library to deallocate Open\+SSL resources. This is a counterpart to \mbox{\hyperlink{library_8h_aff3d6c035330741df84552800c0d0124}{obsws\+\_\+init()}}.
+
+Important\+: Make sure all obsws\+\_\+connection\+\_\+t objects have been disconnected and freed via \mbox{\hyperlink{library_8h_aa8389ba6731e01a9426bd921180b7195}{obsws\+\_\+disconnect()}} before calling this. If not, you might have dangling references and resource leaks.
+
+Thread safety\+: This function is thread-\/safe and idempotent (safe to call multiple times). It checks g\+\_\+library\+\_\+initialized before doing anything.
+
+Note\+: This is optional on program exit because the OS will clean up memory anyway. But it\textquotesingle{}s good practice for\+:
+\begin{DoxyItemize}
+\item Library consumers that need clean shutdown
+\item Memory leak detectors / Valgrind tests
+\item Programs that unload the library
+\end{DoxyItemize}
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{library_8h_aff3d6c035330741df84552800c0d0124}{obsws\+\_\+init}} 
+\end{DoxySeeAlso}
+
+
+Definition at line \mbox{\hyperlink{library_8c_source_l01237}{1237}} of file \mbox{\hyperlink{library_8c_source}{library.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01237                          \{}
+\DoxyCodeLine{01238     pthread\_mutex\_lock(\&\mbox{\hyperlink{library_8c_ad5f633670e2eea3285c1867570a33cbc}{g\_init\_mutex}});}
+\DoxyCodeLine{01239     }
+\DoxyCodeLine{01240     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{library_8c_a5c573cf80a65ed908b966420c4a5d7d2}{g\_library\_initialized}}) \{}
+\DoxyCodeLine{01241         pthread\_mutex\_unlock(\&\mbox{\hyperlink{library_8c_ad5f633670e2eea3285c1867570a33cbc}{g\_init\_mutex}});}
+\DoxyCodeLine{01242         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{01243     \}}
+\DoxyCodeLine{01244     }
+\DoxyCodeLine{01245     EVP\_cleanup();}
+\DoxyCodeLine{01246     \mbox{\hyperlink{library_8c_a5c573cf80a65ed908b966420c4a5d7d2}{g\_library\_initialized}} = \textcolor{keyword}{false};}
+\DoxyCodeLine{01247     }
+\DoxyCodeLine{01248     pthread\_mutex\_unlock(\&\mbox{\hyperlink{library_8c_ad5f633670e2eea3285c1867570a33cbc}{g\_init\_mutex}});}
+\DoxyCodeLine{01249 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{library_8h_a1f1c69172bbf706ac225b718797d30c6}\label{library_8h_a1f1c69172bbf706ac225b718797d30c6}} 
+\index{library.h@{library.h}!obsws\_config\_init@{obsws\_config\_init}}
+\index{obsws\_config\_init@{obsws\_config\_init}!library.h@{library.h}}
+\doxysubsubsection{\texorpdfstring{obsws\_config\_init()}{obsws\_config\_init()}}
+{\footnotesize\ttfamily void obsws\+\_\+config\+\_\+init (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structobsws__config__t}{obsws\+\_\+config\+\_\+t}} $\ast$}]{config }\end{DoxyParamCaption})}
+
+
+
+Create a default configuration structure with reasonable defaults. 
+
+This initializes a config structure with settings that should work for most cases. You then modify only the fields you care about. This is better than manually setting each field because if we add new config options in the future, you\textquotesingle{}ll automatically get the right defaults without changing your code.
+
+After calling this, typically you\textquotesingle{}d set\+: config.\+host = \char`\"{}192.\+168.\+1.\+100\char`\"{}; config.\+port = 4455; config.\+password = \char`\"{}your-\/obs-\/password\char`\"{};
+
+Then pass it to \mbox{\hyperlink{library_8h_a7ed7225961f0989acb31ebbd9c099626}{obsws\+\_\+connect()}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em config} & Pointer to configuration structure to fill with defaults\\
+\hline
+\end{DoxyParams}
+Create a default configuration structure with reasonable defaults.
+
+Before calling \mbox{\hyperlink{library_8h_a7ed7225961f0989acb31ebbd9c099626}{obsws\+\_\+connect()}}, you create an \mbox{\hyperlink{structobsws__config__t}{obsws\+\_\+config\+\_\+t}} structure with the connection parameters. This function initializes that structure with sensible defaults so you only need to change what\textquotesingle{}s different for your use case.
+
+Default values set\+:
+\begin{DoxyItemize}
+\item port\+: 4455 (OBS Web\+Socket v5 default port)
+\item use\+\_\+ssl\+: false (OBS uses ws\+://, not wss\+://)
+\item connect\+\_\+timeout\+\_\+ms\+: 5000 (5 seconds to connect)
+\item recv\+\_\+timeout\+\_\+ms\+: 5000 (5 seconds to receive each message)
+\item send\+\_\+timeout\+\_\+ms\+: 5000 (5 seconds to send each message)
+\item ping\+\_\+interval\+\_\+ms\+: 10000 (send ping every 10 seconds)
+\item ping\+\_\+timeout\+\_\+ms\+: 5000 (expect pong within 5 seconds)
+\item auto\+\_\+reconnect\+: true (reconnect automatically if connection drops)
+\item reconnect\+\_\+delay\+\_\+ms\+: 1000 (start with 1 second delay)
+\item max\+\_\+reconnect\+\_\+delay\+\_\+ms\+: 30000 (max wait is 30 seconds)
+\item max\+\_\+reconnect\+\_\+attempts\+: 0 (infinite attempts)
+\end{DoxyItemize}
+
+After calling this, you typically set\+:
+\begin{DoxyItemize}
+\item config.\+host = \char`\"{}localhost\char`\"{} (where OBS is running)
+\item config.\+password = \char`\"{}your\+\_\+password\char`\"{} (if OBS has auth enabled)
+\item config.\+event\+\_\+callback = your\+\_\+callback\+\_\+func (to receive events)
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em config} & Pointer to structure to initialize (must not be NULL)\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{library_8h_a7ed7225961f0989acb31ebbd9c099626}{obsws\+\_\+connect}} 
+\end{DoxySeeAlso}
+
+
+Definition at line \mbox{\hyperlink{library_8c_source_l01367}{1367}} of file \mbox{\hyperlink{library_8c_source}{library.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01367                                                \{}
+\DoxyCodeLine{01368     memset(config, 0, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structobsws__config__t}{obsws\_config\_t}}));}
+\DoxyCodeLine{01369     }
+\DoxyCodeLine{01370     config-\/>\mbox{\hyperlink{structobsws__config__t_a7355cf2fb949f6d4391b6c2c605c9073}{port}} = 4455;}
+\DoxyCodeLine{01371     config-\/>\mbox{\hyperlink{structobsws__config__t_a1070992d75f19a3fd4567754d37b9290}{use\_ssl}} = \textcolor{keyword}{false};}
+\DoxyCodeLine{01372     config-\/>\mbox{\hyperlink{structobsws__config__t_ab7ca748ce58419a7c8b6b6dc440d3387}{connect\_timeout\_ms}} = 5000;}
+\DoxyCodeLine{01373     config-\/>\mbox{\hyperlink{structobsws__config__t_a6439a4274026273ba5fb9786c90daa93}{recv\_timeout\_ms}} = 5000;}
+\DoxyCodeLine{01374     config-\/>\mbox{\hyperlink{structobsws__config__t_a5e99af1526aaa66f76b71c3948b5b294}{send\_timeout\_ms}} = 5000;}
+\DoxyCodeLine{01375     config-\/>\mbox{\hyperlink{structobsws__config__t_a74ee702373489ff1ea1289e87d50e469}{ping\_interval\_ms}} = 10000;}
+\DoxyCodeLine{01376     config-\/>\mbox{\hyperlink{structobsws__config__t_a806599d35ea8d3fc9c7140e76adf1c1a}{ping\_timeout\_ms}} = 5000;}
+\DoxyCodeLine{01377     config-\/>\mbox{\hyperlink{structobsws__config__t_a5be1729ffbc28b3e036315f06e80a7a8}{auto\_reconnect}} = \textcolor{keyword}{true};}
+\DoxyCodeLine{01378     config-\/>\mbox{\hyperlink{structobsws__config__t_a5ccd3a828a3fcad6d6ebedc0324c4aee}{reconnect\_delay\_ms}} = 1000;}
+\DoxyCodeLine{01379     config-\/>\mbox{\hyperlink{structobsws__config__t_ae4f46d4b683af271b1ba69e335fb7e3c}{max\_reconnect\_delay\_ms}} = 30000;}
+\DoxyCodeLine{01380     config-\/>\mbox{\hyperlink{structobsws__config__t_a1aff4f0ff9ac25c5d63772eb91d443ac}{max\_reconnect\_attempts}} = 0; \textcolor{comment}{/* Infinite */}}
+\DoxyCodeLine{01381 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{library_8h_a7ed7225961f0989acb31ebbd9c099626}\label{library_8h_a7ed7225961f0989acb31ebbd9c099626}} 
+\index{library.h@{library.h}!obsws\_connect@{obsws\_connect}}
+\index{obsws\_connect@{obsws\_connect}!library.h@{library.h}}
+\doxysubsubsection{\texorpdfstring{obsws\_connect()}{obsws\_connect()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$ obsws\+\_\+connect (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{structobsws__config__t}{obsws\+\_\+config\+\_\+t}} $\ast$}]{config }\end{DoxyParamCaption})}
+
+
+
+Establish a connection to OBS. 
+
+This is the main entry point for using the library. You provide a configuration structure (initialized with obsws\+\_\+config\+\_\+init and then customized), and this function connects to OBS, authenticates if needed, and spawns a background thread to handle incoming messages and events.
+
+The function returns immediately -\/ it doesn\textquotesingle{}t wait for the connection to complete. Instead, it\+:
+\begin{DoxyEnumerate}
+\item Creates a connection structure with the provided config
+\item Allocates buffers for sending and receiving messages
+\item Creates a libwebsockets context and connects to OBS
+\item Spawns a background event\+\_\+thread to process Web\+Socket messages
+\item Returns the connection handle
+\end{DoxyEnumerate}
+
+Connection states\+: The connection progresses through states\+:
+\begin{DoxyItemize}
+\item DISCONNECTED -\/\texorpdfstring{$>$}{>} CONNECTING (TCP handshake, Web\+Socket upgrade)
+\item CONNECTING -\/\texorpdfstring{$>$}{>} AUTHENTICATING (receive HELLO, send IDENTIFY)
+\item AUTHENTICATING -\/\texorpdfstring{$>$}{>} CONNECTED (receive IDENTIFIED)
+\end{DoxyItemize}
+
+You don\textquotesingle{}t have to wait for CONNECTED state before calling obsws\+\_\+send\+\_\+request, but requests sent while not connected will return OBSWS\+\_\+\+ERROR\+\_\+\+NOT\+\_\+\+CONNECTED.
+
+Memory ownership\+: The connection structure is allocated and owned by this function. You must free it by calling \mbox{\hyperlink{library_8c_aa8389ba6731e01a9426bd921180b7195}{obsws\+\_\+disconnect()}}. Don\textquotesingle{}t free it directly with free() -\/ that will cause memory leaks (threads won\textquotesingle{}t be cleaned up properly).
+
+Error cases\+:
+\begin{DoxyItemize}
+\item NULL config or config-\/\texorpdfstring{$>$}{>}host\+: Returns NULL
+\item libwebsockets context creation fails\+: Returns NULL and logs error
+\item Network connection fails\+: Returns valid pointer but connection stays in ERROR state
+\item Bad password\+: Returns valid pointer but stays in AUTHENTICATING (never reaches CONNECTED)
+\end{DoxyItemize}
+
+Note\+: This function calls \mbox{\hyperlink{library_8c_aff3d6c035330741df84552800c0d0124}{obsws\+\_\+init()}} automatically if the library isn\textquotesingle{}t already initialized.
+
+
+\begin{DoxyParams}{Parameters}
+{\em config} & Pointer to initialized \mbox{\hyperlink{structobsws__config__t}{obsws\+\_\+config\+\_\+t}} with connection parameters \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to new connection handle, or NULL if creation failed
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{library_8c_aa8389ba6731e01a9426bd921180b7195}{obsws\+\_\+disconnect}}, \mbox{\hyperlink{library_8c_a61a10e31041532a9da0c1c1993f84a79}{obsws\+\_\+get\+\_\+state}}, \mbox{\hyperlink{library_8c_af2fd7f8dd928e03b38a3e2c5b5745417}{obsws\+\_\+send\+\_\+request}} 
+\end{DoxySeeAlso}
+
+
+Definition at line \mbox{\hyperlink{library_8c_source_l01425}{1425}} of file \mbox{\hyperlink{library_8c_source}{library.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01425                                                                 \{}
+\DoxyCodeLine{01426     \textcolor{keywordflow}{if} (!\mbox{\hyperlink{library_8c_a5c573cf80a65ed908b966420c4a5d7d2}{g\_library\_initialized}}) \{}
+\DoxyCodeLine{01427         \mbox{\hyperlink{library_8c_aff3d6c035330741df84552800c0d0124}{obsws\_init}}();}
+\DoxyCodeLine{01428     \}}
+\DoxyCodeLine{01429     }
+\DoxyCodeLine{01430     \textcolor{keywordflow}{if} (!config || !config-\/>\mbox{\hyperlink{structobsws__config__t_af632161e8b6cf2d7c1baf7fc80859d48}{host}}) \{}
+\DoxyCodeLine{01431         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{01432     \}}
+\DoxyCodeLine{01433     }
+\DoxyCodeLine{01434     \mbox{\hyperlink{structobsws__connection}{obsws\_connection\_t}} *conn = calloc(1, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structobsws__connection}{obsws\_connection\_t}}));}
+\DoxyCodeLine{01435     \textcolor{keywordflow}{if} (!conn) \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{01436     }
+\DoxyCodeLine{01437     \textcolor{comment}{/* Copy configuration */}}
+\DoxyCodeLine{01438     memcpy(\&conn-\/>\mbox{\hyperlink{structobsws__connection_aaa5cf000b991e623632977c379314d89}{config}}, config, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structobsws__config__t}{obsws\_config\_t}}));}
+\DoxyCodeLine{01439     \textcolor{keywordflow}{if} (config-\/>\mbox{\hyperlink{structobsws__config__t_af632161e8b6cf2d7c1baf7fc80859d48}{host}}) conn-\/>\mbox{\hyperlink{structobsws__connection_aaa5cf000b991e623632977c379314d89}{config}}.\mbox{\hyperlink{structobsws__config__t_af632161e8b6cf2d7c1baf7fc80859d48}{host}} = strdup(config-\/>\mbox{\hyperlink{structobsws__config__t_af632161e8b6cf2d7c1baf7fc80859d48}{host}});}
+\DoxyCodeLine{01440     \textcolor{keywordflow}{if} (config-\/>\mbox{\hyperlink{structobsws__config__t_a53ed762a113bb2a27b3ffab06a5c02ee}{password}}) conn-\/>\mbox{\hyperlink{structobsws__connection_aaa5cf000b991e623632977c379314d89}{config}}.\mbox{\hyperlink{structobsws__config__t_a53ed762a113bb2a27b3ffab06a5c02ee}{password}} = strdup(config-\/>\mbox{\hyperlink{structobsws__config__t_a53ed762a113bb2a27b3ffab06a5c02ee}{password}});}
+\DoxyCodeLine{01441     }
+\DoxyCodeLine{01442     \textcolor{comment}{/* Initialize mutexes */}}
+\DoxyCodeLine{01443     pthread\_mutex\_init(\&conn-\/>\mbox{\hyperlink{structobsws__connection_aa2752abaf5b201277fae73b42c78c8e6}{state\_mutex}}, NULL);}
+\DoxyCodeLine{01444     pthread\_mutex\_init(\&conn-\/>\mbox{\hyperlink{structobsws__connection_afc665d5d6864f038f551e4e7d4aae679}{send\_mutex}}, NULL);}
+\DoxyCodeLine{01445     pthread\_mutex\_init(\&conn-\/>\mbox{\hyperlink{structobsws__connection_a5be49ce76c72f09948fdf9c520eb133c}{requests\_mutex}}, NULL);}
+\DoxyCodeLine{01446     pthread\_mutex\_init(\&conn-\/>\mbox{\hyperlink{structobsws__connection_ab29e2a357e95b536a2c79b0990614bc5}{stats\_mutex}}, NULL);}
+\DoxyCodeLine{01447     pthread\_mutex\_init(\&conn-\/>\mbox{\hyperlink{structobsws__connection_a4343875c5de5530580e13fb1b528cf35}{scene\_mutex}}, NULL);}
+\DoxyCodeLine{01448     }
+\DoxyCodeLine{01449     \textcolor{comment}{/* Allocate buffers */}}
+\DoxyCodeLine{01450     conn-\/>\mbox{\hyperlink{structobsws__connection_ac3cdc6c4de9ae6aed16d3aac13effe78}{recv\_buffer\_size}} = \mbox{\hyperlink{library_8c_a665c5272405e81329a26d2db1a7d5d97}{OBSWS\_DEFAULT\_BUFFER\_SIZE}};}
+\DoxyCodeLine{01451     conn-\/>\mbox{\hyperlink{structobsws__connection_a89f2bbc96729ab308290da8959534d18}{recv\_buffer}} = malloc(conn-\/>\mbox{\hyperlink{structobsws__connection_ac3cdc6c4de9ae6aed16d3aac13effe78}{recv\_buffer\_size}});}
+\DoxyCodeLine{01452     conn-\/>\mbox{\hyperlink{structobsws__connection_a60f4507eac7295e16ece7c2a97c910d6}{send\_buffer\_size}} = \mbox{\hyperlink{library_8c_a665c5272405e81329a26d2db1a7d5d97}{OBSWS\_DEFAULT\_BUFFER\_SIZE}};}
+\DoxyCodeLine{01453     conn-\/>\mbox{\hyperlink{structobsws__connection_a14a61d0e27a8cac772ce173dd31d4fb7}{send\_buffer}} = malloc(conn-\/>\mbox{\hyperlink{structobsws__connection_a60f4507eac7295e16ece7c2a97c910d6}{send\_buffer\_size}});}
+\DoxyCodeLine{01454     }
+\DoxyCodeLine{01455     conn-\/>\mbox{\hyperlink{structobsws__connection_adad7d0fb4880543b1f5b5e897010d814}{state}} = \mbox{\hyperlink{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991af973d2b8b0a498d0bbffb40ccab1ef2d}{OBSWS\_STATE\_DISCONNECTED}};}
+\DoxyCodeLine{01456     conn-\/>\mbox{\hyperlink{structobsws__connection_a32b971d76cdd4c2b166ff19135601776}{current\_reconnect\_delay}} = config-\/>\mbox{\hyperlink{structobsws__config__t_a5ccd3a828a3fcad6d6ebedc0324c4aee}{reconnect\_delay\_ms}};}
+\DoxyCodeLine{01457     }
+\DoxyCodeLine{01458     \textcolor{comment}{/* Create libwebsockets context */}}
+\DoxyCodeLine{01459     \textcolor{keyword}{struct }lws\_context\_creation\_info info;}
+\DoxyCodeLine{01460     memset(\&info, 0, \textcolor{keyword}{sizeof}(info));}
+\DoxyCodeLine{01461     }
+\DoxyCodeLine{01462     info.port = CONTEXT\_PORT\_NO\_LISTEN;}
+\DoxyCodeLine{01463     info.protocols = \mbox{\hyperlink{library_8c_ad34f3c7a416fe0d9311efdc5715410e1}{protocols}};}
+\DoxyCodeLine{01464     info.gid = -\/1;}
+\DoxyCodeLine{01465     info.uid = -\/1;}
+\DoxyCodeLine{01466     info.options = LWS\_SERVER\_OPTION\_DO\_SSL\_GLOBAL\_INIT;}
+\DoxyCodeLine{01467     }
+\DoxyCodeLine{01468     conn-\/>\mbox{\hyperlink{structobsws__connection_a2f876a0ab0ad0e5e012444a806aa3490}{lws\_context}} = lws\_create\_context(\&info);}
+\DoxyCodeLine{01469     \textcolor{keywordflow}{if} (!conn-\/>\mbox{\hyperlink{structobsws__connection_a2f876a0ab0ad0e5e012444a806aa3490}{lws\_context}}) \{}
+\DoxyCodeLine{01470         \mbox{\hyperlink{library_8c_a1d8529feb33753ebb45d896c4c125642}{obsws\_log}}(conn, \mbox{\hyperlink{library_8h_afbee3b6b991e705309ea19fd5fb0bff9a6a2a374e4af0446011df30bfd09e329e}{OBSWS\_LOG\_ERROR}}, \textcolor{stringliteral}{"{}Failed to create libwebsockets context"{}});}
+\DoxyCodeLine{01471         free(conn-\/>\mbox{\hyperlink{structobsws__connection_a89f2bbc96729ab308290da8959534d18}{recv\_buffer}});}
+\DoxyCodeLine{01472         free(conn-\/>\mbox{\hyperlink{structobsws__connection_a14a61d0e27a8cac772ce173dd31d4fb7}{send\_buffer}});}
+\DoxyCodeLine{01473         free(conn);}
+\DoxyCodeLine{01474         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{01475     \}}
+\DoxyCodeLine{01476     }
+\DoxyCodeLine{01477     \textcolor{comment}{/* Connect to OBS */}}
+\DoxyCodeLine{01478     \textcolor{keyword}{struct }lws\_client\_connect\_info ccinfo;}
+\DoxyCodeLine{01479     memset(\&ccinfo, 0, \textcolor{keyword}{sizeof}(ccinfo));}
+\DoxyCodeLine{01480     }
+\DoxyCodeLine{01481     ccinfo.context = conn-\/>\mbox{\hyperlink{structobsws__connection_a2f876a0ab0ad0e5e012444a806aa3490}{lws\_context}};}
+\DoxyCodeLine{01482     ccinfo.address = conn-\/>\mbox{\hyperlink{structobsws__connection_aaa5cf000b991e623632977c379314d89}{config}}.\mbox{\hyperlink{structobsws__config__t_af632161e8b6cf2d7c1baf7fc80859d48}{host}};}
+\DoxyCodeLine{01483     ccinfo.port = conn-\/>\mbox{\hyperlink{structobsws__connection_aaa5cf000b991e623632977c379314d89}{config}}.\mbox{\hyperlink{structobsws__config__t_a7355cf2fb949f6d4391b6c2c605c9073}{port}};}
+\DoxyCodeLine{01484     ccinfo.path = \textcolor{stringliteral}{"{}/"{}};}
+\DoxyCodeLine{01485     ccinfo.host = ccinfo.address;}
+\DoxyCodeLine{01486     ccinfo.origin = ccinfo.address;}
+\DoxyCodeLine{01487     ccinfo.protocol = \mbox{\hyperlink{library_8c_ad34f3c7a416fe0d9311efdc5715410e1}{protocols}}[0].name;}
+\DoxyCodeLine{01488     ccinfo.userdata = conn;}
+\DoxyCodeLine{01489     }
+\DoxyCodeLine{01490     \textcolor{keywordflow}{if} (config-\/>\mbox{\hyperlink{structobsws__config__t_a1070992d75f19a3fd4567754d37b9290}{use\_ssl}}) \{}
+\DoxyCodeLine{01491         ccinfo.ssl\_connection = LCCSCF\_USE\_SSL;}
+\DoxyCodeLine{01492     \}}
+\DoxyCodeLine{01493     }
+\DoxyCodeLine{01494     conn-\/>\mbox{\hyperlink{structobsws__connection_aaf49ac1578fc794ee4b01ccbf9edc35a}{wsi}} = lws\_client\_connect\_via\_info(\&ccinfo);}
+\DoxyCodeLine{01495     \textcolor{keywordflow}{if} (!conn-\/>\mbox{\hyperlink{structobsws__connection_aaf49ac1578fc794ee4b01ccbf9edc35a}{wsi}}) \{}
+\DoxyCodeLine{01496         \mbox{\hyperlink{library_8c_a1d8529feb33753ebb45d896c4c125642}{obsws\_log}}(conn, \mbox{\hyperlink{library_8h_afbee3b6b991e705309ea19fd5fb0bff9a6a2a374e4af0446011df30bfd09e329e}{OBSWS\_LOG\_ERROR}}, \textcolor{stringliteral}{"{}Failed to initiate connection"{}});}
+\DoxyCodeLine{01497         lws\_context\_destroy(conn-\/>\mbox{\hyperlink{structobsws__connection_a2f876a0ab0ad0e5e012444a806aa3490}{lws\_context}});}
+\DoxyCodeLine{01498         free(conn-\/>\mbox{\hyperlink{structobsws__connection_a89f2bbc96729ab308290da8959534d18}{recv\_buffer}});}
+\DoxyCodeLine{01499         free(conn-\/>\mbox{\hyperlink{structobsws__connection_a14a61d0e27a8cac772ce173dd31d4fb7}{send\_buffer}});}
+\DoxyCodeLine{01500         free(conn);}
+\DoxyCodeLine{01501         \textcolor{keywordflow}{return} NULL;}
+\DoxyCodeLine{01502     \}}
+\DoxyCodeLine{01503     }
+\DoxyCodeLine{01504     \textcolor{comment}{/* Start event thread -\/ protect flags with mutex */}}
+\DoxyCodeLine{01505     pthread\_mutex\_lock(\&conn-\/>\mbox{\hyperlink{structobsws__connection_aa2752abaf5b201277fae73b42c78c8e6}{state\_mutex}});}
+\DoxyCodeLine{01506     conn-\/>\mbox{\hyperlink{structobsws__connection_afbc2be09cbcbbe17561e400babd084e2}{thread\_running}} = \textcolor{keyword}{true};}
+\DoxyCodeLine{01507     conn-\/>\mbox{\hyperlink{structobsws__connection_a6aa5a0ce7b42fc1cd72385181ca43454}{should\_exit}} = \textcolor{keyword}{false};}
+\DoxyCodeLine{01508     pthread\_mutex\_unlock(\&conn-\/>\mbox{\hyperlink{structobsws__connection_aa2752abaf5b201277fae73b42c78c8e6}{state\_mutex}});}
+\DoxyCodeLine{01509     }
+\DoxyCodeLine{01510     pthread\_create(\&conn-\/>\mbox{\hyperlink{structobsws__connection_a160a7f93e6caf0da1bc2f4dbe48fbb41}{event\_thread}}, NULL, \mbox{\hyperlink{library_8c_a27739efcea1287611c82ff3e8c88d7b7}{event\_thread\_func}}, conn);}
+\DoxyCodeLine{01511     }
+\DoxyCodeLine{01512     \mbox{\hyperlink{library_8c_a1d8529feb33753ebb45d896c4c125642}{obsws\_log}}(conn, \mbox{\hyperlink{library_8h_afbee3b6b991e705309ea19fd5fb0bff9ae48017bf78390a3df8cd87a24782c421}{OBSWS\_LOG\_INFO}}, \textcolor{stringliteral}{"{}Connecting to OBS at \%s:\%d"{}}, config-\/>\mbox{\hyperlink{structobsws__config__t_af632161e8b6cf2d7c1baf7fc80859d48}{host}}, config-\/>\mbox{\hyperlink{structobsws__config__t_a7355cf2fb949f6d4391b6c2c605c9073}{port}});}
+\DoxyCodeLine{01513     }
+\DoxyCodeLine{01514     \textcolor{keywordflow}{return} conn;}
+\DoxyCodeLine{01515 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dd/d08/library_8h_a7ed7225961f0989acb31ebbd9c099626_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{library_8h_aa8389ba6731e01a9426bd921180b7195}\label{library_8h_aa8389ba6731e01a9426bd921180b7195}} 
+\index{library.h@{library.h}!obsws\_disconnect@{obsws\_disconnect}}
+\index{obsws\_disconnect@{obsws\_disconnect}!library.h@{library.h}}
+\doxysubsubsection{\texorpdfstring{obsws\_disconnect()}{obsws\_disconnect()}}
+{\footnotesize\ttfamily void obsws\+\_\+disconnect (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+
+
+Disconnect and destroy a connection. 
+
+This closes the connection to OBS and releases all associated resources. After calling this, the connection handle is invalid -\/ don\textquotesingle{}t use it anymore.
+
+If auto\+\_\+reconnect was enabled, it stops trying to reconnect. If you want to connect again, create a new connection with \mbox{\hyperlink{library_8h_a7ed7225961f0989acb31ebbd9c099626}{obsws\+\_\+connect()}}.
+
+This function blocks until the background thread cleanly shuts down. It should be fast (under 100ms), but avoid calling it from callbacks since callbacks run in the connection thread -\/ this would deadlock.
+
+
+\begin{DoxyParams}{Parameters}
+{\em conn} & Connection handle to destroy (can be NULL, which does nothing)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Safe to call even if already disconnected. 
+
+Don\textquotesingle{}t call from inside callbacks (they run in the connection thread). 
+
+After calling this, all pending requests are abandoned (responses never arrive).
+\end{DoxyNote}
+Disconnect and destroy a connection.
+
+This is the counterpart to \mbox{\hyperlink{library_8h_a7ed7225961f0989acb31ebbd9c099626}{obsws\+\_\+connect()}}. It cleanly shuts down the connection, stops the background event thread, and frees all allocated resources.
+
+The function performs these steps\+:
+\begin{DoxyEnumerate}
+\item Signal the event\+\_\+thread to stop by setting should\+\_\+exit flag
+\item Wait for the event\+\_\+thread to actually exit using pthread\+\_\+join()
+\item Send a normal Web\+Socket close frame to OBS (if connected)
+\item Destroy the libwebsockets context
+\item Free all pending requests (they won\textquotesingle{}t get responses now, but don\textquotesingle{}t leak memory)
+\item Free buffers, config, authentication data
+\item Destroy all mutexes and condition variables
+\item Free the connection structure
+\end{DoxyEnumerate}
+
+After calling this, the connection pointer is invalid. Don\textquotesingle{}t use it again.
+
+Safe to call multiple times\+: If you call it twice, the second call will be a no-\/op (because conn will be NULL).
+
+Safe to call even if connection never fully established\+: If you disconnect while in CONNECTING or AUTHENTICATING state, everything is still cleaned up.
+
+Important\+: This function blocks until the event\+\_\+thread exits. If you have a callback that\textquotesingle{}s blocked, this will deadlock. Make sure your callbacks don\textquotesingle{}t block!
+
+
+\begin{DoxyParams}{Parameters}
+{\em conn} & The connection to close (can be NULL -\/ safe to call)\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{library_8h_a7ed7225961f0989acb31ebbd9c099626}{obsws\+\_\+connect}} 
+\end{DoxySeeAlso}
+
+
+Definition at line \mbox{\hyperlink{library_8c_source_l01549}{1549}} of file \mbox{\hyperlink{library_8c_source}{library.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01549                                                 \{}
+\DoxyCodeLine{01550     \textcolor{keywordflow}{if} (!conn) \textcolor{keywordflow}{return};}
+\DoxyCodeLine{01551     }
+\DoxyCodeLine{01552     \mbox{\hyperlink{library_8c_a1d8529feb33753ebb45d896c4c125642}{obsws\_log}}(conn, \mbox{\hyperlink{library_8h_afbee3b6b991e705309ea19fd5fb0bff9ae48017bf78390a3df8cd87a24782c421}{OBSWS\_LOG\_INFO}}, \textcolor{stringliteral}{"{}Disconnecting from OBS"{}});}
+\DoxyCodeLine{01553     }
+\DoxyCodeLine{01554     \textcolor{comment}{/* Stop event thread -\/ protect flag with mutex */}}
+\DoxyCodeLine{01555     pthread\_mutex\_lock(\&conn-\/>\mbox{\hyperlink{structobsws__connection_aa2752abaf5b201277fae73b42c78c8e6}{state\_mutex}});}
+\DoxyCodeLine{01556     conn-\/>\mbox{\hyperlink{structobsws__connection_a6aa5a0ce7b42fc1cd72385181ca43454}{should\_exit}} = \textcolor{keyword}{true};}
+\DoxyCodeLine{01557     \textcolor{keywordtype}{bool} thread\_was\_running = conn-\/>\mbox{\hyperlink{structobsws__connection_afbc2be09cbcbbe17561e400babd084e2}{thread\_running}};}
+\DoxyCodeLine{01558     pthread\_mutex\_unlock(\&conn-\/>\mbox{\hyperlink{structobsws__connection_aa2752abaf5b201277fae73b42c78c8e6}{state\_mutex}});}
+\DoxyCodeLine{01559     }
+\DoxyCodeLine{01560     \textcolor{keywordflow}{if} (thread\_was\_running) \{}
+\DoxyCodeLine{01561         pthread\_join(conn-\/>\mbox{\hyperlink{structobsws__connection_a160a7f93e6caf0da1bc2f4dbe48fbb41}{event\_thread}}, NULL);}
+\DoxyCodeLine{01562     \}}
+\DoxyCodeLine{01563     }
+\DoxyCodeLine{01564     \textcolor{comment}{/* Close WebSocket -\/ only if connected */}}
+\DoxyCodeLine{01565     \textcolor{keywordflow}{if} (conn-\/>\mbox{\hyperlink{structobsws__connection_aaf49ac1578fc794ee4b01ccbf9edc35a}{wsi}} \&\& conn-\/>\mbox{\hyperlink{structobsws__connection_adad7d0fb4880543b1f5b5e897010d814}{state}} == \mbox{\hyperlink{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991adbaae08035175b470fb9f543414672b8}{OBSWS\_STATE\_CONNECTED}}) \{}
+\DoxyCodeLine{01566         lws\_close\_reason(conn-\/>\mbox{\hyperlink{structobsws__connection_aaf49ac1578fc794ee4b01ccbf9edc35a}{wsi}}, LWS\_CLOSE\_STATUS\_NORMAL, NULL, 0);}
+\DoxyCodeLine{01567     \}}
+\DoxyCodeLine{01568     }
+\DoxyCodeLine{01569     \textcolor{comment}{/* Cleanup libwebsockets */}}
+\DoxyCodeLine{01570     \textcolor{keywordflow}{if} (conn-\/>\mbox{\hyperlink{structobsws__connection_a2f876a0ab0ad0e5e012444a806aa3490}{lws\_context}}) \{}
+\DoxyCodeLine{01571         lws\_context\_destroy(conn-\/>\mbox{\hyperlink{structobsws__connection_a2f876a0ab0ad0e5e012444a806aa3490}{lws\_context}});}
+\DoxyCodeLine{01572     \}}
+\DoxyCodeLine{01573     }
+\DoxyCodeLine{01574     \textcolor{comment}{/* Free pending requests */}}
+\DoxyCodeLine{01575     pthread\_mutex\_lock(\&conn-\/>\mbox{\hyperlink{structobsws__connection_a5be49ce76c72f09948fdf9c520eb133c}{requests\_mutex}});}
+\DoxyCodeLine{01576     \mbox{\hyperlink{structpending__request}{pending\_request\_t}} *req = conn-\/>\mbox{\hyperlink{structobsws__connection_acc0664cafa773ffe211ffe993c6ac8af}{pending\_requests}};}
+\DoxyCodeLine{01577     \textcolor{keywordflow}{while} (req) \{}
+\DoxyCodeLine{01578         \mbox{\hyperlink{structpending__request}{pending\_request\_t}} *next = req-\/>\mbox{\hyperlink{structpending__request_a49161e43ef29129c11fe643e85338df2}{next}};}
+\DoxyCodeLine{01579         \textcolor{keywordflow}{if} (req-\/>\mbox{\hyperlink{structpending__request_a4b37104673cb81e3f2825c8f6df372ba}{response}}) \{}
+\DoxyCodeLine{01580             \mbox{\hyperlink{library_8c_a53067e61dc0ddcf1134d46b275d7ce6b}{obsws\_response\_free}}(req-\/>\mbox{\hyperlink{structpending__request_a4b37104673cb81e3f2825c8f6df372ba}{response}});}
+\DoxyCodeLine{01581         \}}
+\DoxyCodeLine{01582         pthread\_mutex\_destroy(\&req-\/>\mbox{\hyperlink{structpending__request_a30b4636ccd06e4f775ee0dcc29ba3a69}{mutex}});}
+\DoxyCodeLine{01583         pthread\_cond\_destroy(\&req-\/>\mbox{\hyperlink{structpending__request_a619500d05293ec1f654ea803139941de}{cond}});}
+\DoxyCodeLine{01584         free(req);}
+\DoxyCodeLine{01585         req = next;}
+\DoxyCodeLine{01586     \}}
+\DoxyCodeLine{01587     pthread\_mutex\_unlock(\&conn-\/>\mbox{\hyperlink{structobsws__connection_a5be49ce76c72f09948fdf9c520eb133c}{requests\_mutex}});}
+\DoxyCodeLine{01588     }
+\DoxyCodeLine{01589     \textcolor{comment}{/* Free resources */}}
+\DoxyCodeLine{01590     free(conn-\/>\mbox{\hyperlink{structobsws__connection_a89f2bbc96729ab308290da8959534d18}{recv\_buffer}});}
+\DoxyCodeLine{01591     free(conn-\/>\mbox{\hyperlink{structobsws__connection_a14a61d0e27a8cac772ce173dd31d4fb7}{send\_buffer}});}
+\DoxyCodeLine{01592     free((\textcolor{keywordtype}{char} *)conn-\/>\mbox{\hyperlink{structobsws__connection_aaa5cf000b991e623632977c379314d89}{config}}.\mbox{\hyperlink{structobsws__config__t_af632161e8b6cf2d7c1baf7fc80859d48}{host}});}
+\DoxyCodeLine{01593     free((\textcolor{keywordtype}{char} *)conn-\/>\mbox{\hyperlink{structobsws__connection_aaa5cf000b991e623632977c379314d89}{config}}.\mbox{\hyperlink{structobsws__config__t_a53ed762a113bb2a27b3ffab06a5c02ee}{password}});}
+\DoxyCodeLine{01594     free(conn-\/>\mbox{\hyperlink{structobsws__connection_a99dd8596f842d976297c91a7e101b9f4}{challenge}});}
+\DoxyCodeLine{01595     free(conn-\/>\mbox{\hyperlink{structobsws__connection_a172b9304975dc52f9c962e0592f20330}{salt}});}
+\DoxyCodeLine{01596     free(conn-\/>\mbox{\hyperlink{structobsws__connection_a887874891a0026e6ad2a2ee2c3c7390a}{current\_scene}});}
+\DoxyCodeLine{01597     }
+\DoxyCodeLine{01598     \textcolor{comment}{/* Destroy mutexes */}}
+\DoxyCodeLine{01599     pthread\_mutex\_destroy(\&conn-\/>\mbox{\hyperlink{structobsws__connection_aa2752abaf5b201277fae73b42c78c8e6}{state\_mutex}});}
+\DoxyCodeLine{01600     pthread\_mutex\_destroy(\&conn-\/>\mbox{\hyperlink{structobsws__connection_afc665d5d6864f038f551e4e7d4aae679}{send\_mutex}});}
+\DoxyCodeLine{01601     pthread\_mutex\_destroy(\&conn-\/>\mbox{\hyperlink{structobsws__connection_a5be49ce76c72f09948fdf9c520eb133c}{requests\_mutex}});}
+\DoxyCodeLine{01602     pthread\_mutex\_destroy(\&conn-\/>\mbox{\hyperlink{structobsws__connection_ab29e2a357e95b536a2c79b0990614bc5}{stats\_mutex}});}
+\DoxyCodeLine{01603     pthread\_mutex\_destroy(\&conn-\/>\mbox{\hyperlink{structobsws__connection_a4343875c5de5530580e13fb1b528cf35}{scene\_mutex}});}
+\DoxyCodeLine{01604     }
+\DoxyCodeLine{01605     free(conn);}
+\DoxyCodeLine{01606 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=343pt]{dd/d08/library_8h_aa8389ba6731e01a9426bd921180b7195_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{library_8h_a39534944f30eaed9a0f2d7de19be0c3e}\label{library_8h_a39534944f30eaed9a0f2d7de19be0c3e}} 
+\index{library.h@{library.h}!obsws\_error\_string@{obsws\_error\_string}}
+\index{obsws\_error\_string@{obsws\_error\_string}!library.h@{library.h}}
+\doxysubsubsection{\texorpdfstring{obsws\_error\_string()}{obsws\_error\_string()}}
+{\footnotesize\ttfamily const char $\ast$ obsws\+\_\+error\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6}{obsws\+\_\+error\+\_\+t}}}]{error }\end{DoxyParamCaption})}
+
+
+
+Convert an error code to a human-\/readable string. 
+
+Utility function for error reporting and logging. Returns a brief English description of each error code.
+
+{\bfseries{Never returns NULL}} Unknown error codes return \char`\"{}\+Unknown error\char`\"{}, so it\textquotesingle{}s always safe to use the returned pointer without NULL checks.
+
+{\bfseries{Example usage\+:}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6}{obsws\_error\_t}} err = \mbox{\hyperlink{library_8h_af2fd7f8dd928e03b38a3e2c5b5745417}{obsws\_send\_request}}(...);}
+\DoxyCodeLine{\textcolor{keywordflow}{if} (err != \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6aa43b9a59f39db094a477cb25a638e5a1}{OBSWS\_OK}}) \{}
+\DoxyCodeLine{    fprintf(stderr, \textcolor{stringliteral}{"{}Error: \%s\(\backslash\)\(\backslash\)n"{}}, \mbox{\hyperlink{library_8h_a39534944f30eaed9a0f2d7de19be0c3e}{obsws\_error\_string}}(err));}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+{\bfseries{Strings are constants}} Returned strings are statically allocated -\/ do not modify or free them.
+
+
+\begin{DoxyParams}{Parameters}
+{\em error} & The error code to describe \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to a static string describing the error
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6}{obsws\+\_\+error\+\_\+t}} 
+\end{DoxySeeAlso}
+
+
+Definition at line \mbox{\hyperlink{library_8c_source_l02229}{2229}} of file \mbox{\hyperlink{library_8c_source}{library.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{02229                                                     \{}
+\DoxyCodeLine{02230     \textcolor{keywordflow}{switch} (error) \{}
+\DoxyCodeLine{02231         \textcolor{keywordflow}{case} \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6aa43b9a59f39db094a477cb25a638e5a1}{OBSWS\_OK}}: \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}Success"{}};}
+\DoxyCodeLine{02232         \textcolor{keywordflow}{case} \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6a8944fe1379e71d22a82399c21107ebf6}{OBSWS\_ERROR\_INVALID\_PARAM}}: \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}Invalid parameter"{}};}
+\DoxyCodeLine{02233         \textcolor{keywordflow}{case} \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6aa99054291b32e3476d521ea9efeb83a2}{OBSWS\_ERROR\_CONNECTION\_FAILED}}: \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}Connection failed"{}};}
+\DoxyCodeLine{02234         \textcolor{keywordflow}{case} \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6a3132520f4e5efcd0e07668b4afcd5c4c}{OBSWS\_ERROR\_AUTH\_FAILED}}: \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}Authentication failed"{}};}
+\DoxyCodeLine{02235         \textcolor{keywordflow}{case} \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6a852a5a13d07531a60aedc6e3cc1ae86d}{OBSWS\_ERROR\_TIMEOUT}}: \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}Timeout"{}};}
+\DoxyCodeLine{02236         \textcolor{keywordflow}{case} \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6abab3c6691cc119a7b875d967f0fc565f}{OBSWS\_ERROR\_SEND\_FAILED}}: \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}Send failed"{}};}
+\DoxyCodeLine{02237         \textcolor{keywordflow}{case} \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6a312613cd84331a653e2c1de24b94c52b}{OBSWS\_ERROR\_RECV\_FAILED}}: \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}Receive failed"{}};}
+\DoxyCodeLine{02238         \textcolor{keywordflow}{case} \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6a72ca999664bea413857d7901acf2d598}{OBSWS\_ERROR\_PARSE\_FAILED}}: \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}Parse failed"{}};}
+\DoxyCodeLine{02239         \textcolor{keywordflow}{case} \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6ace2eb9908cf7d65109788a2593582982}{OBSWS\_ERROR\_NOT\_CONNECTED}}: \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}Not connected"{}};}
+\DoxyCodeLine{02240         \textcolor{keywordflow}{case} \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6a6b4348384a97af637d6361e38a5de052}{OBSWS\_ERROR\_ALREADY\_CONNECTED}}: \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}Already connected"{}};}
+\DoxyCodeLine{02241         \textcolor{keywordflow}{case} \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6a976f03f9cfc1de7d7172732454829e15}{OBSWS\_ERROR\_OUT\_OF\_MEMORY}}: \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}Out of memory"{}};}
+\DoxyCodeLine{02242         \textcolor{keywordflow}{case} \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6aea7cb95255efa1d01e6761d676ab599c}{OBSWS\_ERROR\_SSL\_FAILED}}: \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}SSL failed"{}};}
+\DoxyCodeLine{02243         \textcolor{keywordflow}{default}: \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}Unknown error"{}};}
+\DoxyCodeLine{02244     \}}
+\DoxyCodeLine{02245 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{library_8h_ac26d8f108d875f8213a73e23ae46068b}\label{library_8h_ac26d8f108d875f8213a73e23ae46068b}} 
+\index{library.h@{library.h}!obsws\_free\_scene\_list@{obsws\_free\_scene\_list}}
+\index{obsws\_free\_scene\_list@{obsws\_free\_scene\_list}!library.h@{library.h}}
+\doxysubsubsection{\texorpdfstring{obsws\_free\_scene\_list()}{obsws\_free\_scene\_list()}}
+{\footnotesize\ttfamily void obsws\+\_\+free\+\_\+scene\+\_\+list (\begin{DoxyParamCaption}\item[{char $\ast$$\ast$}]{scenes,  }\item[{size\+\_\+t}]{count }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{library_8h_a91bd5ceb5878431131513cb4624e935a}\label{library_8h_a91bd5ceb5878431131513cb4624e935a}} 
+\index{library.h@{library.h}!obsws\_get\_current\_scene@{obsws\_get\_current\_scene}}
+\index{obsws\_get\_current\_scene@{obsws\_get\_current\_scene}!library.h@{library.h}}
+\doxysubsubsection{\texorpdfstring{obsws\_get\_current\_scene()}{obsws\_get\_current\_scene()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6}{obsws\+\_\+error\+\_\+t}} obsws\+\_\+get\+\_\+current\+\_\+scene (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$}]{conn,  }\item[{char $\ast$}]{scene\+\_\+name,  }\item[{size\+\_\+t}]{buffer\+\_\+size }\end{DoxyParamCaption})}
+
+
+
+Query the currently active scene in OBS. 
+
+This function queries OBS for the active scene name and returns it in the provided buffer. It also updates the local scene cache to keep it synchronized.
+
+{\bfseries{Cache Synchronization}} This function always queries the OBS server (doesn\textquotesingle{}t use cached value). When the response arrives, it updates the cache. This ensures the library\textquotesingle{}s cached scene name stays in sync with the actual OBS state.
+
+{\bfseries{Buffer Management}} The caller provides a buffer. If the scene name is longer than buffer\+\_\+size-\/1, it will be truncated and null-\/terminated. Always check the returned buffer length if you need the full name.
+
+{\bfseries{Thread-\/safety}} The scene\+\_\+mutex protects the cache update, so this is safe to call from any thread. Multiple concurrent calls are safe but will all query OBS (no deduplication).
+
+{\bfseries{Example usage\+:}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordtype}{char} scene[256];}
+\DoxyCodeLine{\textcolor{keywordflow}{if} (\mbox{\hyperlink{library_8h_a91bd5ceb5878431131513cb4624e935a}{obsws\_get\_current\_scene}}(conn, scene, \textcolor{keyword}{sizeof}(scene)) == \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6aa43b9a59f39db094a477cb25a638e5a1}{OBSWS\_OK}}) \{}
+\DoxyCodeLine{    printf(\textcolor{stringliteral}{"{}Current scene: \%s\(\backslash\)\(\backslash\)n"{}}, scene);}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em conn} & Connection object (must be in CONNECTED state) \\
+\hline
+{\em scene\+\_\+name} & Buffer to receive the scene name (must not be NULL) \\
+\hline
+{\em buffer\+\_\+size} & Size of scene\+\_\+name buffer (must be \texorpdfstring{$>$}{>} 0)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OBSWS\+\_\+\+OK if scene name retrieved successfully 
+
+OBSWS\+\_\+\+ERROR\+\_\+\+INVALID\+\_\+\+PARAM if conn, scene\+\_\+name is NULL or buffer\+\_\+size is 0 
+
+OBSWS\+\_\+\+ERROR\+\_\+\+NOT\+\_\+\+CONNECTED if connection not ready 
+
+OBSWS\+\_\+\+ERROR\+\_\+\+TIMEOUT if OBS doesn\textquotesingle{}t respond 
+
+OBSWS\+\_\+\+ERROR\+\_\+\+PARSE\+\_\+\+FAILED if response can\textquotesingle{}t be parsed
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{library_8c_a7cb91bbce42b458f267f79b9a7b293bf}{obsws\+\_\+set\+\_\+current\+\_\+scene}} 
+\end{DoxySeeAlso}
+
+
+Definition at line \mbox{\hyperlink{library_8c_source_l02022}{2022}} of file \mbox{\hyperlink{library_8c_source}{library.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{02022                                                                                                       \{}
+\DoxyCodeLine{02023     \textcolor{keywordflow}{if} (!conn || !scene\_name || buffer\_size == 0) \{}
+\DoxyCodeLine{02024         \textcolor{keywordflow}{return} \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6a8944fe1379e71d22a82399c21107ebf6}{OBSWS\_ERROR\_INVALID\_PARAM}};}
+\DoxyCodeLine{02025     \}}
+\DoxyCodeLine{02026     }
+\DoxyCodeLine{02027     \mbox{\hyperlink{structobsws__response__t}{obsws\_response\_t}} *response = NULL;}
+\DoxyCodeLine{02028     \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6}{obsws\_error\_t}} result = \mbox{\hyperlink{library_8c_af2fd7f8dd928e03b38a3e2c5b5745417}{obsws\_send\_request}}(conn, \textcolor{stringliteral}{"{}GetCurrentProgramScene"{}}, NULL, \&response, 0);}
+\DoxyCodeLine{02029     }
+\DoxyCodeLine{02030     \textcolor{keywordflow}{if} (result == \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6aa43b9a59f39db094a477cb25a638e5a1}{OBSWS\_OK}} \&\& response \&\& response-\/>\mbox{\hyperlink{structobsws__response__t_abbf2e99faa8fdef1c94bbd174470c821}{success}} \&\& response-\/>\mbox{\hyperlink{structobsws__response__t_a696a1179e1d40c6c31136999846d5902}{response\_data}}) \{}
+\DoxyCodeLine{02031         cJSON *data = cJSON\_Parse(response-\/>\mbox{\hyperlink{structobsws__response__t_a696a1179e1d40c6c31136999846d5902}{response\_data}});}
+\DoxyCodeLine{02032         \textcolor{keywordflow}{if} (data) \{}
+\DoxyCodeLine{02033             cJSON *name = cJSON\_GetObjectItem(data, \textcolor{stringliteral}{"{}currentProgramSceneName"{}});}
+\DoxyCodeLine{02034             \textcolor{keywordflow}{if} (name \&\& name-\/>valuestring) \{}
+\DoxyCodeLine{02035                 strncpy(scene\_name, name-\/>valuestring, buffer\_size -\/ 1);}
+\DoxyCodeLine{02036                 scene\_name[buffer\_size -\/ 1] = \textcolor{charliteral}{'\(\backslash\)0'};}
+\DoxyCodeLine{02037                 }
+\DoxyCodeLine{02038                 \textcolor{comment}{/* Update cache */}}
+\DoxyCodeLine{02039                 pthread\_mutex\_lock(\&conn-\/>\mbox{\hyperlink{structobsws__connection_a4343875c5de5530580e13fb1b528cf35}{scene\_mutex}});}
+\DoxyCodeLine{02040                 free(conn-\/>\mbox{\hyperlink{structobsws__connection_a887874891a0026e6ad2a2ee2c3c7390a}{current\_scene}});}
+\DoxyCodeLine{02041                 conn-\/>\mbox{\hyperlink{structobsws__connection_a887874891a0026e6ad2a2ee2c3c7390a}{current\_scene}} = strdup(name-\/>valuestring);}
+\DoxyCodeLine{02042                 pthread\_mutex\_unlock(\&conn-\/>\mbox{\hyperlink{structobsws__connection_a4343875c5de5530580e13fb1b528cf35}{scene\_mutex}});}
+\DoxyCodeLine{02043             \}}
+\DoxyCodeLine{02044             cJSON\_Delete(data);}
+\DoxyCodeLine{02045         \}}
+\DoxyCodeLine{02046     \}}
+\DoxyCodeLine{02047     }
+\DoxyCodeLine{02048     \textcolor{keywordflow}{if} (response) \{}
+\DoxyCodeLine{02049         \mbox{\hyperlink{library_8c_a53067e61dc0ddcf1134d46b275d7ce6b}{obsws\_response\_free}}(response);}
+\DoxyCodeLine{02050     \}}
+\DoxyCodeLine{02051     }
+\DoxyCodeLine{02052     \textcolor{keywordflow}{return} result;}
+\DoxyCodeLine{02053 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dd/d08/library_8h_a91bd5ceb5878431131513cb4624e935a_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{library_8h_a17d68299d8070c22f5cb04e2c4af28a1}\label{library_8h_a17d68299d8070c22f5cb04e2c4af28a1}} 
+\index{library.h@{library.h}!obsws\_get\_debug\_level@{obsws\_get\_debug\_level}}
+\index{obsws\_get\_debug\_level@{obsws\_get\_debug\_level}!library.h@{library.h}}
+\doxysubsubsection{\texorpdfstring{obsws\_get\_debug\_level()}{obsws\_get\_debug\_level()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{library_8h_a1997a985daa6bfb4117e885d9bb81668}{obsws\+\_\+debug\+\_\+level\+\_\+t}} obsws\+\_\+get\+\_\+debug\+\_\+level (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Get the current global debug level. 
+
+Returns what the debug level is set to. Useful if you have code that needs to know how verbose the debugging is.
+
+\begin{DoxyReturn}{Returns}
+Current debug level
+\end{DoxyReturn}
+Get the current global debug level.
+
+This is a read-\/only query -\/ it doesn\textquotesingle{}t change anything, just returns the current global debug level that was set by \mbox{\hyperlink{library_8h_adde8bcb270d34f560ae99047e0524a1d}{obsws\+\_\+set\+\_\+debug\+\_\+level()}}.
+
+Useful for conditional logging in your application, e.\+g.\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{if} (\mbox{\hyperlink{library_8h_a17d68299d8070c22f5cb04e2c4af28a1}{obsws\_get\_debug\_level}}() >= \mbox{\hyperlink{library_8h_a1997a985daa6bfb4117e885d9bb81668aa6c8d9d070b4d69beeadf605bc03eee1}{OBSWS\_DEBUG\_MEDIUM}}) \{}
+\DoxyCodeLine{    \textcolor{comment}{// do expensive trace operation}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\begin{DoxyReturn}{Returns}
+The currently active debug level 
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{library_8h_adde8bcb270d34f560ae99047e0524a1d}{obsws\+\_\+set\+\_\+debug\+\_\+level}} 
+\end{DoxySeeAlso}
+
+
+Definition at line \mbox{\hyperlink{library_8c_source_l01333}{1333}} of file \mbox{\hyperlink{library_8c_source}{library.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01333                                                 \{}
+\DoxyCodeLine{01334     \textcolor{keywordflow}{return} \mbox{\hyperlink{library_8c_abf3a9f2c8c4082f1e6b67daddd8a5931}{g\_debug\_level}};}
+\DoxyCodeLine{01335 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{library_8h_a845b9465a0b58952402d9ee021dbb003}\label{library_8h_a845b9465a0b58952402d9ee021dbb003}} 
+\index{library.h@{library.h}!obsws\_get\_recording\_status@{obsws\_get\_recording\_status}}
+\index{obsws\_get\_recording\_status@{obsws\_get\_recording\_status}!library.h@{library.h}}
+\doxysubsubsection{\texorpdfstring{obsws\_get\_recording\_status()}{obsws\_get\_recording\_status()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6}{obsws\+\_\+error\+\_\+t}} obsws\+\_\+get\+\_\+recording\+\_\+status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$}]{conn,  }\item[{bool $\ast$}]{is\+\_\+recording,  }\item[{\mbox{\hyperlink{structobsws__response__t}{obsws\+\_\+response\+\_\+t}} $\ast$$\ast$}]{response }\end{DoxyParamCaption})}
+
+
+
+Get whether OBS is currently recording. 
+
+Returns true if recording is active, false otherwise. Similar to \mbox{\hyperlink{library_8h_ae1192f8018768dc070926702f0958a61}{obsws\+\_\+get\+\_\+streaming\+\_\+status()}} but for recording instead.
+
+
+\begin{DoxyParams}{Parameters}
+{\em conn} & Connection handle (must be in CONNECTED state) \\
+\hline
+{\em is\+\_\+recording} & Output parameter -\/ true if recording, false if not \\
+\hline
+{\em response} & Optional pointer to receive full response with stats \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OBSWS\+\_\+\+OK on success 
+
+OBSWS\+\_\+\+ERROR\+\_\+\+NOT\+\_\+\+CONNECTED if not connected 
+
+OBSWS\+\_\+\+ERROR\+\_\+\+INVALID\+\_\+\+PARAM if is\+\_\+recording is NULL
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+is\+\_\+recording must be non-\/\+NULL, but response can be NULL. 
+\end{DoxyNote}
+\mbox{\Hypertarget{library_8h_a07a41289dbce951ffead9d15b467d7c5}\label{library_8h_a07a41289dbce951ffead9d15b467d7c5}} 
+\index{library.h@{library.h}!obsws\_get\_scene\_list@{obsws\_get\_scene\_list}}
+\index{obsws\_get\_scene\_list@{obsws\_get\_scene\_list}!library.h@{library.h}}
+\doxysubsubsection{\texorpdfstring{obsws\_get\_scene\_list()}{obsws\_get\_scene\_list()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6}{obsws\+\_\+error\+\_\+t}} obsws\+\_\+get\+\_\+scene\+\_\+list (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$}]{conn,  }\item[{char $\ast$$\ast$$\ast$}]{scenes,  }\item[{size\+\_\+t $\ast$}]{count }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{library_8h_a61a10e31041532a9da0c1c1993f84a79}\label{library_8h_a61a10e31041532a9da0c1c1993f84a79}} 
+\index{library.h@{library.h}!obsws\_get\_state@{obsws\_get\_state}}
+\index{obsws\_get\_state@{obsws\_get\_state}!library.h@{library.h}}
+\doxysubsubsection{\texorpdfstring{obsws\_get\_state()}{obsws\_get\_state()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991}{obsws\+\_\+state\+\_\+t}} obsws\+\_\+get\+\_\+state (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+
+
+Get the detailed current connection state. 
+
+Similar to \mbox{\hyperlink{library_8h_ad9894e72ee8510f4eaf7d42feaf0cf9a}{obsws\+\_\+is\+\_\+connected()}} but returns the full state, not just a boolean. This lets you distinguish between different states -\/ for example, you might show \char`\"{}connecting...\char`\"{} if the state is CONNECTING, vs \char`\"{}disconnected\char`\"{} if DISCONNECTED.
+
+
+\begin{DoxyParams}{Parameters}
+{\em conn} & Connection handle \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Current connection state (see obsws\+\_\+state\+\_\+t for the state machine)
+\end{DoxyReturn}
+Get the detailed current connection state.
+
+Returns one of the connection states\+:
+\begin{DoxyItemize}
+\item OBSWS\+\_\+\+STATE\+\_\+\+DISCONNECTED\+: Not connected, idle
+\item OBSWS\+\_\+\+STATE\+\_\+\+CONNECTING\+: TCP connection established, waiting for Web\+Socket handshake
+\item OBSWS\+\_\+\+STATE\+\_\+\+AUTHENTICATING\+: Web\+Socket established, waiting for auth response
+\item OBSWS\+\_\+\+STATE\+\_\+\+CONNECTED\+: Connected and ready for requests
+\item OBSWS\+\_\+\+STATE\+\_\+\+ERROR\+: Connection encountered an error
+\end{DoxyItemize}
+
+State transitions normally follow this flow\+: DISCONNECTED -\/\texorpdfstring{$>$}{>} CONNECTING -\/\texorpdfstring{$>$}{>} AUTHENTICATING -\/\texorpdfstring{$>$}{>} CONNECTED
+
+But with errors, you can also have\+: (any state) -\/\texorpdfstring{$>$}{>} ERROR
+
+You don\textquotesingle{}t usually need to call this -\/ just try to send requests and check the error code. But it\textquotesingle{}s useful for monitoring and debugging.
+
+Thread-\/safe\+: This function locks the state\+\_\+mutex, so it\textquotesingle{}s safe to call from any thread.
+
+
+\begin{DoxyParams}{Parameters}
+{\em conn} & The connection to check (NULL is safe -\/ returns DISCONNECTED) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The current connection state
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{library_8h_ad9894e72ee8510f4eaf7d42feaf0cf9a}{obsws\+\_\+is\+\_\+connected}} 
+\end{DoxySeeAlso}
+
+
+Definition at line \mbox{\hyperlink{library_8c_source_l01663}{1663}} of file \mbox{\hyperlink{library_8c_source}{library.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01663                                                               \{}
+\DoxyCodeLine{01664     \textcolor{keywordflow}{if} (!conn) \textcolor{keywordflow}{return} \mbox{\hyperlink{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991af973d2b8b0a498d0bbffb40ccab1ef2d}{OBSWS\_STATE\_DISCONNECTED}};}
+\DoxyCodeLine{01665     }
+\DoxyCodeLine{01666     pthread\_mutex\_lock((pthread\_mutex\_t *)\&conn-\/>\mbox{\hyperlink{structobsws__connection_aa2752abaf5b201277fae73b42c78c8e6}{state\_mutex}});}
+\DoxyCodeLine{01667     \mbox{\hyperlink{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991}{obsws\_state\_t}} state = conn-\/>\mbox{\hyperlink{structobsws__connection_adad7d0fb4880543b1f5b5e897010d814}{state}};}
+\DoxyCodeLine{01668     pthread\_mutex\_unlock((pthread\_mutex\_t *)\&conn-\/>\mbox{\hyperlink{structobsws__connection_aa2752abaf5b201277fae73b42c78c8e6}{state\_mutex}});}
+\DoxyCodeLine{01669     }
+\DoxyCodeLine{01670     \textcolor{keywordflow}{return} state;}
+\DoxyCodeLine{01671 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{library_8h_a5cce41cb6c70229eaab8b1b3afba57a9}\label{library_8h_a5cce41cb6c70229eaab8b1b3afba57a9}} 
+\index{library.h@{library.h}!obsws\_get\_stats@{obsws\_get\_stats}}
+\index{obsws\_get\_stats@{obsws\_get\_stats}!library.h@{library.h}}
+\doxysubsubsection{\texorpdfstring{obsws\_get\_stats()}{obsws\_get\_stats()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6}{obsws\+\_\+error\+\_\+t}} obsws\+\_\+get\+\_\+stats (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$}]{conn,  }\item[{\mbox{\hyperlink{structobsws__stats__t}{obsws\+\_\+stats\+\_\+t}} $\ast$}]{stats }\end{DoxyParamCaption})}
+
+
+
+Get connection statistics and performance metrics. 
+
+Returns counters showing what\textquotesingle{}s happened on this connection -\/ messages sent, bytes transmitted, errors, reconnect attempts, etc. Useful for monitoring, debugging, or just curiosity.
+
+The latency field (last\+\_\+ping\+\_\+ms) shows the round-\/trip time of the last ping, which indicates network quality. Higher values mean slower network or more congestion.
+
+
+\begin{DoxyParams}{Parameters}
+{\em conn} & Connection handle \\
+\hline
+{\em stats} & Pointer to structure to fill (required) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OBSWS\+\_\+\+OK on success, error code if conn is invalid
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+fast operation -\/ just copies the stats struct.
+\end{DoxyNote}
+Get connection statistics and performance metrics.
+
+The library maintains statistics about the connection\+:
+\begin{DoxyItemize}
+\item messages\+\_\+sent / messages\+\_\+received\+: Count of Web\+Socket messages
+\item bytes\+\_\+sent / bytes\+\_\+received\+: Total bytes transmitted/received
+\item connected\+\_\+since\+: Timestamp of when we reached CONNECTED state
+\item reconnect\+\_\+count\+: How many times we\textquotesingle{}ve reconnected (0 if never disconnected)
+\end{DoxyItemize}
+
+These can be useful for\+:
+\begin{DoxyItemize}
+\item Monitoring connection health
+\item Detecting stalled connections (if bytes\+\_\+received stops increasing)
+\item Debugging and performance profiling
+\item Health dashboards or logging
+\end{DoxyItemize}
+
+Thread-\/safe\+: This function acquires stats\+\_\+mutex and copies the entire stats structure, so it\textquotesingle{}s safe to call from any thread. The copy operation is atomic from the caller\textquotesingle{}s perspective.
+
+Example usage\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{structobsws__stats__t}{obsws\_stats\_t}} stats;}
+\DoxyCodeLine{\mbox{\hyperlink{library_8h_a5cce41cb6c70229eaab8b1b3afba57a9}{obsws\_get\_stats}}(conn, \&stats);}
+\DoxyCodeLine{printf(\textcolor{stringliteral}{"{}Received \%zu messages, \%zu bytes\(\backslash\)\(\backslash\)n"{}}, }
+\DoxyCodeLine{       stats.\mbox{\hyperlink{structobsws__stats__t_acbd2023849f8049c705c4cbff567119b}{messages\_received}}, stats.\mbox{\hyperlink{structobsws__stats__t_ae29f4f06b24960c6802aefd3f1627b4f}{bytes\_received}});}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em conn} & The connection to query (NULL returns error) \\
+\hline
+{\em stats} & Pointer to stats structure to fill (must not be NULL) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OBSWS\+\_\+\+OK on success, OBSWS\+\_\+\+ERROR\+\_\+\+INVALID\+\_\+\+PARAM if conn or stats is NULL
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{structobsws__stats__t}{obsws\+\_\+stats\+\_\+t}} 
+\end{DoxySeeAlso}
+
+
+Definition at line \mbox{\hyperlink{library_8c_source_l01706}{1706}} of file \mbox{\hyperlink{library_8c_source}{library.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01706                                                                                     \{}
+\DoxyCodeLine{01707     \textcolor{keywordflow}{if} (!conn || !stats) \textcolor{keywordflow}{return} \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6a8944fe1379e71d22a82399c21107ebf6}{OBSWS\_ERROR\_INVALID\_PARAM}};}
+\DoxyCodeLine{01708     }
+\DoxyCodeLine{01709     pthread\_mutex\_lock((pthread\_mutex\_t *)\&conn-\/>\mbox{\hyperlink{structobsws__connection_ab29e2a357e95b536a2c79b0990614bc5}{stats\_mutex}});}
+\DoxyCodeLine{01710     memcpy(stats, \&conn-\/>\mbox{\hyperlink{structobsws__connection_a10b9da03b3a1cb3a6ee0e72387915740}{stats}}, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structobsws__stats__t}{obsws\_stats\_t}}));}
+\DoxyCodeLine{01711     pthread\_mutex\_unlock((pthread\_mutex\_t *)\&conn-\/>\mbox{\hyperlink{structobsws__connection_ab29e2a357e95b536a2c79b0990614bc5}{stats\_mutex}});}
+\DoxyCodeLine{01712     }
+\DoxyCodeLine{01713     \textcolor{keywordflow}{return} \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6aa43b9a59f39db094a477cb25a638e5a1}{OBSWS\_OK}};}
+\DoxyCodeLine{01714 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{library_8h_ae1192f8018768dc070926702f0958a61}\label{library_8h_ae1192f8018768dc070926702f0958a61}} 
+\index{library.h@{library.h}!obsws\_get\_streaming\_status@{obsws\_get\_streaming\_status}}
+\index{obsws\_get\_streaming\_status@{obsws\_get\_streaming\_status}!library.h@{library.h}}
+\doxysubsubsection{\texorpdfstring{obsws\_get\_streaming\_status()}{obsws\_get\_streaming\_status()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6}{obsws\+\_\+error\+\_\+t}} obsws\+\_\+get\+\_\+streaming\+\_\+status (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$}]{conn,  }\item[{bool $\ast$}]{is\+\_\+streaming,  }\item[{\mbox{\hyperlink{structobsws__response__t}{obsws\+\_\+response\+\_\+t}} $\ast$$\ast$}]{response }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{library_8h_aff3d6c035330741df84552800c0d0124}\label{library_8h_aff3d6c035330741df84552800c0d0124}} 
+\index{library.h@{library.h}!obsws\_init@{obsws\_init}}
+\index{obsws\_init@{obsws\_init}!library.h@{library.h}}
+\doxysubsubsection{\texorpdfstring{obsws\_init()}{obsws\_init()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6}{obsws\+\_\+error\+\_\+t}} obsws\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Initialize the OBS Web\+Socket library. 
+
+This must be called once, before using any other library functions. It sets up global state like threading primitives and initializes dependencies like libwebsockets and Open\+SSL. If you call it multiple times, subsequent calls are ignored (thread-\/safe).
+
+Typical usage\+: if (\mbox{\hyperlink{library_8h_aff3d6c035330741df84552800c0d0124}{obsws\+\_\+init()}} != OBSWS\+\_\+\+OK) \{ fprintf(stderr, \char`\"{}\+Failed to init library\textbackslash{}n\char`\"{}); return 1; \} // ... use the library ... \mbox{\hyperlink{library_8h_ad3afe1c77e8b8f26a8281186379790a1}{obsws\+\_\+cleanup()}};
+
+\begin{DoxyReturn}{Returns}
+OBSWS\+\_\+\+OK on success, error code if initialization failed
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Call this from your main thread before spawning other threads. 
+
+Very thread-\/safe -\/ can be called multiple times, only initializes once.
+\end{DoxyNote}
+Initialize the OBS Web\+Socket library.
+
+This function must be called before creating any connections. It\+:
+\begin{DoxyEnumerate}
+\item Initializes Open\+SSL (EVP library for hashing)
+\item Seeds the random number generator for UUID generation
+\item Sets the global g\+\_\+library\+\_\+initialized flag
+\end{DoxyEnumerate}
+
+Thread safety\+: This function is thread-\/safe. Multiple threads can call it simultaneously, and only one will actually do the initialization (protected by g\+\_\+init\+\_\+mutex). Subsequent calls are no-\/ops.
+
+Note\+: \mbox{\hyperlink{library_8h_a7ed7225961f0989acb31ebbd9c099626}{obsws\+\_\+connect()}} will call this automatically if you forget, so you don\textquotesingle{}t {\itshape have} to call it explicitly. But doing so allows you to initialize in a controlled way, separate from connection creation.
+
+Cleanup\+: When you\textquotesingle{}re done with the library, call \mbox{\hyperlink{library_8h_ad3afe1c77e8b8f26a8281186379790a1}{obsws\+\_\+cleanup()}} to deallocate resources. This is technically optional on program exit (the OS cleans up anyway), but good practice for testing and library shutdown.
+
+\begin{DoxyReturn}{Returns}
+OBSWS\+\_\+\+OK always (initialization cannot fail in the current design)
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{library_8h_ad3afe1c77e8b8f26a8281186379790a1}{obsws\+\_\+cleanup}}, \mbox{\hyperlink{library_8h_a7ed7225961f0989acb31ebbd9c099626}{obsws\+\_\+connect}} 
+\end{DoxySeeAlso}
+
+
+Definition at line \mbox{\hyperlink{library_8c_source_l01196}{1196}} of file \mbox{\hyperlink{library_8c_source}{library.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01196                                \{}
+\DoxyCodeLine{01197     pthread\_mutex\_lock(\&\mbox{\hyperlink{library_8c_ad5f633670e2eea3285c1867570a33cbc}{g\_init\_mutex}});}
+\DoxyCodeLine{01198     }
+\DoxyCodeLine{01199     \textcolor{keywordflow}{if} (\mbox{\hyperlink{library_8c_a5c573cf80a65ed908b966420c4a5d7d2}{g\_library\_initialized}}) \{}
+\DoxyCodeLine{01200         pthread\_mutex\_unlock(\&\mbox{\hyperlink{library_8c_ad5f633670e2eea3285c1867570a33cbc}{g\_init\_mutex}});}
+\DoxyCodeLine{01201         \textcolor{keywordflow}{return} \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6aa43b9a59f39db094a477cb25a638e5a1}{OBSWS\_OK}};}
+\DoxyCodeLine{01202     \}}
+\DoxyCodeLine{01203     }
+\DoxyCodeLine{01204     \textcolor{comment}{/* Initialize OpenSSL */}}
+\DoxyCodeLine{01205     OpenSSL\_add\_all\_algorithms();}
+\DoxyCodeLine{01206     }
+\DoxyCodeLine{01207     \textcolor{comment}{/* Seed random number generator */}}
+\DoxyCodeLine{01208     srand(time(NULL));}
+\DoxyCodeLine{01209     }
+\DoxyCodeLine{01210     \mbox{\hyperlink{library_8c_a5c573cf80a65ed908b966420c4a5d7d2}{g\_library\_initialized}} = \textcolor{keyword}{true};}
+\DoxyCodeLine{01211     pthread\_mutex\_unlock(\&\mbox{\hyperlink{library_8c_ad5f633670e2eea3285c1867570a33cbc}{g\_init\_mutex}});}
+\DoxyCodeLine{01212     }
+\DoxyCodeLine{01213     \textcolor{keywordflow}{return} \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6aa43b9a59f39db094a477cb25a638e5a1}{OBSWS\_OK}};}
+\DoxyCodeLine{01214 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=275pt]{dd/d08/library_8h_aff3d6c035330741df84552800c0d0124_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{library_8h_ad9894e72ee8510f4eaf7d42feaf0cf9a}\label{library_8h_ad9894e72ee8510f4eaf7d42feaf0cf9a}} 
+\index{library.h@{library.h}!obsws\_is\_connected@{obsws\_is\_connected}}
+\index{obsws\_is\_connected@{obsws\_is\_connected}!library.h@{library.h}}
+\doxysubsubsection{\texorpdfstring{obsws\_is\_connected()}{obsws\_is\_connected()}}
+{\footnotesize\ttfamily bool obsws\+\_\+is\+\_\+connected (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+
+
+Check if connection is currently authenticated and ready to use. 
+
+Returns true only if the state is CONNECTED -\/ meaning authentication completed and you can send commands. Returns false in all other states (DISCONNECTED, CONNECTING, AUTHENTICATING, ERROR).
+
+This is the main function to check before sending commands. If it returns false, commands will fail with OBSWS\+\_\+\+ERROR\+\_\+\+NOT\+\_\+\+CONNECTED.
+
+
+\begin{DoxyParams}{Parameters}
+{\em conn} & Connection handle \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if fully connected and authenticated, false otherwise
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Fast operation -\/ just checks internal state variable. 
+
+Prefer using state callbacks to be notified of changes instead of polling.
+\end{DoxyNote}
+Check if connection is currently authenticated and ready to use.
+
+Convenience function that returns true if the connection is in CONNECTED state and false otherwise. Useful for checking before sending requests.
+
+Thread-\/safe\+: This function locks the state\+\_\+mutex before checking, so it\textquotesingle{}s safe to call from any thread.
+
+Return value\+: The connection must be in OBSWS\+\_\+\+STATE\+\_\+\+CONNECTED to return true. If it\textquotesingle{}s CONNECTING, AUTHENTICATING, ERROR, or DISCONNECTED, this returns false.
+
+
+\begin{DoxyParams}{Parameters}
+{\em conn} & The connection to check (NULL is safe -\/ returns false) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if connected, false otherwise
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{library_8h_a61a10e31041532a9da0c1c1993f84a79}{obsws\+\_\+get\+\_\+state}} 
+\end{DoxySeeAlso}
+
+
+Definition at line \mbox{\hyperlink{library_8c_source_l01625}{1625}} of file \mbox{\hyperlink{library_8c_source}{library.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01625                                                         \{}
+\DoxyCodeLine{01626     \textcolor{keywordflow}{if} (!conn) \textcolor{keywordflow}{return} \textcolor{keyword}{false};}
+\DoxyCodeLine{01627     }
+\DoxyCodeLine{01628     \textcolor{comment}{/* Thread-\/safe state check */}}
+\DoxyCodeLine{01629     pthread\_mutex\_lock((pthread\_mutex\_t *)\&conn-\/>\mbox{\hyperlink{structobsws__connection_aa2752abaf5b201277fae73b42c78c8e6}{state\_mutex}});}
+\DoxyCodeLine{01630     \textcolor{keywordtype}{bool} connected = (conn-\/>\mbox{\hyperlink{structobsws__connection_adad7d0fb4880543b1f5b5e897010d814}{state}} == \mbox{\hyperlink{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991adbaae08035175b470fb9f543414672b8}{OBSWS\_STATE\_CONNECTED}});}
+\DoxyCodeLine{01631     pthread\_mutex\_unlock((pthread\_mutex\_t *)\&conn-\/>\mbox{\hyperlink{structobsws__connection_aa2752abaf5b201277fae73b42c78c8e6}{state\_mutex}});}
+\DoxyCodeLine{01632     }
+\DoxyCodeLine{01633     \textcolor{keywordflow}{return} connected;}
+\DoxyCodeLine{01634 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{library_8h_aa9d2065acacec30d240d753e422f2de3}\label{library_8h_aa9d2065acacec30d240d753e422f2de3}} 
+\index{library.h@{library.h}!obsws\_ping@{obsws\_ping}}
+\index{obsws\_ping@{obsws\_ping}!library.h@{library.h}}
+\doxysubsubsection{\texorpdfstring{obsws\_ping()}{obsws\_ping()}}
+{\footnotesize\ttfamily int obsws\+\_\+ping (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$}]{conn,  }\item[{uint32\+\_\+t}]{timeout\+\_\+ms }\end{DoxyParamCaption})}
+
+
+
+Send a ping and measure round-\/trip time to check connection health. 
+
+Sends a Web\+Socket ping to OBS and waits for the pong response. The round-\/trip time tells you the network latency. If the ping times out, it indicates a problem -\/ either the network is very slow or OBS is not responding.
+
+This is useful for\+:
+\begin{DoxyItemize}
+\item Checking if the connection is alive
+\item Measuring network latency
+\item Detecting when a connection appears OK but OBS isn\textquotesingle{}t responding
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em conn} & Connection handle \\
+\hline
+{\em timeout\+\_\+ms} & How long to wait for pong (milliseconds). Use 5000-\/10000 as typical. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Round-\/trip time in milliseconds if successful, negative error code if it failed (probably OBSWS\+\_\+\+ERROR\+\_\+\+TIMEOUT if OBS isn\textquotesingle{}t responding)
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Returns immediately if not connected -\/ doesn\textquotesingle{}t attempt to connect. 
+
+The library also sends pings automatically at ping\+\_\+interval\+\_\+ms, so you usually don\textquotesingle{}t need to call this manually. 
+
+A high latency (e.\+g., several seconds) might indicate network problems. 
+\end{DoxyNote}
+\mbox{\Hypertarget{library_8h_abe53062a781ca1cd537f799c075b3e2e}\label{library_8h_abe53062a781ca1cd537f799c075b3e2e}} 
+\index{library.h@{library.h}!obsws\_process\_events@{obsws\_process\_events}}
+\index{obsws\_process\_events@{obsws\_process\_events}!library.h@{library.h}}
+\doxysubsubsection{\texorpdfstring{obsws\_process\_events()}{obsws\_process\_events()}}
+{\footnotesize\ttfamily int obsws\+\_\+process\+\_\+events (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$}]{conn,  }\item[{uint32\+\_\+t}]{timeout\+\_\+ms }\end{DoxyParamCaption})}
+
+
+
+Process pending events from the Web\+Socket connection. 
+
+The library processes events in a background thread and calls your callbacks as events arrive. This function is provided for API compatibility and for applications that prefer to do event processing in the main loop rather than in background threads.
+
+In most cases, you don\textquotesingle{}t need to call this -\/ just set up your callbacks and the library handles everything. Call this only if you want explicit control over when event processing happens (e.\+g., in a game loop).
+
+Note\+: Even if you don\textquotesingle{}t call this function, events are still processed in the background thread and callbacks are still called. This function is optional.
+
+
+\begin{DoxyParams}{Parameters}
+{\em conn} & Connection handle \\
+\hline
+{\em timeout\+\_\+ms} & Maximum time to wait for events (milliseconds). 0 = return immediately without processing, non-\/zero = wait up to this long for events. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of events processed, or negative error code
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This function is called automatically in the background thread, so you don\textquotesingle{}t typically need to call it manually. 
+
+Callbacks are called from within this function (or from the background thread). 
+
+If you call this frequently with timeout\+\_\+ms=0, you\textquotesingle{}ll busy-\/wait (CPU usage). 
+
+This is provided mainly for API flexibility -\/ most code should not use it.
+\end{DoxyNote}
+Process pending events from the Web\+Socket connection.
+
+This function is provided for API compatibility with single-\/threaded applications. However, the libwsv5 library uses a background event\+\_\+thread by default, so this function is usually not needed -\/ events are processed automatically in the background.
+
+{\bfseries{Background Event Processing\+:}} By design, all Web\+Socket messages (events, responses, etc.) are processed by the background event\+\_\+thread. This thread\+:
+\begin{DoxyItemize}
+\item Continuously calls lws\+\_\+service() to pump Web\+Socket events
+\item Receives incoming messages from OBS
+\item Routes responses to waiting callers via condition variables
+\item Calls event callbacks for real-\/time events
+\item Maintains keep-\/alive pings
+\end{DoxyItemize}
+
+Applications don\textquotesingle{}t need to call this function -\/ the thread handles everything.
+
+{\bfseries{What this function does\+:}} Currently, this is mainly for API compatibility. It\+:
+\begin{DoxyItemize}
+\item Validates the connection object
+\item If timeout\+\_\+ms \texorpdfstring{$>$}{>} 0, sleeps for that duration
+\item Returns 0 (success)
+\end{DoxyItemize}
+
+{\bfseries{When to use\+:}}
+\begin{DoxyItemize}
+\item Most applications\+: Don\textquotesingle{}t call this -\/ use background thread
+\item If you disable background thread\+: Call this in your main loop
+\end{DoxyItemize}
+
+{\bfseries{Example (not typical -\/ background thread is recommended)\+:}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Not recommended -\/ background thread is better}}
+\DoxyCodeLine{\textcolor{keywordflow}{while} (app\_running) \{}
+\DoxyCodeLine{    \mbox{\hyperlink{library_8h_abe53062a781ca1cd537f799c075b3e2e}{obsws\_process\_events}}(conn, 100);  \textcolor{comment}{// Check every 100ms}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+Better approach -\/ let background thread handle it\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{library_8h_a7ed7225961f0989acb31ebbd9c099626}{obsws\_connect}}(conn, \textcolor{stringliteral}{"{}localhost"{}}, 4455, \textcolor{stringliteral}{"{}password"{}});}
+\DoxyCodeLine{\textcolor{comment}{// Background thread processes events automatically}}
+\DoxyCodeLine{\textcolor{keywordflow}{while} (app\_running) \{}
+\DoxyCodeLine{    \textcolor{comment}{// Your application code -\/ no need to call process\_events}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\mbox{\hyperlink{library_8h_aa8389ba6731e01a9426bd921180b7195}{obsws\_disconnect}}(conn);}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em conn} & Connection object (can be NULL -\/ returns error) \\
+\hline
+{\em timeout\+\_\+ms} & Sleep duration in milliseconds (0 = don\textquotesingle{}t sleep)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success 
+
+OBSWS\+\_\+\+ERROR\+\_\+\+INVALID\+\_\+\+PARAM if conn is NULL
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{library_8h_a7ed7225961f0989acb31ebbd9c099626}{obsws\+\_\+connect}}, \mbox{\hyperlink{library_8h_aa8389ba6731e01a9426bd921180b7195}{obsws\+\_\+disconnect}}, \mbox{\hyperlink{library_8c_a27739efcea1287611c82ff3e8c88d7b7}{event\+\_\+thread\+\_\+func}} 
+\end{DoxySeeAlso}
+
+
+Definition at line \mbox{\hyperlink{library_8c_source_l02347}{2347}} of file \mbox{\hyperlink{library_8c_source}{library.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{02347                                                                         \{}
+\DoxyCodeLine{02348     \textcolor{keywordflow}{if} (!conn) \textcolor{keywordflow}{return} \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6a8944fe1379e71d22a82399c21107ebf6}{OBSWS\_ERROR\_INVALID\_PARAM}};}
+\DoxyCodeLine{02349     }
+\DoxyCodeLine{02350     \textcolor{comment}{/* Events are processed in the background thread */}}
+\DoxyCodeLine{02351     \textcolor{comment}{/* This function is provided for API compatibility */}}
+\DoxyCodeLine{02352     \textcolor{keywordflow}{if} (timeout\_ms > 0) \{}
+\DoxyCodeLine{02353         \textcolor{keyword}{struct }timespec ts;}
+\DoxyCodeLine{02354         ts.tv\_sec = timeout\_ms / 1000;}
+\DoxyCodeLine{02355         ts.tv\_nsec = (timeout\_ms \% 1000) * 1000000;}
+\DoxyCodeLine{02356         nanosleep(\&ts, NULL);}
+\DoxyCodeLine{02357     \}}
+\DoxyCodeLine{02358     }
+\DoxyCodeLine{02359     \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{02360 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{library_8h_aab2a1b2b1c4a2a19609abfdb4b42f733}\label{library_8h_aab2a1b2b1c4a2a19609abfdb4b42f733}} 
+\index{library.h@{library.h}!obsws\_reconnect@{obsws\_reconnect}}
+\index{obsws\_reconnect@{obsws\_reconnect}!library.h@{library.h}}
+\doxysubsubsection{\texorpdfstring{obsws\_reconnect()}{obsws\_reconnect()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6}{obsws\+\_\+error\+\_\+t}} obsws\+\_\+reconnect (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$}]{conn }\end{DoxyParamCaption})}
+
+
+
+Manually trigger a reconnection attempt. 
+
+Normally the library handles reconnection automatically if auto\+\_\+reconnect is enabled. This function lets you force a reconnect attempt right now, for example if you detect the connection seems dead even though the library hasn\textquotesingle{}t noticed yet.
+
+If the connection is currently connected, this disconnects and reconnects. If it\textquotesingle{}s not connected, this starts a connection attempt.
+
+
+\begin{DoxyParams}{Parameters}
+{\em conn} & Connection handle \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OBSWS\+\_\+\+OK if reconnection started, error code otherwise
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This is async -\/ it returns immediately, reconnection happens in background. 
+
+If auto\+\_\+reconnect is disabled, this still reconnects one time. 
+\end{DoxyNote}
+\mbox{\Hypertarget{library_8h_a53067e61dc0ddcf1134d46b275d7ce6b}\label{library_8h_a53067e61dc0ddcf1134d46b275d7ce6b}} 
+\index{library.h@{library.h}!obsws\_response\_free@{obsws\_response\_free}}
+\index{obsws\_response\_free@{obsws\_response\_free}!library.h@{library.h}}
+\doxysubsubsection{\texorpdfstring{obsws\_response\_free()}{obsws\_response\_free()}}
+{\footnotesize\ttfamily void obsws\+\_\+response\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structobsws__response__t}{obsws\+\_\+response\+\_\+t}} $\ast$}]{response }\end{DoxyParamCaption})}
+
+
+
+Free a response structure and all its allocated memory. 
+
+When you get a response from functions like \mbox{\hyperlink{library_8h_a7cb91bbce42b458f267f79b9a7b293bf}{obsws\+\_\+set\+\_\+current\+\_\+scene()}} or \mbox{\hyperlink{library_8h_af2fd7f8dd928e03b38a3e2c5b5745417}{obsws\+\_\+send\+\_\+request()}}, you\textquotesingle{}re responsible for freeing it when done. This function frees the response\+\_\+data and error\+\_\+message strings, plus the response struct itself.
+
+Always call this when you\textquotesingle{}re done with a response, or you leak memory. It\textquotesingle{}s safe to call with NULL (does nothing).
+
+
+\begin{DoxyParams}{Parameters}
+{\em response} & Response to free (can be NULL)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Safe to call with NULL. 
+
+After calling this, don\textquotesingle{}t access the response pointer anymore. 
+
+Don\textquotesingle{}t call free() manually on responses -\/ use this function.
+\end{DoxyNote}
+Free a response structure and all its allocated memory.
+
+This function safely deallocates all memory associated with a response\+:
+\begin{DoxyItemize}
+\item The error\+\_\+message string (if present)
+\item The response\+\_\+data JSON string (if present) ~\newline
+
+\item The response structure itself
+\end{DoxyItemize}
+
+{\bfseries{Safe to call with NULL}} Calling with NULL is safe and does nothing -\/ no crash or error. This allows for simpler cleanup\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{structobsws__response__t}{obsws\_response\_t}} *resp = NULL;}
+\DoxyCodeLine{\mbox{\hyperlink{library_8h_af2fd7f8dd928e03b38a3e2c5b5745417}{obsws\_send\_request}}(..., \&resp, ...);}
+\DoxyCodeLine{\mbox{\hyperlink{library_8h_a53067e61dc0ddcf1134d46b275d7ce6b}{obsws\_response\_free}}(resp);  \textcolor{comment}{// Safe even if send\_request failed}}
+
+\end{DoxyCode}
+
+
+{\bfseries{Memory ownership}}
+\begin{DoxyItemize}
+\item \mbox{\hyperlink{library_8h_af2fd7f8dd928e03b38a3e2c5b5745417}{obsws\+\_\+send\+\_\+request()}} allocates the response -\/ you must free it
+\item High-\/level functions like \mbox{\hyperlink{library_8h_a7cb91bbce42b458f267f79b9a7b293bf}{obsws\+\_\+set\+\_\+current\+\_\+scene()}} can optionally take response ownership or free internally based on parameters
+\end{DoxyItemize}
+
+{\bfseries{NOT thread-\/safe}} Each response should only be accessed/freed by one thread. If multiple threads need the response, use higher-\/level synchronization.
+
+
+\begin{DoxyParams}{Parameters}
+{\em response} & Response to free. Can be NULL (does nothing if so).\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{library_8h_af2fd7f8dd928e03b38a3e2c5b5745417}{obsws\+\_\+send\+\_\+request}}, \mbox{\hyperlink{structobsws__response__t}{obsws\+\_\+response\+\_\+t}} 
+\end{DoxySeeAlso}
+
+
+Definition at line \mbox{\hyperlink{library_8c_source_l02195}{2195}} of file \mbox{\hyperlink{library_8c_source}{library.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{02195                                                      \{}
+\DoxyCodeLine{02196     \textcolor{keywordflow}{if} (!response) \textcolor{keywordflow}{return};}
+\DoxyCodeLine{02197     }
+\DoxyCodeLine{02198     free(response-\/>\mbox{\hyperlink{structobsws__response__t_ab2b3055a84989889d3de28c2ccfd0dac}{error\_message}});}
+\DoxyCodeLine{02199     free(response-\/>\mbox{\hyperlink{structobsws__response__t_a696a1179e1d40c6c31136999846d5902}{response\_data}});}
+\DoxyCodeLine{02200     free(response);}
+\DoxyCodeLine{02201 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dd/d08/library_8h_a53067e61dc0ddcf1134d46b275d7ce6b_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{library_8h_af2fd7f8dd928e03b38a3e2c5b5745417}\label{library_8h_af2fd7f8dd928e03b38a3e2c5b5745417}} 
+\index{library.h@{library.h}!obsws\_send\_request@{obsws\_send\_request}}
+\index{obsws\_send\_request@{obsws\_send\_request}!library.h@{library.h}}
+\doxysubsubsection{\texorpdfstring{obsws\_send\_request()}{obsws\_send\_request()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6}{obsws\+\_\+error\+\_\+t}} obsws\+\_\+send\+\_\+request (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$}]{conn,  }\item[{const char $\ast$}]{request\+\_\+type,  }\item[{const char $\ast$}]{request\+\_\+data,  }\item[{\mbox{\hyperlink{structobsws__response__t}{obsws\+\_\+response\+\_\+t}} $\ast$$\ast$}]{response,  }\item[{uint32\+\_\+t}]{timeout\+\_\+ms }\end{DoxyParamCaption})}
+
+
+
+Send a synchronous request to OBS and wait for the response. 
+
+This is the core function for all OBS operations. It implements the asynchronous request-\/response pattern of the OBS Web\+Socket v5 protocol\+:
+
+{\bfseries{Protocol Flow\+:}}
+\begin{DoxyEnumerate}
+\item Generate a unique UUID for this request (used to match responses)
+\item Create a pending\+\_\+request\+\_\+t to track the in-\/flight operation
+\item Build the request JSON with opcode 6 (REQUEST)
+\item Send the message via lws\+\_\+write()
+\item Block the caller with pthread\+\_\+cond\+\_\+timedwait() until response arrives
+\item Return the response to caller (who owns it and must free with obsws\+\_\+response\+\_\+free)
+\end{DoxyEnumerate}
+
+{\bfseries{Why synchronous from caller\textquotesingle{}s perspective?}} Although Web\+Socket messages are async at the protocol level, we provide a synchronous API -\/ the caller sends a request and blocks until the response arrives. This is simpler for application code than callback-\/based async APIs.
+
+Behind the scenes, the background event\+\_\+thread continuously processes Web\+Socket messages. When a REQUEST\+\_\+\+RESPONSE (opcode 7) arrives matching a pending request ID, it signals the waiting condition variable, waking up the blocked caller.
+
+{\bfseries{Performance implications\+:}}
+\begin{DoxyItemize}
+\item Thread-\/safe\+: The main app thread can be blocked in \mbox{\hyperlink{library_8c_af2fd7f8dd928e03b38a3e2c5b5745417}{obsws\+\_\+send\+\_\+request()}} while the background event\+\_\+thread processes other messages
+\item No polling\+: Uses condition variables, not CPU-\/wasting polling loops
+\item Can make multiple simultaneous requests from different threads (up to OBSWS\+\_\+\+MAX\+\_\+\+PENDING\+\_\+\+REQUESTS = 256)
+\end{DoxyItemize}
+
+{\bfseries{Example usage\+:}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{structobsws__response__t}{obsws\_response\_t}} *response = NULL;}
+\DoxyCodeLine{\mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6}{obsws\_error\_t}} err = \mbox{\hyperlink{library_8h_af2fd7f8dd928e03b38a3e2c5b5745417}{obsws\_send\_request}}(conn, \textcolor{stringliteral}{"{}SetCurrentProgramScene"{}},}
+\DoxyCodeLine{                                       \textcolor{stringliteral}{"{}\{\(\backslash\)"{}sceneName\(\backslash\)"{}: \(\backslash\)"{}Scene1\(\backslash\)"{}\}"{}}, }
+\DoxyCodeLine{                                       \&response, 0);}
+\DoxyCodeLine{\textcolor{keywordflow}{if} (err == \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6aa43b9a59f39db094a477cb25a638e5a1}{OBSWS\_OK}} \&\& response \&\& response-\/>\mbox{\hyperlink{structobsws__response__t_abbf2e99faa8fdef1c94bbd174470c821}{success}}) \{}
+\DoxyCodeLine{    printf(\textcolor{stringliteral}{"{}Scene switched successfully\(\backslash\)\(\backslash\)n"{}});}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\mbox{\hyperlink{library_8h_a53067e61dc0ddcf1134d46b275d7ce6b}{obsws\_response\_free}}(response);}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em conn} & Connection object (must be in CONNECTED state) \\
+\hline
+{\em request\+\_\+type} & OBS request type like \char`\"{}\+Get\+Current\+Program\+Scene\char`\"{}, \char`\"{}\+Set\+Current\+Program\+Scene\char`\"{}, etc. \\
+\hline
+{\em request\+\_\+data} & Optional JSON string with request parameters. NULL for no parameters. Example\+: \char`\"{}\{\textbackslash{}\char`\"{}scene\+Name\textbackslash{}\char`\"{}\+: \textbackslash{}\char`\"{}\+Scene1\textbackslash{}\char`\"{}\}\char`\"{} \\
+\hline
+{\em response} & Output pointer for the response. Will be allocated by this function. Caller must free with \mbox{\hyperlink{library_8c_a53067e61dc0ddcf1134d46b275d7ce6b}{obsws\+\_\+response\+\_\+free()}}. Can be NULL if caller doesn\textquotesingle{}t need the response (but response is still consumed from server). \\
+\hline
+{\em timeout\+\_\+ms} & Timeout in milliseconds (0 = use config-\/\texorpdfstring{$>$}{>}recv\+\_\+timeout\+\_\+ms, typically 30000ms)\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OBSWS\+\_\+\+OK if response received (check response-\/\texorpdfstring{$>$}{>}success for operation success) 
+
+OBSWS\+\_\+\+ERROR\+\_\+\+INVALID\+\_\+\+PARAM if conn, request\+\_\+type, or response pointer is NULL 
+
+OBSWS\+\_\+\+ERROR\+\_\+\+NOT\+\_\+\+CONNECTED if connection is not in CONNECTED state 
+
+OBSWS\+\_\+\+ERROR\+\_\+\+OUT\+\_\+\+OF\+\_\+\+MEMORY if pending request allocation fails 
+
+OBSWS\+\_\+\+ERROR\+\_\+\+SEND\+\_\+\+FAILED if message send fails (buffer too small, invalid wsi, etc) 
+
+OBSWS\+\_\+\+ERROR\+\_\+\+TIMEOUT if no response received within timeout\+\_\+ms
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{structobsws__response__t}{obsws\+\_\+response\+\_\+t}}, \mbox{\hyperlink{library_8c_a53067e61dc0ddcf1134d46b275d7ce6b}{obsws\+\_\+response\+\_\+free}}, \mbox{\hyperlink{library_8c_a39534944f30eaed9a0f2d7de19be0c3e}{obsws\+\_\+error\+\_\+string}} 
+\end{DoxySeeAlso}
+
+
+Definition at line \mbox{\hyperlink{library_8c_source_l01776}{1776}} of file \mbox{\hyperlink{library_8c_source}{library.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01777                                                                                                              \{}
+\DoxyCodeLine{01778     \textcolor{keywordflow}{if} (!conn || !request\_type || !response) \{}
+\DoxyCodeLine{01779         \textcolor{keywordflow}{return} \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6a8944fe1379e71d22a82399c21107ebf6}{OBSWS\_ERROR\_INVALID\_PARAM}};}
+\DoxyCodeLine{01780     \}}
+\DoxyCodeLine{01781     }
+\DoxyCodeLine{01782     \textcolor{keywordflow}{if} (conn-\/>\mbox{\hyperlink{structobsws__connection_adad7d0fb4880543b1f5b5e897010d814}{state}} != \mbox{\hyperlink{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991adbaae08035175b470fb9f543414672b8}{OBSWS\_STATE\_CONNECTED}}) \{}
+\DoxyCodeLine{01783         \textcolor{keywordflow}{return} \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6ace2eb9908cf7d65109788a2593582982}{OBSWS\_ERROR\_NOT\_CONNECTED}};}
+\DoxyCodeLine{01784     \}}
+\DoxyCodeLine{01785     }
+\DoxyCodeLine{01786     \textcolor{comment}{/* Generate request ID */}}
+\DoxyCodeLine{01787     \textcolor{keywordtype}{char} request\_id[\mbox{\hyperlink{library_8c_a25b13264018fd1dc7b1f2bbd93bdc7cc}{OBSWS\_UUID\_LENGTH}}];}
+\DoxyCodeLine{01788     \mbox{\hyperlink{library_8c_af79be0fed07182761c923170f4211089}{generate\_uuid}}(request\_id);}
+\DoxyCodeLine{01789     }
+\DoxyCodeLine{01790     \textcolor{comment}{/* Create pending request */}}
+\DoxyCodeLine{01791     \mbox{\hyperlink{structpending__request}{pending\_request\_t}} *req = \mbox{\hyperlink{library_8c_aafc3d1ce3debddcb8e3888c9806e044a}{create\_pending\_request}}(conn, request\_id);}
+\DoxyCodeLine{01792     \textcolor{keywordflow}{if} (!req) \{}
+\DoxyCodeLine{01793         \textcolor{keywordflow}{return} \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6a976f03f9cfc1de7d7172732454829e15}{OBSWS\_ERROR\_OUT\_OF\_MEMORY}};}
+\DoxyCodeLine{01794     \}}
+\DoxyCodeLine{01795     }
+\DoxyCodeLine{01796     \textcolor{comment}{/* Build request JSON */}}
+\DoxyCodeLine{01797     cJSON *request = cJSON\_CreateObject();}
+\DoxyCodeLine{01798     cJSON\_AddNumberToObject(request, \textcolor{stringliteral}{"{}op"{}}, \mbox{\hyperlink{library_8c_a6c2c324c3b2c49b7febe0b376d6c1045}{OBSWS\_OPCODE\_REQUEST}});}
+\DoxyCodeLine{01799     }
+\DoxyCodeLine{01800     cJSON *d = cJSON\_CreateObject();}
+\DoxyCodeLine{01801     cJSON\_AddStringToObject(d, \textcolor{stringliteral}{"{}requestType"{}}, request\_type);}
+\DoxyCodeLine{01802     cJSON\_AddStringToObject(d, \textcolor{stringliteral}{"{}requestId"{}}, request\_id);}
+\DoxyCodeLine{01803     }
+\DoxyCodeLine{01804     \textcolor{keywordflow}{if} (request\_data) \{}
+\DoxyCodeLine{01805         cJSON *data = cJSON\_Parse(request\_data);}
+\DoxyCodeLine{01806         \textcolor{keywordflow}{if} (data) \{}
+\DoxyCodeLine{01807             cJSON\_AddItemToObject(d, \textcolor{stringliteral}{"{}requestData"{}}, data);}
+\DoxyCodeLine{01808         \}}
+\DoxyCodeLine{01809     \}}
+\DoxyCodeLine{01810     }
+\DoxyCodeLine{01811     cJSON\_AddItemToObject(request, \textcolor{stringliteral}{"{}d"{}}, d);}
+\DoxyCodeLine{01812     }
+\DoxyCodeLine{01813     \textcolor{keywordtype}{char} *message = cJSON\_PrintUnformatted(request);}
+\DoxyCodeLine{01814     cJSON\_Delete(request);}
+\DoxyCodeLine{01815     }
+\DoxyCodeLine{01816     \textcolor{comment}{/* DEBUG\_HIGH: Show request being sent */}}
+\DoxyCodeLine{01817     \mbox{\hyperlink{library_8c_a3682ffd7f6175dbc796f5750172c99bf}{obsws\_debug}}(conn, \mbox{\hyperlink{library_8h_a1997a985daa6bfb4117e885d9bb81668aceb0431d743cdecf0848564f388d51bd}{OBSWS\_DEBUG\_HIGH}}, \textcolor{stringliteral}{"{}Sending request (ID: \%s): \%s"{}}, request\_id, message);}
+\DoxyCodeLine{01818     }
+\DoxyCodeLine{01819     \textcolor{comment}{/* Send request */}}
+\DoxyCodeLine{01820     pthread\_mutex\_lock(\&conn-\/>\mbox{\hyperlink{structobsws__connection_afc665d5d6864f038f551e4e7d4aae679}{send\_mutex}});}
+\DoxyCodeLine{01821     \textcolor{keywordtype}{size\_t} len = strlen(message);}
+\DoxyCodeLine{01822     \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6}{obsws\_error\_t}} result = \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6aa43b9a59f39db094a477cb25a638e5a1}{OBSWS\_OK}};}
+\DoxyCodeLine{01823     }
+\DoxyCodeLine{01824     \textcolor{keywordflow}{if} (len < conn-\/>send\_buffer\_size -\/ LWS\_PRE \&\& conn-\/>\mbox{\hyperlink{structobsws__connection_aaf49ac1578fc794ee4b01ccbf9edc35a}{wsi}}) \{}
+\DoxyCodeLine{01825         memcpy(conn-\/>\mbox{\hyperlink{structobsws__connection_a14a61d0e27a8cac772ce173dd31d4fb7}{send\_buffer}} + LWS\_PRE, message, len);}
+\DoxyCodeLine{01826         \textcolor{keywordtype}{int} written = lws\_write(conn-\/>\mbox{\hyperlink{structobsws__connection_aaf49ac1578fc794ee4b01ccbf9edc35a}{wsi}}, (\textcolor{keywordtype}{unsigned} \textcolor{keywordtype}{char} *)(conn-\/>\mbox{\hyperlink{structobsws__connection_a14a61d0e27a8cac772ce173dd31d4fb7}{send\_buffer}} + LWS\_PRE), len, LWS\_WRITE\_TEXT);}
+\DoxyCodeLine{01827         }
+\DoxyCodeLine{01828         \textcolor{keywordflow}{if} (written < 0) \{}
+\DoxyCodeLine{01829             result = \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6abab3c6691cc119a7b875d967f0fc565f}{OBSWS\_ERROR\_SEND\_FAILED}};}
+\DoxyCodeLine{01830         \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{01831             pthread\_mutex\_lock(\&conn-\/>\mbox{\hyperlink{structobsws__connection_ab29e2a357e95b536a2c79b0990614bc5}{stats\_mutex}});}
+\DoxyCodeLine{01832             conn-\/>\mbox{\hyperlink{structobsws__connection_a10b9da03b3a1cb3a6ee0e72387915740}{stats}}.\mbox{\hyperlink{structobsws__stats__t_a8fcaddd7c5934bcf0a44225bc9a23fa5}{messages\_sent}}++;}
+\DoxyCodeLine{01833             conn-\/>\mbox{\hyperlink{structobsws__connection_a10b9da03b3a1cb3a6ee0e72387915740}{stats}}.\mbox{\hyperlink{structobsws__stats__t_a79582a623821723ea9bf86930eb32db2}{bytes\_sent}} += len;}
+\DoxyCodeLine{01834             pthread\_mutex\_unlock(\&conn-\/>\mbox{\hyperlink{structobsws__connection_ab29e2a357e95b536a2c79b0990614bc5}{stats\_mutex}});}
+\DoxyCodeLine{01835         \}}
+\DoxyCodeLine{01836     \} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{01837         result = \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6abab3c6691cc119a7b875d967f0fc565f}{OBSWS\_ERROR\_SEND\_FAILED}};}
+\DoxyCodeLine{01838     \}}
+\DoxyCodeLine{01839     pthread\_mutex\_unlock(\&conn-\/>\mbox{\hyperlink{structobsws__connection_afc665d5d6864f038f551e4e7d4aae679}{send\_mutex}});}
+\DoxyCodeLine{01840     }
+\DoxyCodeLine{01841     free(message);}
+\DoxyCodeLine{01842     }
+\DoxyCodeLine{01843     \textcolor{keywordflow}{if} (result != \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6aa43b9a59f39db094a477cb25a638e5a1}{OBSWS\_OK}}) \{}
+\DoxyCodeLine{01844         \mbox{\hyperlink{library_8c_a700c8a9baa87a3827b399776e811f328}{remove\_pending\_request}}(conn, req);}
+\DoxyCodeLine{01845         \textcolor{keywordflow}{return} result;}
+\DoxyCodeLine{01846     \}}
+\DoxyCodeLine{01847     }
+\DoxyCodeLine{01848     \textcolor{comment}{/* Wait for response */}}
+\DoxyCodeLine{01849     \textcolor{keywordflow}{if} (timeout\_ms == 0) \{}
+\DoxyCodeLine{01850         timeout\_ms = conn-\/>\mbox{\hyperlink{structobsws__connection_aaa5cf000b991e623632977c379314d89}{config}}.\mbox{\hyperlink{structobsws__config__t_a6439a4274026273ba5fb9786c90daa93}{recv\_timeout\_ms}};}
+\DoxyCodeLine{01851     \}}
+\DoxyCodeLine{01852     }
+\DoxyCodeLine{01853     \textcolor{keyword}{struct }timespec ts;}
+\DoxyCodeLine{01854     clock\_gettime(CLOCK\_REALTIME, \&ts);}
+\DoxyCodeLine{01855     ts.tv\_sec += timeout\_ms / 1000;}
+\DoxyCodeLine{01856     ts.tv\_nsec += (timeout\_ms \% 1000) * 1000000;}
+\DoxyCodeLine{01857     \textcolor{keywordflow}{if} (ts.tv\_nsec >= 1000000000) \{}
+\DoxyCodeLine{01858         ts.tv\_sec++;}
+\DoxyCodeLine{01859         ts.tv\_nsec -\/= 1000000000;}
+\DoxyCodeLine{01860     \}}
+\DoxyCodeLine{01861     }
+\DoxyCodeLine{01862     pthread\_mutex\_lock(\&req-\/>\mbox{\hyperlink{structpending__request_a30b4636ccd06e4f775ee0dcc29ba3a69}{mutex}});}
+\DoxyCodeLine{01863     \textcolor{keywordflow}{while} (!req-\/>\mbox{\hyperlink{structpending__request_af74dd3c97a064175b9dcf3dbfe3665cc}{completed}}) \{}
+\DoxyCodeLine{01864         \textcolor{keywordtype}{int} wait\_result = pthread\_cond\_timedwait(\&req-\/>\mbox{\hyperlink{structpending__request_a619500d05293ec1f654ea803139941de}{cond}}, \&req-\/>\mbox{\hyperlink{structpending__request_a30b4636ccd06e4f775ee0dcc29ba3a69}{mutex}}, \&ts);}
+\DoxyCodeLine{01865         \textcolor{keywordflow}{if} (wait\_result == ETIMEDOUT) \{}
+\DoxyCodeLine{01866             pthread\_mutex\_unlock(\&req-\/>\mbox{\hyperlink{structpending__request_a30b4636ccd06e4f775ee0dcc29ba3a69}{mutex}});}
+\DoxyCodeLine{01867             \mbox{\hyperlink{library_8c_a700c8a9baa87a3827b399776e811f328}{remove\_pending\_request}}(conn, req);}
+\DoxyCodeLine{01868             \textcolor{keywordflow}{return} \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6a852a5a13d07531a60aedc6e3cc1ae86d}{OBSWS\_ERROR\_TIMEOUT}};}
+\DoxyCodeLine{01869         \}}
+\DoxyCodeLine{01870     \}}
+\DoxyCodeLine{01871     }
+\DoxyCodeLine{01872     *response = req-\/>\mbox{\hyperlink{structpending__request_a4b37104673cb81e3f2825c8f6df372ba}{response}};}
+\DoxyCodeLine{01873     req-\/>\mbox{\hyperlink{structpending__request_a4b37104673cb81e3f2825c8f6df372ba}{response}} = NULL; \textcolor{comment}{/* Transfer ownership */}}
+\DoxyCodeLine{01874     pthread\_mutex\_unlock(\&req-\/>\mbox{\hyperlink{structpending__request_a30b4636ccd06e4f775ee0dcc29ba3a69}{mutex}});}
+\DoxyCodeLine{01875     }
+\DoxyCodeLine{01876     \mbox{\hyperlink{library_8c_a700c8a9baa87a3827b399776e811f328}{remove\_pending\_request}}(conn, req);}
+\DoxyCodeLine{01877     }
+\DoxyCodeLine{01878     \textcolor{keywordflow}{return} \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6aa43b9a59f39db094a477cb25a638e5a1}{OBSWS\_OK}};}
+\DoxyCodeLine{01879 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dd/d08/library_8h_af2fd7f8dd928e03b38a3e2c5b5745417_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dd/d08/library_8h_af2fd7f8dd928e03b38a3e2c5b5745417_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{library_8h_a7cb91bbce42b458f267f79b9a7b293bf}\label{library_8h_a7cb91bbce42b458f267f79b9a7b293bf}} 
+\index{library.h@{library.h}!obsws\_set\_current\_scene@{obsws\_set\_current\_scene}}
+\index{obsws\_set\_current\_scene@{obsws\_set\_current\_scene}!library.h@{library.h}}
+\doxysubsubsection{\texorpdfstring{obsws\_set\_current\_scene()}{obsws\_set\_current\_scene()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6}{obsws\+\_\+error\+\_\+t}} obsws\+\_\+set\+\_\+current\+\_\+scene (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$}]{conn,  }\item[{const char $\ast$}]{scene\+\_\+name,  }\item[{\mbox{\hyperlink{structobsws__response__t}{obsws\+\_\+response\+\_\+t}} $\ast$$\ast$}]{response }\end{DoxyParamCaption})}
+
+
+
+Switch OBS to a specific scene. 
+
+This is a high-\/level convenience function for scene switching. It demonstrates several important design patterns in the library\+:
+
+{\bfseries{Optimization\+: Scene Cache}} Before sending a request to OBS, this function checks the cached current scene. If the requested scene is already active, it returns immediately without network overhead. The cache is maintained by the event thread when Scene\+Changed events arrive.
+
+{\bfseries{Memory Ownership}} If the caller provides response pointer, they receive ownership and must call \mbox{\hyperlink{library_8c_a53067e61dc0ddcf1134d46b275d7ce6b}{obsws\+\_\+response\+\_\+free()}}. If response is NULL, the function frees the response internally. This flexibility allows three usage patterns\+:
+\begin{DoxyEnumerate}
+\item Check response\+: {\ttfamily obsws\+\_\+set\+\_\+current\+\_\+scene(conn, name, \&resp); if (resp-\/\texorpdfstring{$>$}{>}success) ...}
+\item Ignore response\+: {\ttfamily obsws\+\_\+set\+\_\+current\+\_\+scene(conn, name, NULL);} (response is freed internally)
+\item Just check error\+: {\ttfamily if (obsws\+\_\+send\+\_\+request(...) != OBSWS\+\_\+\+OK) ...}
+\end{DoxyEnumerate}
+
+{\bfseries{Example usage\+:}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{// Pattern 1: Check response details}}
+\DoxyCodeLine{\mbox{\hyperlink{structobsws__response__t}{obsws\_response\_t}} *response = NULL;}
+\DoxyCodeLine{\textcolor{keywordflow}{if} (\mbox{\hyperlink{library_8h_a7cb91bbce42b458f267f79b9a7b293bf}{obsws\_set\_current\_scene}}(conn, \textcolor{stringliteral}{"{}Scene1"{}}, \&response) == \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6aa43b9a59f39db094a477cb25a638e5a1}{OBSWS\_OK}} \&\&}
+\DoxyCodeLine{    response \&\& response-\/>\mbox{\hyperlink{structobsws__response__t_abbf2e99faa8fdef1c94bbd174470c821}{success}}) \{}
+\DoxyCodeLine{    printf(\textcolor{stringliteral}{"{}Switched successfully\(\backslash\)\(\backslash\)n"{}});}
+\DoxyCodeLine{\} \textcolor{keywordflow}{else} \{}
+\DoxyCodeLine{    printf(\textcolor{stringliteral}{"{}Switch failed: \%s\(\backslash\)\(\backslash\)n"{}}, response ? response-\/>\mbox{\hyperlink{structobsws__response__t_ab2b3055a84989889d3de28c2ccfd0dac}{error\_message}} : \textcolor{stringliteral}{"{}unknown"{}});}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\mbox{\hyperlink{library_8h_a53067e61dc0ddcf1134d46b275d7ce6b}{obsws\_response\_free}}(response);}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{// Pattern 2: Ignore response (simpler)}}
+\DoxyCodeLine{\mbox{\hyperlink{library_8h_a7cb91bbce42b458f267f79b9a7b293bf}{obsws\_set\_current\_scene}}(conn, \textcolor{stringliteral}{"{}Scene1"{}}, NULL);}
+
+\end{DoxyCode}
+
+
+{\bfseries{Thread-\/safety\+:}}
+\begin{DoxyItemize}
+\item Scene cache is protected by scene\+\_\+mutex
+\item Safe to call from any thread
+\item Multiple calls can happen simultaneously (each uses send\+\_\+mutex)
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em conn} & Connection object (must be in CONNECTED state) \\
+\hline
+{\em scene\+\_\+name} & Name of the scene to switch to. Must not be NULL. \\
+\hline
+{\em response} & Optional output for response details. If provided, caller owns it and must free with \mbox{\hyperlink{library_8c_a53067e61dc0ddcf1134d46b275d7ce6b}{obsws\+\_\+response\+\_\+free()}}. If NULL, response is freed internally.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OBSWS\+\_\+\+OK if request sent and response received (check response-\/\texorpdfstring{$>$}{>}success for whether the scene switch actually succeeded in OBS) 
+
+OBSWS\+\_\+\+ERROR\+\_\+\+INVALID\+\_\+\+PARAM if conn or scene\+\_\+name is NULL 
+
+OBSWS\+\_\+\+ERROR\+\_\+\+NOT\+\_\+\+CONNECTED if connection not ready 
+
+OBSWS\+\_\+\+ERROR\+\_\+\+TIMEOUT if no response from OBS
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{library_8c_a91bd5ceb5878431131513cb4624e935a}{obsws\+\_\+get\+\_\+current\+\_\+scene}}, \mbox{\hyperlink{structobsws__response__t}{obsws\+\_\+response\+\_\+t}}, \mbox{\hyperlink{library_8c_a53067e61dc0ddcf1134d46b275d7ce6b}{obsws\+\_\+response\+\_\+free}} 
+\end{DoxySeeAlso}
+
+
+Definition at line \mbox{\hyperlink{library_8c_source_l01935}{1935}} of file \mbox{\hyperlink{library_8c_source}{library.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01935                                                                                                                      \{}
+\DoxyCodeLine{01936     \textcolor{keywordflow}{if} (!conn || !scene\_name) \{}
+\DoxyCodeLine{01937         \textcolor{keywordflow}{return} \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6a8944fe1379e71d22a82399c21107ebf6}{OBSWS\_ERROR\_INVALID\_PARAM}};}
+\DoxyCodeLine{01938     \}}
+\DoxyCodeLine{01939     }
+\DoxyCodeLine{01940     \textcolor{comment}{/* Check cache to avoid redundant switches */}}
+\DoxyCodeLine{01941     pthread\_mutex\_lock(\&conn-\/>\mbox{\hyperlink{structobsws__connection_a4343875c5de5530580e13fb1b528cf35}{scene\_mutex}});}
+\DoxyCodeLine{01942     \textcolor{keywordtype}{bool} already\_current = (conn-\/>\mbox{\hyperlink{structobsws__connection_a887874891a0026e6ad2a2ee2c3c7390a}{current\_scene}} \&\& strcmp(conn-\/>\mbox{\hyperlink{structobsws__connection_a887874891a0026e6ad2a2ee2c3c7390a}{current\_scene}}, scene\_name) == 0);}
+\DoxyCodeLine{01943     pthread\_mutex\_unlock(\&conn-\/>\mbox{\hyperlink{structobsws__connection_a4343875c5de5530580e13fb1b528cf35}{scene\_mutex}});}
+\DoxyCodeLine{01944     }
+\DoxyCodeLine{01945     \textcolor{keywordflow}{if} (already\_current) \{}
+\DoxyCodeLine{01946         \mbox{\hyperlink{library_8c_a1d8529feb33753ebb45d896c4c125642}{obsws\_log}}(conn, \mbox{\hyperlink{library_8h_afbee3b6b991e705309ea19fd5fb0bff9aa69cfac4b3acbd5968bfab9ef5759cd2}{OBSWS\_LOG\_DEBUG}}, \textcolor{stringliteral}{"{}Already on scene: \%s"{}}, scene\_name);}
+\DoxyCodeLine{01947         \textcolor{keywordflow}{if} (response) \{}
+\DoxyCodeLine{01948             *response = calloc(1, \textcolor{keyword}{sizeof}(\mbox{\hyperlink{structobsws__response__t}{obsws\_response\_t}}));}
+\DoxyCodeLine{01949             (*response)-\/>success = \textcolor{keyword}{true};}
+\DoxyCodeLine{01950         \}}
+\DoxyCodeLine{01951         \textcolor{keywordflow}{return} \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6aa43b9a59f39db094a477cb25a638e5a1}{OBSWS\_OK}};}
+\DoxyCodeLine{01952     \}}
+\DoxyCodeLine{01953     }
+\DoxyCodeLine{01954     cJSON *request\_data = cJSON\_CreateObject();}
+\DoxyCodeLine{01955     cJSON\_AddStringToObject(request\_data, \textcolor{stringliteral}{"{}sceneName"{}}, scene\_name);}
+\DoxyCodeLine{01956     }
+\DoxyCodeLine{01957     \textcolor{keywordtype}{char} *data\_str = cJSON\_PrintUnformatted(request\_data);}
+\DoxyCodeLine{01958     cJSON\_Delete(request\_data);}
+\DoxyCodeLine{01959     }
+\DoxyCodeLine{01960     \mbox{\hyperlink{structobsws__response__t}{obsws\_response\_t}} *resp = NULL;}
+\DoxyCodeLine{01961     \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6}{obsws\_error\_t}} result = \mbox{\hyperlink{library_8c_af2fd7f8dd928e03b38a3e2c5b5745417}{obsws\_send\_request}}(conn, \textcolor{stringliteral}{"{}SetCurrentProgramScene"{}}, data\_str, \&resp, 0);}
+\DoxyCodeLine{01962     free(data\_str);}
+\DoxyCodeLine{01963     }
+\DoxyCodeLine{01964     \textcolor{keywordflow}{if} (result == \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6aa43b9a59f39db094a477cb25a638e5a1}{OBSWS\_OK}} \&\& resp \&\& resp-\/>\mbox{\hyperlink{structobsws__response__t_abbf2e99faa8fdef1c94bbd174470c821}{success}}) \{}
+\DoxyCodeLine{01965         pthread\_mutex\_lock(\&conn-\/>\mbox{\hyperlink{structobsws__connection_a4343875c5de5530580e13fb1b528cf35}{scene\_mutex}});}
+\DoxyCodeLine{01966         free(conn-\/>\mbox{\hyperlink{structobsws__connection_a887874891a0026e6ad2a2ee2c3c7390a}{current\_scene}});}
+\DoxyCodeLine{01967         conn-\/>\mbox{\hyperlink{structobsws__connection_a887874891a0026e6ad2a2ee2c3c7390a}{current\_scene}} = strdup(scene\_name);}
+\DoxyCodeLine{01968         pthread\_mutex\_unlock(\&conn-\/>\mbox{\hyperlink{structobsws__connection_a4343875c5de5530580e13fb1b528cf35}{scene\_mutex}});}
+\DoxyCodeLine{01969         }
+\DoxyCodeLine{01970         \mbox{\hyperlink{library_8c_a1d8529feb33753ebb45d896c4c125642}{obsws\_log}}(conn, \mbox{\hyperlink{library_8h_afbee3b6b991e705309ea19fd5fb0bff9ae48017bf78390a3df8cd87a24782c421}{OBSWS\_LOG\_INFO}}, \textcolor{stringliteral}{"{}Switched to scene: \%s"{}}, scene\_name);}
+\DoxyCodeLine{01971     \}}
+\DoxyCodeLine{01972     }
+\DoxyCodeLine{01973     \textcolor{keywordflow}{if} (response) \{}
+\DoxyCodeLine{01974         *response = resp;}
+\DoxyCodeLine{01975     \} \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (resp) \{}
+\DoxyCodeLine{01976         \mbox{\hyperlink{library_8c_a53067e61dc0ddcf1134d46b275d7ce6b}{obsws\_response\_free}}(resp);}
+\DoxyCodeLine{01977     \}}
+\DoxyCodeLine{01978     }
+\DoxyCodeLine{01979     \textcolor{keywordflow}{return} result;}
+\DoxyCodeLine{01980 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dd/d08/library_8h_a7cb91bbce42b458f267f79b9a7b293bf_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{library_8h_adde8bcb270d34f560ae99047e0524a1d}\label{library_8h_adde8bcb270d34f560ae99047e0524a1d}} 
+\index{library.h@{library.h}!obsws\_set\_debug\_level@{obsws\_set\_debug\_level}}
+\index{obsws\_set\_debug\_level@{obsws\_set\_debug\_level}!library.h@{library.h}}
+\doxysubsubsection{\texorpdfstring{obsws\_set\_debug\_level()}{obsws\_set\_debug\_level()}}
+{\footnotesize\ttfamily void obsws\+\_\+set\+\_\+debug\+\_\+level (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{library_8h_a1997a985daa6bfb4117e885d9bb81668}{obsws\+\_\+debug\+\_\+level\+\_\+t}}}]{level }\end{DoxyParamCaption})}
+
+
+
+Set the global debug level for the library. 
+
+This controls detailed internal logging separate from regular log messages. Use this for troubleshooting connection/protocol issues. Each level includes all output from lower levels.
+
+Debug output shows protocol-\/level information -\/ opcodes, message IDs, etc. It\textquotesingle{}s verbose and should only be used during development.
+
+WARNING\+: Level HIGH logs passwords and raw messages. Never use in production or with untrusted users watching the output.
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & Debug verbosity level\\
+\hline
+\end{DoxyParams}
+Set the global debug level for the library.
+
+Debug logging is separate from regular logging. It provides extremely detailed trace information about the Web\+Socket protocol, message parsing, authentication, etc. This is useful during development and troubleshooting.
+
+Debug levels\+:
+\begin{DoxyItemize}
+\item OBSWS\+\_\+\+DEBUG\+\_\+\+NONE\+: No debug output (fastest)
+\item OBSWS\+\_\+\+DEBUG\+\_\+\+LOW\+: Major state transitions and connection events
+\item OBSWS\+\_\+\+DEBUG\+\_\+\+MEDIUM\+: Message types and handlers invoked
+\item OBSWS\+\_\+\+DEBUG\+\_\+\+HIGH\+: Full message content and every operation
+\end{DoxyItemize}
+
+Debug logging is independent of log level. You can have OBSWS\+\_\+\+LOG\+\_\+\+ERROR set (hide non-\/error logs) but still see OBSWS\+\_\+\+DEBUG\+\_\+\+HIGH output.
+
+Performance warning\+: OBSWS\+\_\+\+DEBUG\+\_\+\+HIGH produces enormous output and will slow down the library significantly. Only use during debugging!
+
+Thread safety\+: Same as obsws\+\_\+set\+\_\+log\+\_\+level (modifies global without locking).
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & The debug verbosity level \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{library_8h_a6720460e577d2afe3c0691a2d6e055e9}{obsws\+\_\+set\+\_\+log\+\_\+level}}, \mbox{\hyperlink{library_8h_a17d68299d8070c22f5cb04e2c4af28a1}{obsws\+\_\+get\+\_\+debug\+\_\+level}} 
+\end{DoxySeeAlso}
+
+
+Definition at line \mbox{\hyperlink{library_8c_source_l01313}{1313}} of file \mbox{\hyperlink{library_8c_source}{library.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01313                                                       \{}
+\DoxyCodeLine{01314     \mbox{\hyperlink{library_8c_abf3a9f2c8c4082f1e6b67daddd8a5931}{g\_debug\_level}} = level;}
+\DoxyCodeLine{01315 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{library_8h_a6720460e577d2afe3c0691a2d6e055e9}\label{library_8h_a6720460e577d2afe3c0691a2d6e055e9}} 
+\index{library.h@{library.h}!obsws\_set\_log\_level@{obsws\_set\_log\_level}}
+\index{obsws\_set\_log\_level@{obsws\_set\_log\_level}!library.h@{library.h}}
+\doxysubsubsection{\texorpdfstring{obsws\_set\_log\_level()}{obsws\_set\_log\_level()}}
+{\footnotesize\ttfamily void obsws\+\_\+set\+\_\+log\+\_\+level (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{library_8h_afbee3b6b991e705309ea19fd5fb0bff9}{obsws\+\_\+log\+\_\+level\+\_\+t}}}]{level }\end{DoxyParamCaption})}
+
+
+
+Set the global log level for the library. 
+
+This affects all library output -\/ messages at this level and below are shown. For example, if you set OBSWS\+\_\+\+LOG\+\_\+\+WARNING, you\textquotesingle{}ll see warnings and errors but not info or debug messages. This setting affects all connections.
+
+Common usage\+:
+\begin{DoxyItemize}
+\item Development\+: OBSWS\+\_\+\+LOG\+\_\+\+DEBUG -\/ see everything while developing
+\item Testing\+: OBSWS\+\_\+\+LOG\+\_\+\+INFO -\/ see what\textquotesingle{}s happening
+\item Production\+: OBSWS\+\_\+\+LOG\+\_\+\+ERROR or OBSWS\+\_\+\+LOG\+\_\+\+WARNING -\/ only see problems
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & Minimum log level to output\\
+\hline
+\end{DoxyParams}
+Set the global log level for the library.
+
+The library logs various messages during operation. This function sets which messages are displayed. All messages at the specified level and higher severity are shown; lower severity messages are hidden.
+
+Levels in increasing severity\+:
+\begin{DoxyItemize}
+\item OBSWS\+\_\+\+LOG\+\_\+\+DEBUG\+: Low-\/level diagnostic info (too verbose for production)
+\item OBSWS\+\_\+\+LOG\+\_\+\+INFO\+: General informational messages (usual choice)
+\item OBSWS\+\_\+\+LOG\+\_\+\+WARNING\+: Potentially problematic situations (degraded but working)
+\item OBSWS\+\_\+\+LOG\+\_\+\+ERROR\+: Error conditions that need attention
+\end{DoxyItemize}
+
+Example\+: If you call obsws\+\_\+set\+\_\+log\+\_\+level(\+OBSWS\+\_\+\+LOG\+\_\+\+WARNING), you\textquotesingle{}ll see only WARNING and ERROR messages, but not INFO or DEBUG messages.
+
+Thread safety\+: This modifies a global variable without locking, so if you might call this from multiple threads, use synchronization externally.
+
+
+\begin{DoxyParams}{Parameters}
+{\em level} & The minimum severity level to display \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{library_8h_adde8bcb270d34f560ae99047e0524a1d}{obsws\+\_\+set\+\_\+debug\+\_\+level}} 
+\end{DoxySeeAlso}
+
+
+Definition at line \mbox{\hyperlink{library_8c_source_l01285}{1285}} of file \mbox{\hyperlink{library_8c_source}{library.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01285                                                   \{}
+\DoxyCodeLine{01286     \mbox{\hyperlink{library_8c_abaccf3944be55af2f72ebbb713c77706}{g\_log\_level}} = level;}
+\DoxyCodeLine{01287 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{library_8h_a1799c10d0165cea5792868aaa45cc138}\label{library_8h_a1799c10d0165cea5792868aaa45cc138}} 
+\index{library.h@{library.h}!obsws\_set\_scene\_collection@{obsws\_set\_scene\_collection}}
+\index{obsws\_set\_scene\_collection@{obsws\_set\_scene\_collection}!library.h@{library.h}}
+\doxysubsubsection{\texorpdfstring{obsws\_set\_scene\_collection()}{obsws\_set\_scene\_collection()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6}{obsws\+\_\+error\+\_\+t}} obsws\+\_\+set\+\_\+scene\+\_\+collection (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$}]{conn,  }\item[{const char $\ast$}]{collection\+\_\+name,  }\item[{\mbox{\hyperlink{structobsws__response__t}{obsws\+\_\+response\+\_\+t}} $\ast$$\ast$}]{response }\end{DoxyParamCaption})}
+
+
+
+Switch to a different scene collection. 
+
+Scene collections are different sets of scenes. OBS can have multiple scene collections and you can switch between them. When you switch collections, all the scenes in the current collection are replaced with the scenes from the new collection. This is useful for different contexts (e.\+g., \char`\"{}\+Gaming\char`\"{}, \char`\"{}\+IRL\char`\"{}, \char`\"{}\+Voiceover\char`\"{}, etc.).
+
+Switching collections can take a moment because OBS needs to load all the new scenes and their settings. You\textquotesingle{}ll get a Scene\+Collection\+Changed event when done.
+
+
+\begin{DoxyParams}{Parameters}
+{\em conn} & Connection handle (must be in CONNECTED state) \\
+\hline
+{\em collection\+\_\+name} & Name of the scene collection to activate (case-\/sensitive, must exist in OBS) \\
+\hline
+{\em response} & Optional pointer to receive response (NULL to ignore) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OBSWS\+\_\+\+OK if request sent successfully 
+
+OBSWS\+\_\+\+ERROR\+\_\+\+NOT\+\_\+\+CONNECTED if not connected 
+
+OBSWS\+\_\+\+ERROR\+\_\+\+INVALID\+\_\+\+PARAM if collection\+\_\+name is NULL
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+Scene collection names are shown in OBS\+: Scene Collection dropdown. 
+
+Switching collections is slower than switching scenes (requires loading files). 
+
+This is async -\/ function returns before OBS finishes switching. 
+
+If the collection doesn\textquotesingle{}t exist, OBS returns an error in the response. 
+\end{DoxyNote}
+\mbox{\Hypertarget{library_8h_a75fc4d620b8032c882514b40ea525314}\label{library_8h_a75fc4d620b8032c882514b40ea525314}} 
+\index{library.h@{library.h}!obsws\_set\_source\_filter\_enabled@{obsws\_set\_source\_filter\_enabled}}
+\index{obsws\_set\_source\_filter\_enabled@{obsws\_set\_source\_filter\_enabled}!library.h@{library.h}}
+\doxysubsubsection{\texorpdfstring{obsws\_set\_source\_filter\_enabled()}{obsws\_set\_source\_filter\_enabled()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6}{obsws\+\_\+error\+\_\+t}} obsws\+\_\+set\+\_\+source\+\_\+filter\+\_\+enabled (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$}]{conn,  }\item[{const char $\ast$}]{source\+\_\+name,  }\item[{const char $\ast$}]{filter\+\_\+name,  }\item[{bool}]{enabled,  }\item[{\mbox{\hyperlink{structobsws__response__t}{obsws\+\_\+response\+\_\+t}} $\ast$$\ast$}]{response }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{library_8h_a08f17f3a7dbfdd402c4460c13e33463b}\label{library_8h_a08f17f3a7dbfdd402c4460c13e33463b}} 
+\index{library.h@{library.h}!obsws\_set\_source\_visibility@{obsws\_set\_source\_visibility}}
+\index{obsws\_set\_source\_visibility@{obsws\_set\_source\_visibility}!library.h@{library.h}}
+\doxysubsubsection{\texorpdfstring{obsws\_set\_source\_visibility()}{obsws\_set\_source\_visibility()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6}{obsws\+\_\+error\+\_\+t}} obsws\+\_\+set\+\_\+source\+\_\+visibility (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$}]{conn,  }\item[{const char $\ast$}]{scene\+\_\+name,  }\item[{const char $\ast$}]{source\+\_\+name,  }\item[{bool}]{visible,  }\item[{\mbox{\hyperlink{structobsws__response__t}{obsws\+\_\+response\+\_\+t}} $\ast$$\ast$}]{response }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{library_8h_a8643e2027afb1907122ce4d3bfe65c6e}\label{library_8h_a8643e2027afb1907122ce4d3bfe65c6e}} 
+\index{library.h@{library.h}!obsws\_start\_recording@{obsws\_start\_recording}}
+\index{obsws\_start\_recording@{obsws\_start\_recording}!library.h@{library.h}}
+\doxysubsubsection{\texorpdfstring{obsws\_start\_recording()}{obsws\_start\_recording()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6}{obsws\+\_\+error\+\_\+t}} obsws\+\_\+start\+\_\+recording (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$}]{conn,  }\item[{\mbox{\hyperlink{structobsws__response__t}{obsws\+\_\+response\+\_\+t}} $\ast$$\ast$}]{response }\end{DoxyParamCaption})}
+
+
+
+Start recording in OBS. 
+
+Tells OBS to begin recording the current scene composition to disk. The recording path and format are determined by OBS settings, not by this library.
+
+This is a convenience wrapper around \mbox{\hyperlink{library_8c_af2fd7f8dd928e03b38a3e2c5b5745417}{obsws\+\_\+send\+\_\+request()}} using the OBS \char`\"{}\+Start\+Record\char`\"{} request type.
+
+{\bfseries{Return value interpretation\+:}}
+\begin{DoxyItemize}
+\item OBSWS\+\_\+\+OK\+: Request was sent and OBS responded (check response-\/\texorpdfstring{$>$}{>}success)
+\item Other errors\+: Network/connection problem
+\end{DoxyItemize}
+
+{\bfseries{Example usage\+:}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{structobsws__response__t}{obsws\_response\_t}} *resp = NULL;}
+\DoxyCodeLine{\textcolor{keywordflow}{if} (\mbox{\hyperlink{library_8h_a8643e2027afb1907122ce4d3bfe65c6e}{obsws\_start\_recording}}(conn, \&resp) == \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6aa43b9a59f39db094a477cb25a638e5a1}{OBSWS\_OK}} \&\& resp \&\& resp-\/>\mbox{\hyperlink{structobsws__response__t_abbf2e99faa8fdef1c94bbd174470c821}{success}}) \{}
+\DoxyCodeLine{    printf(\textcolor{stringliteral}{"{}Recording started\(\backslash\)\(\backslash\)n"{}});}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\mbox{\hyperlink{library_8h_a53067e61dc0ddcf1134d46b275d7ce6b}{obsws\_response\_free}}(resp);}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em conn} & Connection object (must be in CONNECTED state) \\
+\hline
+{\em response} & Optional output for response. Caller owns if provided, must free.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OBSWS\+\_\+\+OK if response received (check response-\/\texorpdfstring{$>$}{>}success for success) 
+
+OBSWS\+\_\+\+ERROR\+\_\+\+NOT\+\_\+\+CONNECTED if connection not ready 
+
+OBSWS\+\_\+\+ERROR\+\_\+\+TIMEOUT if OBS doesn\textquotesingle{}t respond
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{library_8c_a30001811f4cf8501e006ca46bcb8b329}{obsws\+\_\+stop\+\_\+recording}}, \mbox{\hyperlink{library_8c_af2fd7f8dd928e03b38a3e2c5b5745417}{obsws\+\_\+send\+\_\+request}}, \mbox{\hyperlink{library_8c_a53067e61dc0ddcf1134d46b275d7ce6b}{obsws\+\_\+response\+\_\+free}} 
+\end{DoxySeeAlso}
+
+
+Definition at line \mbox{\hyperlink{library_8c_source_l02086}{2086}} of file \mbox{\hyperlink{library_8c_source}{library.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{02086                                                                                            \{}
+\DoxyCodeLine{02087     \textcolor{keywordflow}{return} \mbox{\hyperlink{library_8c_af2fd7f8dd928e03b38a3e2c5b5745417}{obsws\_send\_request}}(conn, \textcolor{stringliteral}{"{}StartRecord"{}}, NULL, response, 0);}
+\DoxyCodeLine{02088 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dd/d08/library_8h_a8643e2027afb1907122ce4d3bfe65c6e_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{library_8h_a86a35ee2d7aef7a0569b4111bd663d22}\label{library_8h_a86a35ee2d7aef7a0569b4111bd663d22}} 
+\index{library.h@{library.h}!obsws\_start\_streaming@{obsws\_start\_streaming}}
+\index{obsws\_start\_streaming@{obsws\_start\_streaming}!library.h@{library.h}}
+\doxysubsubsection{\texorpdfstring{obsws\_start\_streaming()}{obsws\_start\_streaming()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6}{obsws\+\_\+error\+\_\+t}} obsws\+\_\+start\+\_\+streaming (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$}]{conn,  }\item[{\mbox{\hyperlink{structobsws__response__t}{obsws\+\_\+response\+\_\+t}} $\ast$$\ast$}]{response }\end{DoxyParamCaption})}
+
+
+
+Start streaming in OBS. 
+
+Tells OBS to begin streaming to the configured destination (Twitch, You\+Tube, etc). The stream settings (URL, key, bitrate, etc) are determined by OBS settings.
+
+This is a convenience wrapper around \mbox{\hyperlink{library_8c_af2fd7f8dd928e03b38a3e2c5b5745417}{obsws\+\_\+send\+\_\+request()}} using the OBS \char`\"{}\+Start\+Stream\char`\"{} request type.
+
+{\bfseries{Thread-\/safe\+:}} Safe to call from any thread while connected.
+
+
+\begin{DoxyParams}{Parameters}
+{\em conn} & Connection object (must be in CONNECTED state) \\
+\hline
+{\em response} & Optional output for response. Caller owns if provided, must free.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OBSWS\+\_\+\+OK if response received (check response-\/\texorpdfstring{$>$}{>}success for success) 
+
+OBSWS\+\_\+\+ERROR\+\_\+\+NOT\+\_\+\+CONNECTED if connection not ready 
+
+OBSWS\+\_\+\+ERROR\+\_\+\+TIMEOUT if OBS doesn\textquotesingle{}t respond
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{library_8c_a2cfe9b46f435aa7986b5e772b99c464e}{obsws\+\_\+stop\+\_\+streaming}}, \mbox{\hyperlink{library_8c_af2fd7f8dd928e03b38a3e2c5b5745417}{obsws\+\_\+send\+\_\+request}}, \mbox{\hyperlink{library_8c_a53067e61dc0ddcf1134d46b275d7ce6b}{obsws\+\_\+response\+\_\+free}} 
+\end{DoxySeeAlso}
+
+
+Definition at line \mbox{\hyperlink{library_8c_source_l02139}{2139}} of file \mbox{\hyperlink{library_8c_source}{library.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{02139                                                                                            \{}
+\DoxyCodeLine{02140     \textcolor{keywordflow}{return} \mbox{\hyperlink{library_8c_af2fd7f8dd928e03b38a3e2c5b5745417}{obsws\_send\_request}}(conn, \textcolor{stringliteral}{"{}StartStream"{}}, NULL, response, 0);}
+\DoxyCodeLine{02141 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dd/d08/library_8h_a86a35ee2d7aef7a0569b4111bd663d22_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{library_8h_a69f8fcc1732533a2ebe573ac65effa04}\label{library_8h_a69f8fcc1732533a2ebe573ac65effa04}} 
+\index{library.h@{library.h}!obsws\_state\_string@{obsws\_state\_string}}
+\index{obsws\_state\_string@{obsws\_state\_string}!library.h@{library.h}}
+\doxysubsubsection{\texorpdfstring{obsws\_state\_string()}{obsws\_state\_string()}}
+{\footnotesize\ttfamily const char $\ast$ obsws\+\_\+state\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991}{obsws\+\_\+state\+\_\+t}}}]{state }\end{DoxyParamCaption})}
+
+
+
+Convert a connection state to a human-\/readable string. 
+
+Utility function for logging and debugging. Returns a brief English description of each connection state.
+
+{\bfseries{State Transitions\+:}}
+\begin{DoxyItemize}
+\item DISCONNECTED\+: Initial state or after disconnect()
+\item CONNECTING\+: connect() called, establishing TCP connection
+\item AUTHENTICATING\+: TCP connected, performing challenge-\/response auth
+\item CONNECTED\+: Auth succeeded, ready for requests
+\item ERROR\+: Network error or protocol failure, should reconnect
+\end{DoxyItemize}
+
+{\bfseries{Valid transitions\+:}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{DISCONNECTED -\/> CONNECTING -\/> AUTHENTICATING -\/> CONNECTED}
+\DoxyCodeLine{CONNECTED -\/> DISCONNECTED (on \textcolor{keyword}{explicit} disconnect)}
+\DoxyCodeLine{CONNECTED -\/> ERROR (on network failure)}
+\DoxyCodeLine{ERROR -\/> CONNECTING (on reconnect attempt)}
+
+\end{DoxyCode}
+
+
+{\bfseries{Example usage\+:}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991}{obsws\_state\_t}} state = \mbox{\hyperlink{library_8h_a61a10e31041532a9da0c1c1993f84a79}{obsws\_get\_state}}(conn);}
+\DoxyCodeLine{printf(\textcolor{stringliteral}{"{}Connection state: \%s\(\backslash\)\(\backslash\)n"{}}, \mbox{\hyperlink{library_8h_a69f8fcc1732533a2ebe573ac65effa04}{obsws\_state\_string}}(state));}
+
+\end{DoxyCode}
+
+
+Never returns NULL -\/ unknown states return \char`\"{}\+Unknown\char`\"{}. Returned strings are static -\/ do not modify or free.
+
+
+\begin{DoxyParams}{Parameters}
+{\em state} & The connection state to describe \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to a static string describing the state
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{library_8c_a61a10e31041532a9da0c1c1993f84a79}{obsws\+\_\+get\+\_\+state}}, \mbox{\hyperlink{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991}{obsws\+\_\+state\+\_\+t}}, \mbox{\hyperlink{library_8c_ad9894e72ee8510f4eaf7d42feaf0cf9a}{obsws\+\_\+is\+\_\+connected}} 
+\end{DoxySeeAlso}
+
+
+Definition at line \mbox{\hyperlink{library_8c_source_l02282}{2282}} of file \mbox{\hyperlink{library_8c_source}{library.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{02282                                                     \{}
+\DoxyCodeLine{02283     \textcolor{keywordflow}{switch} (state) \{}
+\DoxyCodeLine{02284         \textcolor{keywordflow}{case} \mbox{\hyperlink{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991af973d2b8b0a498d0bbffb40ccab1ef2d}{OBSWS\_STATE\_DISCONNECTED}}: \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}Disconnected"{}};}
+\DoxyCodeLine{02285         \textcolor{keywordflow}{case} \mbox{\hyperlink{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991a88276a1a9f595735a2b242f0eab1524a}{OBSWS\_STATE\_CONNECTING}}: \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}Connecting"{}};}
+\DoxyCodeLine{02286         \textcolor{keywordflow}{case} \mbox{\hyperlink{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991ac9c5d9c3aab50d7e6d1d38b1bb7d6d0f}{OBSWS\_STATE\_AUTHENTICATING}}: \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}Authenticating"{}};}
+\DoxyCodeLine{02287         \textcolor{keywordflow}{case} \mbox{\hyperlink{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991adbaae08035175b470fb9f543414672b8}{OBSWS\_STATE\_CONNECTED}}: \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}Connected"{}};}
+\DoxyCodeLine{02288         \textcolor{keywordflow}{case} \mbox{\hyperlink{library_8h_a2fb4e7d7196f39a5ce0e9c71b2d78991ae13bce21841139a7510b1c8b10a694ac}{OBSWS\_STATE\_ERROR}}: \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}Error"{}};}
+\DoxyCodeLine{02289         \textcolor{keywordflow}{default}: \textcolor{keywordflow}{return} \textcolor{stringliteral}{"{}Unknown"{}};}
+\DoxyCodeLine{02290     \}}
+\DoxyCodeLine{02291 \}}
+
+\end{DoxyCode}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dd/d08/library_8h_a69f8fcc1732533a2ebe573ac65effa04_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{library_8h_a30001811f4cf8501e006ca46bcb8b329}\label{library_8h_a30001811f4cf8501e006ca46bcb8b329}} 
+\index{library.h@{library.h}!obsws\_stop\_recording@{obsws\_stop\_recording}}
+\index{obsws\_stop\_recording@{obsws\_stop\_recording}!library.h@{library.h}}
+\doxysubsubsection{\texorpdfstring{obsws\_stop\_recording()}{obsws\_stop\_recording()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6}{obsws\+\_\+error\+\_\+t}} obsws\+\_\+stop\+\_\+recording (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$}]{conn,  }\item[{\mbox{\hyperlink{structobsws__response__t}{obsws\+\_\+response\+\_\+t}} $\ast$$\ast$}]{response }\end{DoxyParamCaption})}
+
+
+
+Stop recording. 
+
+Tells OBS to stop recording and save the file. The saved recording will include everything from when you called \mbox{\hyperlink{library_8h_a8643e2027afb1907122ce4d3bfe65c6e}{obsws\+\_\+start\+\_\+recording()}} until now. If recording wasn\textquotesingle{}t running, OBS ignores this (no error).
+
+After calling this, OBS takes a moment to finalize the file (write headers, etc.), then sends a Recording\+State\+Changed event when complete. You can\textquotesingle{}t immediately open the file -\/ wait for the event first.
+
+
+\begin{DoxyParams}{Parameters}
+{\em conn} & Connection handle (must be in CONNECTED state) \\
+\hline
+{\em response} & Optional pointer to receive response \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OBSWS\+\_\+\+OK if request sent successfully 
+
+OBSWS\+\_\+\+ERROR\+\_\+\+NOT\+\_\+\+CONNECTED if not connected
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This is async -\/ the file finalization happens after the function returns. 
+
+OBS sends a Recording\+State\+Changed event when the file is ready. 
+
+Don\textquotesingle{}t try to move/open the file immediately -\/ wait for the event first.
+\end{DoxyNote}
+Stop recording.
+
+Tells OBS to stop the currently active recording. If no recording is in progress, OBS returns success anyway (idempotent operation).
+
+This is a convenience wrapper around \mbox{\hyperlink{library_8h_af2fd7f8dd928e03b38a3e2c5b5745417}{obsws\+\_\+send\+\_\+request()}} using the OBS \char`\"{}\+Stop\+Record\char`\"{} request type.
+
+{\bfseries{Example usage\+:}} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keywordflow}{if} (\mbox{\hyperlink{library_8h_a30001811f4cf8501e006ca46bcb8b329}{obsws\_stop\_recording}}(conn, NULL) != \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6aa43b9a59f39db094a477cb25a638e5a1}{OBSWS\_OK}}) \{}
+\DoxyCodeLine{    fprintf(stderr, \textcolor{stringliteral}{"{}Failed to stop recording\(\backslash\)\(\backslash\)n"{}});}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+
+\begin{DoxyParams}{Parameters}
+{\em conn} & Connection object (must be in CONNECTED state) \\
+\hline
+{\em response} & Optional output for response. Caller owns if provided, must free.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OBSWS\+\_\+\+OK if response received (check response-\/\texorpdfstring{$>$}{>}success for success) 
+
+OBSWS\+\_\+\+ERROR\+\_\+\+NOT\+\_\+\+CONNECTED if connection not ready 
+
+OBSWS\+\_\+\+ERROR\+\_\+\+TIMEOUT if OBS doesn\textquotesingle{}t respond
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{library_8h_a8643e2027afb1907122ce4d3bfe65c6e}{obsws\+\_\+start\+\_\+recording}}, \mbox{\hyperlink{library_8h_af2fd7f8dd928e03b38a3e2c5b5745417}{obsws\+\_\+send\+\_\+request}}, \mbox{\hyperlink{library_8h_a53067e61dc0ddcf1134d46b275d7ce6b}{obsws\+\_\+response\+\_\+free}} 
+\end{DoxySeeAlso}
+
+
+Definition at line \mbox{\hyperlink{library_8c_source_l02115}{2115}} of file \mbox{\hyperlink{library_8c_source}{library.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{02115                                                                                           \{}
+\DoxyCodeLine{02116     \textcolor{keywordflow}{return} \mbox{\hyperlink{library_8c_af2fd7f8dd928e03b38a3e2c5b5745417}{obsws\_send\_request}}(conn, \textcolor{stringliteral}{"{}StopRecord"{}}, NULL, response, 0);}
+\DoxyCodeLine{02117 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dd/d08/library_8h_a30001811f4cf8501e006ca46bcb8b329_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{library_8h_a2cfe9b46f435aa7986b5e772b99c464e}\label{library_8h_a2cfe9b46f435aa7986b5e772b99c464e}} 
+\index{library.h@{library.h}!obsws\_stop\_streaming@{obsws\_stop\_streaming}}
+\index{obsws\_stop\_streaming@{obsws\_stop\_streaming}!library.h@{library.h}}
+\doxysubsubsection{\texorpdfstring{obsws\_stop\_streaming()}{obsws\_stop\_streaming()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{library_8h_a4820ea98988736a81d6695a51f74acd6}{obsws\+\_\+error\+\_\+t}} obsws\+\_\+stop\+\_\+streaming (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{library_8h_a81ecb6b2403c8155af2e4edb4716c141}{obsws\+\_\+connection\+\_\+t}} $\ast$}]{conn,  }\item[{\mbox{\hyperlink{structobsws__response__t}{obsws\+\_\+response\+\_\+t}} $\ast$$\ast$}]{response }\end{DoxyParamCaption})}
+
+
+
+Stop streaming. 
+
+Tells OBS to stop streaming to the remote server. After calling this, OBS disconnects from the streaming server and the stream ends. The stopped event will tell you if the disconnect was clean or if there was an issue.
+
+
+\begin{DoxyParams}{Parameters}
+{\em conn} & Connection handle (must be in CONNECTED state) \\
+\hline
+{\em response} & Optional pointer to receive response \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OBSWS\+\_\+\+OK if request sent successfully 
+
+OBSWS\+\_\+\+ERROR\+\_\+\+NOT\+\_\+\+CONNECTED if not connected
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This is async -\/ disconnecting from the server takes a moment. 
+
+OBS sends a Stream\+State\+Changed event when streaming fully stops. 
+
+If not streaming, OBS ignores this request (no error).
+\end{DoxyNote}
+Stop streaming.
+
+Tells OBS to stop the active stream. If not currently streaming, OBS returns success anyway (idempotent operation).
+
+This is a convenience wrapper around \mbox{\hyperlink{library_8h_af2fd7f8dd928e03b38a3e2c5b5745417}{obsws\+\_\+send\+\_\+request()}} using the OBS \char`\"{}\+Stop\+Stream\char`\"{} request type.
+
+
+\begin{DoxyParams}{Parameters}
+{\em conn} & Connection object (must be in CONNECTED state) \\
+\hline
+{\em response} & Optional output for response. Caller owns if provided, must free.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+OBSWS\+\_\+\+OK if response received (check response-\/\texorpdfstring{$>$}{>}success for success) 
+
+OBSWS\+\_\+\+ERROR\+\_\+\+NOT\+\_\+\+CONNECTED if connection not ready 
+
+OBSWS\+\_\+\+ERROR\+\_\+\+TIMEOUT if OBS doesn\textquotesingle{}t respond
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{library_8h_a86a35ee2d7aef7a0569b4111bd663d22}{obsws\+\_\+start\+\_\+streaming}}, \mbox{\hyperlink{library_8h_af2fd7f8dd928e03b38a3e2c5b5745417}{obsws\+\_\+send\+\_\+request}}, \mbox{\hyperlink{library_8h_a53067e61dc0ddcf1134d46b275d7ce6b}{obsws\+\_\+response\+\_\+free}} 
+\end{DoxySeeAlso}
+
+
+Definition at line \mbox{\hyperlink{library_8c_source_l02161}{2161}} of file \mbox{\hyperlink{library_8c_source}{library.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{02161                                                                                           \{}
+\DoxyCodeLine{02162     \textcolor{keywordflow}{return} \mbox{\hyperlink{library_8c_af2fd7f8dd928e03b38a3e2c5b5745417}{obsws\_send\_request}}(conn, \textcolor{stringliteral}{"{}StopStream"{}}, NULL, response, 0);}
+\DoxyCodeLine{02163 \}}
+
+\end{DoxyCode}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dd/d08/library_8h_a2cfe9b46f435aa7986b5e772b99c464e_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{library_8h_af3afc203f99395c187faf3fba0477bf9}\label{library_8h_af3afc203f99395c187faf3fba0477bf9}} 
+\index{library.h@{library.h}!obsws\_version@{obsws\_version}}
+\index{obsws\_version@{obsws\_version}!library.h@{library.h}}
+\doxysubsubsection{\texorpdfstring{obsws\_version()}{obsws\_version()}}
+{\footnotesize\ttfamily const char $\ast$ obsws\+\_\+version (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Get the library version string. 
+
+Returns a string like \char`\"{}1.\+0.\+0\char`\"{} indicating what version of the library you\textquotesingle{}re using. Useful for debugging -\/ you can log this at startup so you know which version of the library handled a particular issue.
+
+\begin{DoxyReturn}{Returns}
+Pointer to version string (valid until obsws\+\_\+cleanup is called)
+\end{DoxyReturn}
+Returns a semantic version string like \char`\"{}1.\+0.\+0\char`\"{} that identifies which version of libwsv5 is being used. Useful for debugging and logging.
+
+\begin{DoxyReturn}{Returns}
+Pointer to static version string (don\textquotesingle{}t free) 
+\end{DoxyReturn}
+
+
+Definition at line \mbox{\hyperlink{library_8c_source_l01259}{1259}} of file \mbox{\hyperlink{library_8c_source}{library.\+c}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{01259                                 \{}
+\DoxyCodeLine{01260     \textcolor{keywordflow}{return} \mbox{\hyperlink{library_8c_ad27c3919151c76f6e69c502c7ece4065}{OBSWS\_VERSION}};}
+\DoxyCodeLine{01261 \}}
+
+\end{DoxyCode}

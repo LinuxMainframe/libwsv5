@@ -1,0 +1,25 @@
+\hypertarget{Logging-example}{}\doxysection{Logging}
+Get a human-\/readable string for an error code.
+
+Get a human-\/readable string for an error code.\+Converts error codes like OBSWS\+\_\+\+ERROR\+\_\+\+AUTH\+\_\+\+FAILED into strings like \char`\"{}\+Authentication failed\char`\"{}. Useful for logging and error messages. The returned strings are static (not allocated) so don\textquotesingle{}t free them.
+
+
+\begin{DoxyParams}{Parameters}
+{\em error} & Error code to convert \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to error string (e.\+g., \char`\"{}\+Invalid parameter\char`\"{}, \char`\"{}\+Connection failed\char`\"{}) Never returns NULL -\/ unknown error codes get \char`\"{}\+Unknown error\char`\"{}
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The returned string is static and valid for the lifetime of the program. 
+
+Don\textquotesingle{}t free the returned pointer.
+\end{DoxyNote}
+an error\+: obsws\+\_\+error\+\_\+t err = obsws\+\_\+set\+\_\+current\+\_\+scene(conn, \char`\"{}\+Scene\char`\"{}, NULL); if (err != OBSWS\+\_\+\+OK) \{ fprintf(stderr, \char`\"{}\+Error\+: \%s\textbackslash{}n\char`\"{}, obsws\+\_\+error\+\_\+string(err)); \}
+
+
+\begin{DoxyCodeInclude}{0}
+
+\end{DoxyCodeInclude}
+ 
