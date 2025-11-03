@@ -2,8 +2,10 @@
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![C Standard](https://img.shields.io/badge/C-11-blue.svg)]()
-[![Version](https://img.shields.io/badge/version-1.0.0-brightgreen.svg)]()
-[![Build macOS](https://img.shields.io/badge/Build-Passing-green)](https://img.shields.io/badge/Build-Passing-green)
+[![Version](https://img.shields.io/badge/version-1.1.0-brightgreen.svg)]()
+[![Build macOS](https://img.shields.io/badge/macOS_Build-Passing-green)](https://img.shields.io/badge/macOS_Build-Passing-green)
+[![Build macOS](https://img.shields.io/badge/Debian_Build-Passing-green)](https://img.shields.io/badge/Debian_Build-Passing-green)
+[![Build macOS](https://img.shields.io/badge/Windows_Build-N/A-red)](https://img.shields.io/badge/Windows_Build-N/A-red)
 
 A high-performance C library for communicating with OBS Studio via the WebSocket v5 protocol. Designed for streaming professionals, developers, and automation systems that need reliable control over OBS instances.
 
@@ -18,6 +20,47 @@ A high-performance C library for communicating with OBS Studio via the WebSocket
 - **Event Callbacks** - Real-time notifications of OBS state changes
 - **Error Handling** - Comprehensive error codes and detailed status reporting
 - **No External Dependencies** - Uses standard C libraries (libwebsockets, OpenSSL, cJSON)
+
+---
+## Why libwsv5?
+
+**The fastest, most reliable OBS WebSocket v5 client for C/C++ applications.**
+
+- **Zero-copy design** - Direct memory mapping, no Python/JS overhead
+- **Production-tested** - Powers [ROCStreamer/Matt's Outback Paintball] serving 150+ users
+- **Full protocol support** - 50+ OBS commands, all v5 features
+- **Thread-safe** - Manage multiple OBS instances concurrently
+- **Auto-reconnect** - Survives network hiccups and OBS crashes
+- **Multi-Platform Support** - Currently Supports macOS and Linux natively with Windows support planned.
+
+### Use Cases
+- **Broadcast automation** - Trigger scene changes from external events
+- **Stream directors** - Multi-camera switching applications
+- **Recording managers** - Automated recording start/stop systems
+- **Monitoring dashboards** - Real-time OBS status displays
+- **Hardware controllers** - Stream decks, MIDI controllers, GPIO triggers
+
+## Quick to Get Running (~30 seconds)
+```c
+#include 
+
+int main() {
+    obsws_init();
+    
+    obsws_config_t config;
+    obsws_config_init(&config);
+    config.host = "localhost";
+    config.password = "your_password";
+    
+    obsws_connection_t *obs = obsws_connect(&config);
+    obsws_set_current_scene(obs, "Gaming Scene", NULL);
+    
+    obsws_disconnect(obs);
+    obsws_cleanup();
+    return 0;
+}
+```
+---
 
 ## Quick Start
 
