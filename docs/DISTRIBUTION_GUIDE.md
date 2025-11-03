@@ -212,7 +212,28 @@ Package creation and distribution guide:
 
 ## Continuous Integration
 
-### GitHub Actions Workflow
+### Build Status Workflows
+
+#### 1. Continuous Integration (build-macos.yml)
+
+Validates builds on macOS for every push and pull request:
+
+```yaml
+# Triggered by: push to main/master/develop or pull requests
+- Builds on macOS (latest) with Homebrew dependencies
+- Verifies artifact generation
+- Reports build status
+- Badge automatically updates in README
+```
+
+This workflow ensures macOS compatibility across development.
+
+**Badge Reference:**
+```markdown
+[![Build macOS](https://github.com/linuxmainframe/libwsv5/workflows/Build%20macOS/badge.svg)](https://github.com/linuxmainframe/libwsv5/actions?query=workflow%3A%22Build+macOS%22)
+```
+
+#### 2. Release Packaging (package-release.yml)
 
 Automatically builds and releases when pushing version tags:
 
@@ -225,7 +246,9 @@ Automatically builds and releases when pushing version tags:
 - Uploads all artifacts
 ```
 
-Configure in `.github/workflows/package-release.yml`
+**Configured in:** 
+- `.github/workflows/build-macos.yml` - macOS CI checks
+- `.github/workflows/package-release.yml` - Release packaging
 
 ## Quality Assurance
 

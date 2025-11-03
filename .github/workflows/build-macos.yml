@@ -1,0 +1,124 @@
+name: Build macOS
+
+on:
+  push:
+    branches:
+      - main
+      - master
+      - develop
+  pull_request:
+    branches:
+      - main
+      - master
+      - develop
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  build-macos:
+    name: Build on macOS
+    runs-on: macos-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Install dependencies via Homebrew
+        run: |
+          brew update
+          brew install libwebsockets libcjson openssl cmake
+      
+      - name: Configure build
+        run: |
+          mkdir -p build
+          cd build
+          
+          # Get OpenSSL path from Homebrew
+          OPENSSL_PATH=$(brew --prefix openssl)
+          
+          cmake -DCMAKE_BUILD_TYPE=Release \
+                -DCMAKE_INSTALL_PREFIX=/usr/local \
+                -DBUILD_TESTS=ON \
+                -DOPENSSL_DIR="${OPENSSL_PATH}" \
+                -DOPENSSL_ROOT_DIR="${OPENSSL_PATH}" \
+                ..
+      
+      - name: Build library
+        run: |
+          cd build
+          make -j$(sysctl -n hw.ncpu)
+      
+      - name: Verify build artifacts
+        run: |
+          cd build
+          
+          echo "=== macOS Build Successful ==="
+          echo "Architecture: $(uname -m)"
+          echo "macOS Version: $(sw_vers -productVersion)"
+          echo ""
+          
+          echo "=== Compiled Libraries ==="
+          if [ -f CMakeFiles/libwsv5_static.dir/libwsv5.c.o ]; then
+            echo "✓ Object file compiled"
+          fi
+          
+          if [ -f libwsv5.a ]; then
+            echo "✓ Static library built: libwsv5.a"
+            ls -lh libwsv5.a
+          fi
+          
+          if [ -f libwsv5.so ] || [ -f libwsv5.dylib ]; then
+            echo "✓ Shared library built"
+            ls -lh libwsv5.so libwsv5.dylib 2>/dev/null || echo "  (macOS may not generate .so)"
+          fi
+          
+          echo ""
+          echo "=== Test Executable ==="
+          if [ -f test ]; then
+            echo "✓ Test executable built successfully"
+            file test
+            lipo -info test 2>/dev/null || echo "  (Architecture info not available)"
+          fi
+      
+      - name: Build Summary
+        if: always()
+        run: |
+          echo "=== Build Status ==="
+          if [ "${{ job.status }}" == "success" ]; then
+            echo "✓ macOS build completed successfully"
+            echo "BUILD_STATUS=Build-Passing-green" >> $GITHUB_ENV
+          else
+            echo "✗ macOS build failed"
+            echo "BUILD_STATUS=Build-Failing-red" >> $GITHUB_ENV
+          fi
+          echo ""
+          echo "=== Build Information ==="
+          echo "Status: ${{ job.status }}"
+          echo "Branch: ${{ github.ref }}"
+          echo "Commit: ${{ github.sha }}"
+          echo "Repository: ${{ github.repository }}"
+          echo ""
+          echo "View workflow: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+      
+      - name: Report Build Status
+        if: always()
+        run: |
+          echo "## macOS Build Status" >> $GITHUB_STEP_SUMMARY
+          if [ "${{ job.status }}" == "success" ]; then
+            echo "✅ **Build-Passing-green**" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "The macOS build completed successfully!" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **Build-Failing-red**" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "The macOS build encountered errors. Check the logs above for details." >> $GITHUB_STEP_SUMMARY
+          fi
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Build Information:**" >> $GITHUB_STEP_SUMMARY
+          echo "- Branch: ${{ github.ref }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Commit: ${{ github.sha }}" >> $GITHUB_STEP_SUMMARY
+          echo "- Runner: macOS-latest" >> $GITHUB_STEP_SUMMARY

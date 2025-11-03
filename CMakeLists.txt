@@ -9,6 +9,24 @@ set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
+# macOS specific: Handle Homebrew installations
+if(APPLE)
+    # Try to find Homebrew prefix
+    execute_process(
+        COMMAND brew --prefix
+        OUTPUT_VARIABLE HOMEBREW_PREFIX
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+    )
+    
+    if(HOMEBREW_PREFIX)
+        message(STATUS "Found Homebrew at: ${HOMEBREW_PREFIX}")
+        list(APPEND CMAKE_PREFIX_PATH "${HOMEBREW_PREFIX}")
+        list(APPEND CMAKE_PREFIX_PATH "${HOMEBREW_PREFIX}/opt/openssl")
+        list(APPEND CMAKE_PREFIX_PATH "${HOMEBREW_PREFIX}/opt/libwebsockets")
+        list(APPEND CMAKE_PREFIX_PATH "${HOMEBREW_PREFIX}/opt/cjson")
+    endif()
+endif()
+
 # Find required packages
 find_package(OpenSSL REQUIRED)
 find_package(Threads REQUIRED)

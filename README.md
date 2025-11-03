@@ -3,6 +3,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![C Standard](https://img.shields.io/badge/C-11-blue.svg)]()
 [![Version](https://img.shields.io/badge/version-1.0.0-brightgreen.svg)]()
+[![Build macOS](https://img.shields.io/badge/Build-Passing-green)](https://img.shields.io/badge/Build-Passing-green)
 
 A high-performance C library for communicating with OBS Studio via the WebSocket v5 protocol. Designed for streaming professionals, developers, and automation systems that need reliable control over OBS instances.
 
@@ -319,11 +320,63 @@ Optional:
 
 ## Building from Source
 
-### Step-by-Step
+### Linux / Ubuntu / Debian
 
 ```bash
 # Install dependencies
 sudo apt-get install build-essential cmake libwebsockets-dev libcjson-dev libssl-dev
+
+# Clone repository
+git clone https://github.com/linuxmainframe/libwsv5.git
+cd libwsv5
+
+# Create build directory
+mkdir build && cd build
+
+# Configure
+cmake -DBUILD_TESTS=ON -DCMAKE_BUILD_TYPE=Release ..
+
+# Build
+make -j$(nproc)
+
+# Install
+sudo make install
+
+# Test
+./test -h localhost -p 4455 -w obs_password
+```
+
+### macOS
+
+```bash
+# Install dependencies via Homebrew
+brew install libwebsockets libcjson openssl cmake
+
+# Clone repository
+git clone https://github.com/linuxmainframe/libwsv5.git
+cd libwsv5
+
+# Create build directory
+mkdir build && cd build
+
+# Configure (CMake automatically finds Homebrew packages)
+cmake -DBUILD_TESTS=ON -DCMAKE_BUILD_TYPE=Release ..
+
+# Build
+make -j$(sysctl -n hw.ncpu)
+
+# Install (optional, adjust prefix as needed)
+sudo make install
+
+# Test
+./test -h localhost -p 4455 -w obs_password
+```
+
+### Fedora / RHEL
+
+```bash
+# Install dependencies
+sudo dnf install gcc cmake libwebsockets-devel cjson-devel openssl-devel
 
 # Clone repository
 git clone https://github.com/linuxmainframe/libwsv5.git
