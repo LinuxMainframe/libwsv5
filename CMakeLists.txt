@@ -168,7 +168,6 @@ message(STATUS "  Build Examples: ${BUILD_EXAMPLES}")
 message(STATUS "")
 
 # CPack Configuration for packaging
-include(CPack)
 set(CPACK_PACKAGE_NAME "libwsv5")
 set(CPACK_PACKAGE_VERSION "${PROJECT_VERSION}")
 set(CPACK_PACKAGE_VENDOR "Aidan A. Bradley")
@@ -191,6 +190,8 @@ set(CPACK_DEBIAN_FILE_NAME "${CPACK_PACKAGE_NAME}_${PROJECT_VERSION}_${CPACK_DEB
 # Source archive
 set(CPACK_SOURCE_GENERATOR "TGZ;ZIP")
 set(CPACK_SOURCE_IGNORE_FILES "/build/;/cmake-build-*/;/.git/;/.gitignore;/.idea/;/.vscode/")
+
+include(CPack)
 
 message(STATUS "Package Generation:")
 message(STATUS "  To create .deb packages: cpack -G DEB")
