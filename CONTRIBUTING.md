@@ -1,6 +1,6 @@
 # Contributing to libwsv5
 
-Thank you for your interest in contributing! This document provides guidelines for contributing to the libwsv5 project.
+Thank you for your interest in contributing to libwsv5! This document provides guidelines for contributing to the project. Please review the following sections before submitting pull requests.
 
 ## Code of Conduct
 
@@ -27,12 +27,12 @@ We are committed to providing a welcoming and inclusive environment for all cont
 
 ### Pull Requests
 
-1. **Fork the repository**
-2. **Create a feature branch**: `git checkout -b feature/your-feature-name`
-3. **Make your changes** with clear, descriptive commits
+1. **Fork the repository** on GitHub
+2. **Create a feature branch**: `git checkout -b feature/description-of-feature`
+3. **Make your changes** with clear, descriptive commits explaining the reasoning
 4. **Write tests** if adding new functionality
-5. **Test locally** before submitting
-6. **Submit PR** with description of changes
+5. **Test locally** before submitting with `./test`
+6. **Submit PR** with detailed description of changes and motivation
 
 ## Development Setup
 
@@ -40,8 +40,8 @@ We are committed to providing a welcoming and inclusive environment for all cont
 # Install dependencies
 sudo apt-get install build-essential cmake libwebsockets-dev libcjson-dev libssl-dev
 
-# Clone your fork
-git clone https://github.com/yourusername/libwsv5.git
+# Clone the repository
+git clone https://github.com/linuxmainframe/libwsv5.git
 cd libwsv5
 
 # Build
@@ -50,7 +50,7 @@ cmake -DBUILD_TESTS=ON ..
 make
 
 # Run tests
-./test -h localhost -p 4455 -w your_password
+./test -h localhost -p 4455 -w obs_password
 ```
 
 ## Code Style Guidelines
@@ -85,7 +85,7 @@ make
 
 ## License
 
-By contributing, you agree that your contributions will be licensed under the MIT License.
+By contributing to libwsv5, you agree that your contributions will be licensed under the MIT License. Contributions should maintain the project's code quality standards and follow existing conventions.
 
 ## Questions?
 

@@ -1,0 +1,96 @@
+name: Build and Release Packages
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - arch: amd64
+            docker_image: ubuntu:22.04
+            dpkg_arch: amd64
+    
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential \
+            cmake \
+            libwebsockets-dev \
+            libcjson-dev \
+            libssl-dev \
+            dpkg-dev
+      
+      - name: Build library
+        run: |
+          mkdir -p build
+          cd build
+          cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr ..
+          make -j$(nproc)
+      
+      - name: Run tests (if OBS available)
+        run: |
+          cd build
+          if [ -f test ]; then
+            echo "Tests available but require OBS running on localhost:4455"
+            # ./test -h localhost -p 4455 || echo "OBS not available, skipping"
+          fi
+        continue-on-error: true
+      
+      - name: Create .deb package
+        run: |
+          cd build
+          cpack -G DEB -V
+      
+      - name: Create source archives
+        run: |
+          cd build
+          cpack --config CPackSourceConfig.cmake -G TGZ
+          cpack --config CPackSourceConfig.cmake -G ZIP
+      
+      - name: Generate checksums
+        run: |
+          cd build
+          sha256sum libwsv5_*.deb libwsv5_*.tar.gz libwsv5_*.zip > SHA256SUMS 2>/dev/null || true
+          cat SHA256SUMS
+      
+      - name: List artifacts
+        run: |
+          cd build
+          echo "=== Artifacts ==="
+          ls -lh libwsv5_*
+      
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: libwsv5-packages
+          path: build/libwsv5_*
+      
+      - name: Create Release
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            build/libwsv5_*.deb
+            build/libwsv5_*.tar.gz
+            build/libwsv5_*.zip
+            build/SHA256SUMS
+          draft: false
+          prerelease: false
+          body_path: .github/RELEASE_TEMPLATE.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

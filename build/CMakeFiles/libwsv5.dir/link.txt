@@ -1,2 +1,0 @@
-/usr/bin/ar qc libwsv5.a CMakeFiles/libwsv5.dir/libwsv5.c.o
-/usr/bin/ranlib libwsv5.a

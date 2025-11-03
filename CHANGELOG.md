@@ -388,7 +388,7 @@ To verify correct installation:
 
 ```bash
 cd build
-./test -h localhost -p 4455 -w your_password -d 1
+./test -h localhost -p 4455 -w obs_password -d 1
 ```
 
 Expected output: `Pass Rate: 90%+` (minor failures may occur if OBS is not fully configured)

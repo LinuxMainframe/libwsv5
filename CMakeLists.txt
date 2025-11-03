@@ -1,8 +1,9 @@
 cmake_minimum_required(VERSION 3.10)
-project(libwsv5 C)
+project(libwsv5 C VERSION 1.1.0 DESCRIPTION "OBS WebSocket v5 Protocol C Library")
 
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 # Find required packages
 find_package(OpenSSL REQUIRED)
@@ -34,36 +35,43 @@ set(HEADERS
     libwsv5.h
 )
 
-# Create static library
-add_library(libwsv5 STATIC ${SOURCES} ${HEADERS})
+# Create both static and shared libraries
+add_library(libwsv5_static STATIC ${SOURCES} ${HEADERS})
+add_library(libwsv5_shared SHARED ${SOURCES} ${HEADERS})
 
-# Set library output name (removes 'lib' prefix duplication)
-set_target_properties(libwsv5 PROPERTIES OUTPUT_NAME wsv5)
+# Set library output names (removes 'lib' prefix duplication)
+set_target_properties(libwsv5_static PROPERTIES OUTPUT_NAME wsv5)
+set_target_properties(libwsv5_shared PROPERTIES OUTPUT_NAME wsv5)
 
-# Include directories
-target_include_directories(libwsv5 PUBLIC
-    ${CMAKE_CURRENT_SOURCE_DIR}
-    ${OPENSSL_INCLUDE_DIR}
-    ${LIBWEBSOCKETS_INCLUDE_DIR}
-    ${CJSON_INCLUDE_DIR}
-)
+# Create an alias for convenience - libwsv5 defaults to static
+add_library(libwsv5 ALIAS libwsv5_static)
 
-# Link libraries
-target_link_libraries(libwsv5 PUBLIC
-    ${OPENSSL_LIBRARIES}
-    ${LIBWEBSOCKETS_LIBRARY}
-    ${CJSON_LIBRARY}
-    Threads::Threads
-    m
-)
-
-# Compiler flags
-target_compile_options(libwsv5 PRIVATE
-    -Wall
-    -Wextra
-    -Wpedantic
-    -Wno-unused-parameter
-)
+# Include directories for both libraries
+foreach(target libwsv5_static libwsv5_shared)
+    target_include_directories(${target} PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}
+        ${OPENSSL_INCLUDE_DIR}
+        ${LIBWEBSOCKETS_INCLUDE_DIR}
+        ${CJSON_INCLUDE_DIR}
+    )
+    
+    # Link libraries
+    target_link_libraries(${target} PUBLIC
+        ${OPENSSL_LIBRARIES}
+        ${LIBWEBSOCKETS_LIBRARY}
+        ${CJSON_LIBRARY}
+        Threads::Threads
+        m
+    )
+    
+    # Compiler flags
+    target_compile_options(${target} PRIVATE
+        -Wall
+        -Wextra
+        -Wpedantic
+        -Wno-unused-parameter
+    )
+endforeach()
 
 # Optional: Build example/test program
 option(BUILD_EXAMPLES "Build example programs" OFF)
@@ -71,26 +79,33 @@ option(BUILD_TESTS "Build test programs" OFF)
 
 if(BUILD_EXAMPLES)
     add_executable(obsws_example example.c)
-    target_link_libraries(obsws_example libwsv5)
+    target_link_libraries(obsws_example libwsv5_static)
 endif()
 
 # Build test suite if requested
 if(BUILD_TESTS)
     # Comprehensive test suite
     add_executable(test tests/test.c)
-    target_link_libraries(test libwsv5)
+    target_link_libraries(test libwsv5_static)
     target_include_directories(test PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
     target_compile_options(test PRIVATE -lm)
 endif()
 
 # Installation
-install(TARGETS libwsv5
+install(TARGETS libwsv5_static libwsv5_shared
     ARCHIVE DESTINATION lib
     LIBRARY DESTINATION lib
+    RUNTIME DESTINATION bin
 )
 
 install(FILES ${HEADERS}
     DESTINATION include/libwsv5
+)
+
+# Install pkg-config file
+configure_file(libwsv5.pc.in libwsv5.pc @ONLY)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libwsv5.pc
+    DESTINATION lib/pkgconfig
 )
 
 # Doxygen documentation generation
@@ -153,4 +168,34 @@ message(STATUS "  Threads: ${CMAKE_THREAD_LIBS_INIT}")
 message(STATUS "")
 message(STATUS "Build Options:")
 message(STATUS "  Build Examples: ${BUILD_EXAMPLES}")
+message(STATUS "")
+
+# CPack Configuration for packaging
+include(CPack)
+set(CPACK_PACKAGE_NAME "libwsv5")
+set(CPACK_PACKAGE_VERSION "${PROJECT_VERSION}")
+set(CPACK_PACKAGE_VENDOR "Aidan A. Bradley")
+set(CPACK_PACKAGE_CONTACT "libwsv5-dev@example.com")
+set(CPACK_PACKAGE_DESCRIPTION "OBS WebSocket v5 Protocol C Library")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "High-performance C library for OBS WebSocket v5 protocol")
+set(CPACK_PACKAGE_HOMEPAGE_URL "https://github.com/linuxmainframe/libwsv5")
+set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/LICENSE")
+set(CPACK_RESOURCE_FILE_README "${CMAKE_CURRENT_SOURCE_DIR}/README.md")
+
+# Debian package specific settings
+set(CPACK_DEBIAN_PACKAGE_ARCHITECTURE "amd64")
+set(CPACK_DEBIAN_PACKAGE_SECTION "libs")
+set(CPACK_DEBIAN_PACKAGE_PRIORITY "optional")
+set(CPACK_DEBIAN_PACKAGE_MAINTAINER "Aidan A. Bradley <libwsv5-dev@example.com>")
+set(CPACK_DEBIAN_PACKAGE_DEPENDS "libwebsockets (>= 3.0), libcjson (>= 1.7), libssl-dev (>= 1.1)")
+set(CPACK_DEBIAN_PACKAGE_SUGGESTS "libwsv5-dev (= ${PROJECT_VERSION})")
+set(CPACK_DEBIAN_FILE_NAME "${CPACK_PACKAGE_NAME}_${PROJECT_VERSION}_${CPACK_DEBIAN_PACKAGE_ARCHITECTURE}.deb")
+
+# Source archive
+set(CPACK_SOURCE_GENERATOR "TGZ;ZIP")
+set(CPACK_SOURCE_IGNORE_FILES "/build/;/cmake-build-*/;/.git/;/.gitignore;/.idea/;/.vscode/")
+
+message(STATUS "Package Generation:")
+message(STATUS "  To create .deb packages: cpack -G DEB")
+message(STATUS "  To create source archive: cpack --config CPackSourceConfig.cmake")
 message(STATUS "")

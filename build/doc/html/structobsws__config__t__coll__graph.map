@@ -1,7 +1,0 @@
-<map id="obsws_config_t" name="obsws_config_t">
-<area shape="rect" id="node1" title="Connection configuration structure." alt="" coords="5,95,127,121"/>
-<area shape="rect" id="node2" href="$structobsws__connection.html" title=" " alt="" coords="107,199,249,225"/>
-<area shape="rect" id="node3" href="$structpending__request.html" title=" " alt="" coords="153,95,283,121"/>
-<area shape="rect" id="node4" href="$structobsws__response__t.html" title="Response structure for requests to OBS." alt="" coords="147,5,289,32"/>
-<area shape="rect" id="node5" href="$structobsws__stats__t.html" title="Connection statistics &#45; useful for monitoring and debugging connection health." alt="" coords="365,95,479,121"/>
-</map>

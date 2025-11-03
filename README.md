@@ -39,7 +39,7 @@ sudo dnf install libwebsockets-devel cjson-devel openssl-devel
 
 ```bash
 # Clone and build
-git clone https://github.com/yourusername/libwsv5.git
+git clone https://github.com/linuxmainframe/libwsv5.git
 cd libwsv5
 mkdir build && cd build
 cmake -DBUILD_TESTS=ON ..
@@ -64,7 +64,7 @@ int main() {
     obsws_config_init(&config);
     config.host = "localhost";
     config.port = 4455;
-    config.password = "your_password";
+    config.password = "obs_password";
     
     // Connect to OBS
     obsws_connection_t *conn = obsws_connect(&config);
@@ -253,7 +253,7 @@ Run the comprehensive test suite:
 
 ```bash
 cd build
-./test -h localhost -p 4455 -w your_password -d 1
+./test -h localhost -p 4455 -w obs_password -d 1
 ```
 
 Test options:
@@ -326,7 +326,7 @@ Optional:
 sudo apt-get install build-essential cmake libwebsockets-dev libcjson-dev libssl-dev
 
 # Clone repository
-git clone https://github.com/yourusername/libwsv5.git
+git clone https://github.com/linuxmainframe/libwsv5.git
 cd libwsv5
 
 # Create build directory
@@ -342,7 +342,7 @@ make -j$(nproc)
 sudo make install
 
 # Test
-./test -h localhost -p 4455 -w your_password
+./test -h localhost -p 4455 -w obs_password
 ```
 
 ## License
@@ -354,7 +354,7 @@ MIT License - See LICENSE file for details
 Contributions are welcome! Please:
 1. Fork the repository
 2. Create a feature branch
-3. Make your changes
+3. Make your changes and commit with clear messages
 4. Submit a pull request
 
 ## Support
