@@ -77,14 +77,8 @@ foreach(target libwsv5_static libwsv5_shared)
     )
 endforeach()
 
-# Optional: Build example/test program
-option(BUILD_EXAMPLES "Build example programs" OFF)
+# Optional: Build test program
 option(BUILD_TESTS "Build test programs" OFF)
-
-if(BUILD_EXAMPLES)
-    add_executable(obsws_example example.c)
-    target_link_libraries(obsws_example libwsv5_static)
-endif()
 
 # Build test suite if requested
 if(BUILD_TESTS)
@@ -123,7 +117,6 @@ if(DOXYGEN_FOUND)
     set(DOXYGEN_PROJECT_NAME "libwsv5")
     set(DOXYGEN_PROJECT_NUMBER "1.1.0")  # Update this when bumping version
     set(DOXYGEN_PROJECT_BRIEF "OBS WebSocket v5 Protocol C Library")
-    set(DOXYGEN_INPUT "${CMAKE_CURRENT_SOURCE_DIR}/libwsv5.h ${CMAKE_CURRENT_SOURCE_DIR}/libwsv5.c")
     set(DOXYGEN_EXCLUDE_PATTERNS "*/test/*" "*/.git/*")
     set(DOXYGEN_GENERATE_HTML YES)
     set(DOXYGEN_GENERATE_LATEX YES)
