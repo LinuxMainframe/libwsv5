@@ -1,56 +1,66 @@
-# Prerequisites
-*.d
-
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
-
-# Linker output
-*.ilk
-*.map
-*.exp
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
-
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
+# Build directories
 build/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+cmake-build-*/
+out/
 
-# debug information files
-*.dwo
+.zencoder/
+
+# Compiled files
+*.o
+*.a
+*.so
+*.dylib
+*.dll
+*.exe
+
+# CMake files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+*.cmake
+!CMakeLists.txt
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Example binaries
+obsws_example
+example
+
+# Log files
+*.log
+
+# Python cache (from original script)
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# Documentation build
+#doc/
+#docs/
+#docs/_build/
+#docs/html/
+#docs/latex/
+
+# Package files
+*.tar.gz
+*.zip
+*.deb
+*.rpm
+
+# Build artifacts directories
+release-artifacts/
+build-release/

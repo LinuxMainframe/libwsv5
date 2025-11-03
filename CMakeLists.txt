@@ -113,7 +113,7 @@ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libwsv5.pc
 )
 
 # Doxygen documentation generation
-find_package(Doxygen REQUIRED OPTIONAL_COMPONENTS dot)
+find_package(Doxygen OPTIONAL_COMPONENTS dot)
 
 if(DOXYGEN_FOUND)
     # Configure Doxyfile via CMake variables

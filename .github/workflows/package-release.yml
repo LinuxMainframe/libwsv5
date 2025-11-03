@@ -33,22 +33,37 @@ jobs:
             libwebsockets-dev \
             libcjson-dev \
             libssl-dev \
-            dpkg-dev
+            dpkg-dev \
+            doxygen \
+            graphviz
       
       - name: Build library
         run: |
           mkdir -p build
           cd build
-          cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr ..
+          cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_TESTS=ON -DBUILD_EXAMPLES=ON ..
           make -j$(nproc)
       
-      - name: Run tests (if OBS available)
+      - name: Generate Doxygen documentation
         run: |
           cd build
-          if [ -f test ]; then
-            echo "Tests available but require OBS running on localhost:4455"
-            # ./test -h localhost -p 4455 || echo "OBS not available, skipping"
-          fi
+          make doc
+        continue-on-error: true
+      
+      - name: Check built artifacts
+        run: |
+          cd build
+          echo "=== Built Executables ==="
+          if [ -f test ]; then echo "✓ Test executable built"; fi
+          if [ -f obsws_example ]; then echo "✓ Example executable built"; fi
+          echo ""
+          echo "=== Compiled Objects and Libraries ==="
+          find . -maxdepth 2 -type f \( -name "*.o" -o -name "*.a" -o -name "*.so" \) | sort
+      
+      - name: Skip OBS tests (setup later)
+        run: |
+          echo "Tests built but not executed - OBS server setup required"
+          echo "Tests will be integrated when remote OBS server is available"
         continue-on-error: true
       
       - name: Create .deb package
@@ -80,6 +95,14 @@ jobs:
           name: libwsv5-packages
           path: build/libwsv5_*
       
+      - name: Upload documentation
+        uses: actions/upload-artifact@v4
+        with:
+          name: libwsv5-docs
+          path: build/doc/html/
+        if: hashFiles('build/doc/html/*') != ''
+        continue-on-error: true
+      
       - name: Create Release
         if: startsWith(github.ref, 'refs/tags/v')
         uses: softprops/action-gh-release@v1
@@ -92,5 +115,6 @@ jobs:
           draft: false
           prerelease: false
           body_path: .github/RELEASE_TEMPLATE.md
+          generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
