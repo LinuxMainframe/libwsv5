@@ -1,5 +1,9 @@
 cmake_minimum_required(VERSION 3.10)
-project(libwsv5 C VERSION 1.1.0 DESCRIPTION "OBS WebSocket v5 Protocol C Library")
+project(libwsv5
+    LANGUAGES C
+    VERSION 1.1.0
+    DESCRIPTION "OBS WebSocket v5 Protocol C Library"
+)
 
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_C_STANDARD_REQUIRED ON)
