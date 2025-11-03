@@ -3,8 +3,6 @@ build/
 cmake-build-*/
 out/
 
-.zencoder/
-
 # Compiled files
 *.o
 *.a
