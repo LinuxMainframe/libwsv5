@@ -1,0 +1,1 @@
+/usr/bin/cc -O3 -DNDEBUG CMakeFiles/test.dir/tests/test.c.o -o test  -Wl,-rpath,/usr/local/lib libwsv5.a /usr/lib/x86_64-linux-gnu/libssl.so /usr/lib/x86_64-linux-gnu/libcrypto.so /usr/lib/x86_64-linux-gnu/libwebsockets.so /usr/local/lib/libcjson.so -lm 

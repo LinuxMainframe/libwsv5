@@ -1,7 +1,0 @@
-<map id="obsws_connect" name="obsws_connect">
-<area shape="rect" id="node1" title="Establish a connection to OBS." alt="" coords="5,56,127,83"/>
-<area shape="rect" id="node2" href="$d5/d27/library_8c.html#a27739efcea1287611c82ff3e8c88d7b7" title="Background thread function that continuously processes WebSocket events." alt="" coords="175,5,317,32"/>
-<area shape="rect" id="node4" href="$d5/d27/library_8c.html#aff3d6c035330741df84552800c0d0124" title="Initialize the libwsv5 library." alt="" coords="201,56,291,83"/>
-<area shape="rect" id="node5" href="$d5/d27/library_8c.html#a1d8529feb33753ebb45d896c4c125642" title=" " alt="" coords="201,107,291,133"/>
-<area shape="rect" id="node3" href="$d5/d27/library_8c.html#a885f22656ee8ca3170a50df0e0d85a4d" title=" " alt="" coords="365,5,528,32"/>
-</map>

@@ -1,9 +1,0 @@
-<map id="obsws_send_request" name="obsws_send_request">
-<area shape="rect" id="node1" title="Send a synchronous request to OBS and wait for the response." alt="" coords="243,132,400,159"/>
-<area shape="rect" id="node2" href="$d5/d27/library_8c.html#a91bd5ceb5878431131513cb4624e935a" title="Query the currently active scene in OBS." alt="" coords="5,5,195,32"/>
-<area shape="rect" id="node3" href="$d5/d27/library_8c.html#a7cb91bbce42b458f267f79b9a7b293bf" title="Switch OBS to a specific scene." alt="" coords="6,56,194,83"/>
-<area shape="rect" id="node4" href="$d5/d27/library_8c.html#a8643e2027afb1907122ce4d3bfe65c6e" title="Start recording in OBS." alt="" coords="16,107,184,133"/>
-<area shape="rect" id="node5" href="$d5/d27/library_8c.html#a86a35ee2d7aef7a0569b4111bd663d22" title="Start streaming in OBS." alt="" coords="13,157,187,184"/>
-<area shape="rect" id="node6" href="$d5/d27/library_8c.html#a30001811f4cf8501e006ca46bcb8b329" title="Stop recording." alt="" coords="17,208,183,235"/>
-<area shape="rect" id="node7" href="$d5/d27/library_8c.html#a2cfe9b46f435aa7986b5e772b99c464e" title="Stop streaming." alt="" coords="15,259,185,285"/>
-</map>

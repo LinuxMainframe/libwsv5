@@ -1,6 +1,0 @@
-<map id="handle_request_response_message" name="handle_request_response_message">
-<area shape="rect" id="node1" title="Handle REQUEST_RESPONSE messages from OBS (responses to our commands)." alt="" coords="5,49,193,90"/>
-<area shape="rect" id="node2" href="$d5/d27/library_8c.html#a6f7f5f47389b537c9dce9f1b328b7f06" title=" " alt="" coords="241,5,403,32"/>
-<area shape="rect" id="node3" href="$d5/d27/library_8c.html#a3682ffd7f6175dbc796f5750172c99bf" title=" " alt="" coords="267,56,377,83"/>
-<area shape="rect" id="node4" href="$d5/d27/library_8c.html#a1d8529feb33753ebb45d896c4c125642" title=" " alt="" coords="277,107,367,133"/>
-</map>

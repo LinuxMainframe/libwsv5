@@ -1,9 +1,0 @@
-<map id="obsws_get_current_scene" name="obsws_get_current_scene">
-<area shape="rect" id="node1" title="Query the currently active scene in OBS." alt="" coords="5,56,195,83"/>
-<area shape="rect" id="node2" href="$d5/d27/library_8c.html#a53067e61dc0ddcf1134d46b275d7ce6b" title="Free a response object previously allocated by obsws_send_request()." alt="" coords="243,31,405,57"/>
-<area shape="rect" id="node3" href="$d5/d27/library_8c.html#af2fd7f8dd928e03b38a3e2c5b5745417" title="Send a synchronous request to OBS and wait for the response." alt="" coords="245,81,403,108"/>
-<area shape="rect" id="node4" href="$d5/d27/library_8c.html#aafc3d1ce3debddcb8e3888c9806e044a" title=" " alt="" coords="457,5,636,32"/>
-<area shape="rect" id="node5" href="$d5/d27/library_8c.html#af79be0fed07182761c923170f4211089" title=" " alt="" coords="489,56,604,83"/>
-<area shape="rect" id="node6" href="$d5/d27/library_8c.html#a3682ffd7f6175dbc796f5750172c99bf" title=" " alt="" coords="491,107,602,133"/>
-<area shape="rect" id="node7" href="$d5/d27/library_8c.html#a700c8a9baa87a3827b399776e811f328" title=" " alt="" coords="453,157,640,184"/>
-</map>

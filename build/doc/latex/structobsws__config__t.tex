@@ -1,0 +1,247 @@
+\hypertarget{structobsws__config__t}{}\doxysection{obsws\+\_\+config\+\_\+t Struct Reference}
+\label{structobsws__config__t}\index{obsws\_config\_t@{obsws\_config\_t}}
+
+
+Connection configuration structure.  
+
+
+
+
+{\ttfamily \#include $<$libwsv5.\+h$>$}
+
+
+
+Collaboration diagram for obsws\+\_\+config\+\_\+t\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structobsws__config__t__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+const char $\ast$ \mbox{\hyperlink{structobsws__config__t_af632161e8b6cf2d7c1baf7fc80859d48}{host}}
+\item 
+uint16\+\_\+t \mbox{\hyperlink{structobsws__config__t_a7355cf2fb949f6d4391b6c2c605c9073}{port}}
+\item 
+const char $\ast$ \mbox{\hyperlink{structobsws__config__t_a53ed762a113bb2a27b3ffab06a5c02ee}{password}}
+\item 
+bool \mbox{\hyperlink{structobsws__config__t_a1070992d75f19a3fd4567754d37b9290}{use\+\_\+ssl}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structobsws__config__t_ab7ca748ce58419a7c8b6b6dc440d3387}{connect\+\_\+timeout\+\_\+ms}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structobsws__config__t_a6439a4274026273ba5fb9786c90daa93}{recv\+\_\+timeout\+\_\+ms}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structobsws__config__t_a5e99af1526aaa66f76b71c3948b5b294}{send\+\_\+timeout\+\_\+ms}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structobsws__config__t_a74ee702373489ff1ea1289e87d50e469}{ping\+\_\+interval\+\_\+ms}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structobsws__config__t_a806599d35ea8d3fc9c7140e76adf1c1a}{ping\+\_\+timeout\+\_\+ms}}
+\item 
+bool \mbox{\hyperlink{structobsws__config__t_a5be1729ffbc28b3e036315f06e80a7a8}{auto\+\_\+reconnect}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structobsws__config__t_a5ccd3a828a3fcad6d6ebedc0324c4aee}{reconnect\+\_\+delay\+\_\+ms}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structobsws__config__t_ae4f46d4b683af271b1ba69e335fb7e3c}{max\+\_\+reconnect\+\_\+delay\+\_\+ms}}
+\item 
+uint32\+\_\+t \mbox{\hyperlink{structobsws__config__t_a1aff4f0ff9ac25c5d63772eb91d443ac}{max\+\_\+reconnect\+\_\+attempts}}
+\item 
+obsws\+\_\+log\+\_\+callback\+\_\+t \mbox{\hyperlink{structobsws__config__t_a14b921ef2d0ad722bd6020da6a708136}{log\+\_\+callback}}
+\item 
+obsws\+\_\+event\+\_\+callback\+\_\+t \mbox{\hyperlink{structobsws__config__t_a11caeff695d6174de08bd0ff0e196cd3}{event\+\_\+callback}}
+\item 
+obsws\+\_\+state\+\_\+callback\+\_\+t \mbox{\hyperlink{structobsws__config__t_a580a2daf514e79022b6d488c4933845e}{state\+\_\+callback}}
+\item 
+void $\ast$ \mbox{\hyperlink{structobsws__config__t_af272f38a8f4ca535939766cebacf0b8f}{user\+\_\+data}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Connection configuration structure. 
+
+This structure holds all the settings for connecting to OBS. You should fill this out with your specific needs, then pass it to obsws\+\_\+connect(). A good starting point is to call obsws\+\_\+config\+\_\+init() which fills it with reasonable defaults, then only change the fields you care about (usually just host, port, and password).
+
+Design note\+: We use a config struct instead of many function parameters because it\textquotesingle{}s more flexible -\/ adding new configuration options doesn\textquotesingle{}t break existing code. It also makes it clear what options are available. 
+
+Definition at line \mbox{\hyperlink{libwsv5_8h_source_l00242}{242}} of file \mbox{\hyperlink{libwsv5_8h_source}{libwsv5.\+h}}.
+
+
+
+\doxysubsection{Field Documentation}
+\mbox{\Hypertarget{structobsws__config__t_a5be1729ffbc28b3e036315f06e80a7a8}\label{structobsws__config__t_a5be1729ffbc28b3e036315f06e80a7a8}} 
+\index{obsws\_config\_t@{obsws\_config\_t}!auto\_reconnect@{auto\_reconnect}}
+\index{auto\_reconnect@{auto\_reconnect}!obsws\_config\_t@{obsws\_config\_t}}
+\doxysubsubsection{\texorpdfstring{auto\_reconnect}{auto\_reconnect}}
+{\footnotesize\ttfamily bool obsws\+\_\+config\+\_\+t\+::auto\+\_\+reconnect}
+
+
+
+Definition at line \mbox{\hyperlink{libwsv5_8h_source_l00266}{266}} of file \mbox{\hyperlink{libwsv5_8h_source}{libwsv5.\+h}}.
+
+\mbox{\Hypertarget{structobsws__config__t_ab7ca748ce58419a7c8b6b6dc440d3387}\label{structobsws__config__t_ab7ca748ce58419a7c8b6b6dc440d3387}} 
+\index{obsws\_config\_t@{obsws\_config\_t}!connect\_timeout\_ms@{connect\_timeout\_ms}}
+\index{connect\_timeout\_ms@{connect\_timeout\_ms}!obsws\_config\_t@{obsws\_config\_t}}
+\doxysubsubsection{\texorpdfstring{connect\_timeout\_ms}{connect\_timeout\_ms}}
+{\footnotesize\ttfamily uint32\+\_\+t obsws\+\_\+config\+\_\+t\+::connect\+\_\+timeout\+\_\+ms}
+
+
+
+Definition at line \mbox{\hyperlink{libwsv5_8h_source_l00252}{252}} of file \mbox{\hyperlink{libwsv5_8h_source}{libwsv5.\+h}}.
+
+\mbox{\Hypertarget{structobsws__config__t_a11caeff695d6174de08bd0ff0e196cd3}\label{structobsws__config__t_a11caeff695d6174de08bd0ff0e196cd3}} 
+\index{obsws\_config\_t@{obsws\_config\_t}!event\_callback@{event\_callback}}
+\index{event\_callback@{event\_callback}!obsws\_config\_t@{obsws\_config\_t}}
+\doxysubsubsection{\texorpdfstring{event\_callback}{event\_callback}}
+{\footnotesize\ttfamily obsws\+\_\+event\+\_\+callback\+\_\+t obsws\+\_\+config\+\_\+t\+::event\+\_\+callback}
+
+
+
+Definition at line \mbox{\hyperlink{libwsv5_8h_source_l00275}{275}} of file \mbox{\hyperlink{libwsv5_8h_source}{libwsv5.\+h}}.
+
+\mbox{\Hypertarget{structobsws__config__t_af632161e8b6cf2d7c1baf7fc80859d48}\label{structobsws__config__t_af632161e8b6cf2d7c1baf7fc80859d48}} 
+\index{obsws\_config\_t@{obsws\_config\_t}!host@{host}}
+\index{host@{host}!obsws\_config\_t@{obsws\_config\_t}}
+\doxysubsubsection{\texorpdfstring{host}{host}}
+{\footnotesize\ttfamily const char$\ast$ obsws\+\_\+config\+\_\+t\+::host}
+
+
+
+Definition at line \mbox{\hyperlink{libwsv5_8h_source_l00244}{244}} of file \mbox{\hyperlink{libwsv5_8h_source}{libwsv5.\+h}}.
+
+\mbox{\Hypertarget{structobsws__config__t_a14b921ef2d0ad722bd6020da6a708136}\label{structobsws__config__t_a14b921ef2d0ad722bd6020da6a708136}} 
+\index{obsws\_config\_t@{obsws\_config\_t}!log\_callback@{log\_callback}}
+\index{log\_callback@{log\_callback}!obsws\_config\_t@{obsws\_config\_t}}
+\doxysubsubsection{\texorpdfstring{log\_callback}{log\_callback}}
+{\footnotesize\ttfamily obsws\+\_\+log\+\_\+callback\+\_\+t obsws\+\_\+config\+\_\+t\+::log\+\_\+callback}
+
+
+
+Definition at line \mbox{\hyperlink{libwsv5_8h_source_l00274}{274}} of file \mbox{\hyperlink{libwsv5_8h_source}{libwsv5.\+h}}.
+
+\mbox{\Hypertarget{structobsws__config__t_a1aff4f0ff9ac25c5d63772eb91d443ac}\label{structobsws__config__t_a1aff4f0ff9ac25c5d63772eb91d443ac}} 
+\index{obsws\_config\_t@{obsws\_config\_t}!max\_reconnect\_attempts@{max\_reconnect\_attempts}}
+\index{max\_reconnect\_attempts@{max\_reconnect\_attempts}!obsws\_config\_t@{obsws\_config\_t}}
+\doxysubsubsection{\texorpdfstring{max\_reconnect\_attempts}{max\_reconnect\_attempts}}
+{\footnotesize\ttfamily uint32\+\_\+t obsws\+\_\+config\+\_\+t\+::max\+\_\+reconnect\+\_\+attempts}
+
+
+
+Definition at line \mbox{\hyperlink{libwsv5_8h_source_l00269}{269}} of file \mbox{\hyperlink{libwsv5_8h_source}{libwsv5.\+h}}.
+
+\mbox{\Hypertarget{structobsws__config__t_ae4f46d4b683af271b1ba69e335fb7e3c}\label{structobsws__config__t_ae4f46d4b683af271b1ba69e335fb7e3c}} 
+\index{obsws\_config\_t@{obsws\_config\_t}!max\_reconnect\_delay\_ms@{max\_reconnect\_delay\_ms}}
+\index{max\_reconnect\_delay\_ms@{max\_reconnect\_delay\_ms}!obsws\_config\_t@{obsws\_config\_t}}
+\doxysubsubsection{\texorpdfstring{max\_reconnect\_delay\_ms}{max\_reconnect\_delay\_ms}}
+{\footnotesize\ttfamily uint32\+\_\+t obsws\+\_\+config\+\_\+t\+::max\+\_\+reconnect\+\_\+delay\+\_\+ms}
+
+
+
+Definition at line \mbox{\hyperlink{libwsv5_8h_source_l00268}{268}} of file \mbox{\hyperlink{libwsv5_8h_source}{libwsv5.\+h}}.
+
+\mbox{\Hypertarget{structobsws__config__t_a53ed762a113bb2a27b3ffab06a5c02ee}\label{structobsws__config__t_a53ed762a113bb2a27b3ffab06a5c02ee}} 
+\index{obsws\_config\_t@{obsws\_config\_t}!password@{password}}
+\index{password@{password}!obsws\_config\_t@{obsws\_config\_t}}
+\doxysubsubsection{\texorpdfstring{password}{password}}
+{\footnotesize\ttfamily const char$\ast$ obsws\+\_\+config\+\_\+t\+::password}
+
+
+
+Definition at line \mbox{\hyperlink{libwsv5_8h_source_l00246}{246}} of file \mbox{\hyperlink{libwsv5_8h_source}{libwsv5.\+h}}.
+
+\mbox{\Hypertarget{structobsws__config__t_a74ee702373489ff1ea1289e87d50e469}\label{structobsws__config__t_a74ee702373489ff1ea1289e87d50e469}} 
+\index{obsws\_config\_t@{obsws\_config\_t}!ping\_interval\_ms@{ping\_interval\_ms}}
+\index{ping\_interval\_ms@{ping\_interval\_ms}!obsws\_config\_t@{obsws\_config\_t}}
+\doxysubsubsection{\texorpdfstring{ping\_interval\_ms}{ping\_interval\_ms}}
+{\footnotesize\ttfamily uint32\+\_\+t obsws\+\_\+config\+\_\+t\+::ping\+\_\+interval\+\_\+ms}
+
+
+
+Definition at line \mbox{\hyperlink{libwsv5_8h_source_l00259}{259}} of file \mbox{\hyperlink{libwsv5_8h_source}{libwsv5.\+h}}.
+
+\mbox{\Hypertarget{structobsws__config__t_a806599d35ea8d3fc9c7140e76adf1c1a}\label{structobsws__config__t_a806599d35ea8d3fc9c7140e76adf1c1a}} 
+\index{obsws\_config\_t@{obsws\_config\_t}!ping\_timeout\_ms@{ping\_timeout\_ms}}
+\index{ping\_timeout\_ms@{ping\_timeout\_ms}!obsws\_config\_t@{obsws\_config\_t}}
+\doxysubsubsection{\texorpdfstring{ping\_timeout\_ms}{ping\_timeout\_ms}}
+{\footnotesize\ttfamily uint32\+\_\+t obsws\+\_\+config\+\_\+t\+::ping\+\_\+timeout\+\_\+ms}
+
+
+
+Definition at line \mbox{\hyperlink{libwsv5_8h_source_l00260}{260}} of file \mbox{\hyperlink{libwsv5_8h_source}{libwsv5.\+h}}.
+
+\mbox{\Hypertarget{structobsws__config__t_a7355cf2fb949f6d4391b6c2c605c9073}\label{structobsws__config__t_a7355cf2fb949f6d4391b6c2c605c9073}} 
+\index{obsws\_config\_t@{obsws\_config\_t}!port@{port}}
+\index{port@{port}!obsws\_config\_t@{obsws\_config\_t}}
+\doxysubsubsection{\texorpdfstring{port}{port}}
+{\footnotesize\ttfamily uint16\+\_\+t obsws\+\_\+config\+\_\+t\+::port}
+
+
+
+Definition at line \mbox{\hyperlink{libwsv5_8h_source_l00245}{245}} of file \mbox{\hyperlink{libwsv5_8h_source}{libwsv5.\+h}}.
+
+\mbox{\Hypertarget{structobsws__config__t_a5ccd3a828a3fcad6d6ebedc0324c4aee}\label{structobsws__config__t_a5ccd3a828a3fcad6d6ebedc0324c4aee}} 
+\index{obsws\_config\_t@{obsws\_config\_t}!reconnect\_delay\_ms@{reconnect\_delay\_ms}}
+\index{reconnect\_delay\_ms@{reconnect\_delay\_ms}!obsws\_config\_t@{obsws\_config\_t}}
+\doxysubsubsection{\texorpdfstring{reconnect\_delay\_ms}{reconnect\_delay\_ms}}
+{\footnotesize\ttfamily uint32\+\_\+t obsws\+\_\+config\+\_\+t\+::reconnect\+\_\+delay\+\_\+ms}
+
+
+
+Definition at line \mbox{\hyperlink{libwsv5_8h_source_l00267}{267}} of file \mbox{\hyperlink{libwsv5_8h_source}{libwsv5.\+h}}.
+
+\mbox{\Hypertarget{structobsws__config__t_a6439a4274026273ba5fb9786c90daa93}\label{structobsws__config__t_a6439a4274026273ba5fb9786c90daa93}} 
+\index{obsws\_config\_t@{obsws\_config\_t}!recv\_timeout\_ms@{recv\_timeout\_ms}}
+\index{recv\_timeout\_ms@{recv\_timeout\_ms}!obsws\_config\_t@{obsws\_config\_t}}
+\doxysubsubsection{\texorpdfstring{recv\_timeout\_ms}{recv\_timeout\_ms}}
+{\footnotesize\ttfamily uint32\+\_\+t obsws\+\_\+config\+\_\+t\+::recv\+\_\+timeout\+\_\+ms}
+
+
+
+Definition at line \mbox{\hyperlink{libwsv5_8h_source_l00253}{253}} of file \mbox{\hyperlink{libwsv5_8h_source}{libwsv5.\+h}}.
+
+\mbox{\Hypertarget{structobsws__config__t_a5e99af1526aaa66f76b71c3948b5b294}\label{structobsws__config__t_a5e99af1526aaa66f76b71c3948b5b294}} 
+\index{obsws\_config\_t@{obsws\_config\_t}!send\_timeout\_ms@{send\_timeout\_ms}}
+\index{send\_timeout\_ms@{send\_timeout\_ms}!obsws\_config\_t@{obsws\_config\_t}}
+\doxysubsubsection{\texorpdfstring{send\_timeout\_ms}{send\_timeout\_ms}}
+{\footnotesize\ttfamily uint32\+\_\+t obsws\+\_\+config\+\_\+t\+::send\+\_\+timeout\+\_\+ms}
+
+
+
+Definition at line \mbox{\hyperlink{libwsv5_8h_source_l00254}{254}} of file \mbox{\hyperlink{libwsv5_8h_source}{libwsv5.\+h}}.
+
+\mbox{\Hypertarget{structobsws__config__t_a580a2daf514e79022b6d488c4933845e}\label{structobsws__config__t_a580a2daf514e79022b6d488c4933845e}} 
+\index{obsws\_config\_t@{obsws\_config\_t}!state\_callback@{state\_callback}}
+\index{state\_callback@{state\_callback}!obsws\_config\_t@{obsws\_config\_t}}
+\doxysubsubsection{\texorpdfstring{state\_callback}{state\_callback}}
+{\footnotesize\ttfamily obsws\+\_\+state\+\_\+callback\+\_\+t obsws\+\_\+config\+\_\+t\+::state\+\_\+callback}
+
+
+
+Definition at line \mbox{\hyperlink{libwsv5_8h_source_l00276}{276}} of file \mbox{\hyperlink{libwsv5_8h_source}{libwsv5.\+h}}.
+
+\mbox{\Hypertarget{structobsws__config__t_a1070992d75f19a3fd4567754d37b9290}\label{structobsws__config__t_a1070992d75f19a3fd4567754d37b9290}} 
+\index{obsws\_config\_t@{obsws\_config\_t}!use\_ssl@{use\_ssl}}
+\index{use\_ssl@{use\_ssl}!obsws\_config\_t@{obsws\_config\_t}}
+\doxysubsubsection{\texorpdfstring{use\_ssl}{use\_ssl}}
+{\footnotesize\ttfamily bool obsws\+\_\+config\+\_\+t\+::use\+\_\+ssl}
+
+
+
+Definition at line \mbox{\hyperlink{libwsv5_8h_source_l00247}{247}} of file \mbox{\hyperlink{libwsv5_8h_source}{libwsv5.\+h}}.
+
+\mbox{\Hypertarget{structobsws__config__t_af272f38a8f4ca535939766cebacf0b8f}\label{structobsws__config__t_af272f38a8f4ca535939766cebacf0b8f}} 
+\index{obsws\_config\_t@{obsws\_config\_t}!user\_data@{user\_data}}
+\index{user\_data@{user\_data}!obsws\_config\_t@{obsws\_config\_t}}
+\doxysubsubsection{\texorpdfstring{user\_data}{user\_data}}
+{\footnotesize\ttfamily void$\ast$ obsws\+\_\+config\+\_\+t\+::user\+\_\+data}
+
+
+
+Definition at line \mbox{\hyperlink{libwsv5_8h_source_l00277}{277}} of file \mbox{\hyperlink{libwsv5_8h_source}{libwsv5.\+h}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+libwsv5.\+h\end{DoxyCompactItemize}

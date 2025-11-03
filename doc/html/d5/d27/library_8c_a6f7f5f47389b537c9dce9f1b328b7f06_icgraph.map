@@ -1,6 +1,0 @@
-<map id="find_pending_request" name="find_pending_request">
-<area shape="rect" id="node1" title=" " alt="" coords="651,13,812,39"/>
-<area shape="rect" id="node2" href="$d5/d27/library_8c.html#a046a86e7ba13a054663021594755d54b" title="Handle REQUEST_RESPONSE messages from OBS (responses to our commands)." alt="" coords="415,5,603,47"/>
-<area shape="rect" id="node3" href="$d5/d27/library_8c.html#a0672da971c7e38224df11c34ef612f02" title="Route incoming WebSocket messages to appropriate handlers based on opcode." alt="" coords="159,13,367,39"/>
-<area shape="rect" id="node4" href="$d5/d27/library_8c.html#ac5c31c457dc3042f85a620d7998ebeee" title="libwebsockets callback &#45; routes WebSocket events to our handlers." alt="" coords="5,13,111,39"/>
-</map>

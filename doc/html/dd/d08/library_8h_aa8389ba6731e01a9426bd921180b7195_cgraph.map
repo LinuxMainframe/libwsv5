@@ -1,5 +1,0 @@
-<map id="obsws_disconnect" name="obsws_disconnect">
-<area shape="rect" id="node1" title="Disconnect and destroy a connection." alt="" coords="5,31,145,57"/>
-<area shape="rect" id="node2" href="$d5/d27/library_8c.html#a1d8529feb33753ebb45d896c4c125642" title=" " alt="" coords="229,5,320,32"/>
-<area shape="rect" id="node3" href="$d5/d27/library_8c.html#a53067e61dc0ddcf1134d46b275d7ce6b" title="Free a response object previously allocated by obsws_send_request()." alt="" coords="193,56,356,83"/>
-</map>

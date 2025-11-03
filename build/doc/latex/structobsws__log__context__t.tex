@@ -1,0 +1,164 @@
+\hypertarget{structobsws__log__context__t}{}\doxysection{obsws\+\_\+log\+\_\+context\+\_\+t Struct Reference}
+\label{structobsws__log__context__t}\index{obsws\_log\_context\_t@{obsws\_log\_context\_t}}
+\doxysubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{structobsws__log__context__t_a913b774ec9a15bf86a19e947109c7bc6}{enabled}}
+\item 
+char \mbox{\hyperlink{structobsws__log__context__t_ab30ed6d955bd80df93301b6ab4bc31c3}{log\+\_\+directory}} \mbox{[}PATH\+\_\+\+MAX\mbox{]}
+\item 
+FILE $\ast$ \mbox{\hyperlink{structobsws__log__context__t_a64a9070706fb6d6211ab29672df2db73}{current\+\_\+file}}
+\item 
+char \mbox{\hyperlink{structobsws__log__context__t_a9b4f3165b222d9e7d7f73a0402562442}{current\+\_\+filename}} \mbox{[}PATH\+\_\+\+MAX\mbox{]}
+\item 
+time\+\_\+t \mbox{\hyperlink{structobsws__log__context__t_a6dda1a4a62728327da68b39f8db76a5f}{current\+\_\+file\+\_\+date}}
+\item 
+time\+\_\+t \mbox{\hyperlink{structobsws__log__context__t_abbb7b91b54826e8bc60ce80a86b38e03}{last\+\_\+rotation\+\_\+check}}
+\item 
+int \mbox{\hyperlink{structobsws__log__context__t_ae8c6c75aca25cdebb2ec3333d2cc038e}{rotation\+\_\+hour}}
+\item 
+size\+\_\+t \mbox{\hyperlink{structobsws__log__context__t_a63e70c6726a235c0f0a3d58785ce79de}{max\+\_\+file\+\_\+size}}
+\item 
+int \mbox{\hyperlink{structobsws__log__context__t_a19c040a7d83d6dcbe8298e21decb4a2e}{color\+\_\+mode}}
+\item 
+bool \mbox{\hyperlink{structobsws__log__context__t_ad750b9beda56b600251eb1a634b0fac4}{use\+\_\+timestamps}}
+\item 
+bool \mbox{\hyperlink{structobsws__log__context__t_ad629dea673f599c7fac1634ae8e415d4}{is\+\_\+tty}}
+\item 
+pthread\+\_\+mutex\+\_\+t \mbox{\hyperlink{structobsws__log__context__t_af8b1457ca0ad44899de34a860fbcb185}{mutex}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+
+
+Definition at line \mbox{\hyperlink{libwsv5_8c_source_l00276}{276}} of file \mbox{\hyperlink{libwsv5_8c_source}{libwsv5.\+c}}.
+
+
+
+\doxysubsection{Field Documentation}
+\mbox{\Hypertarget{structobsws__log__context__t_a19c040a7d83d6dcbe8298e21decb4a2e}\label{structobsws__log__context__t_a19c040a7d83d6dcbe8298e21decb4a2e}} 
+\index{obsws\_log\_context\_t@{obsws\_log\_context\_t}!color\_mode@{color\_mode}}
+\index{color\_mode@{color\_mode}!obsws\_log\_context\_t@{obsws\_log\_context\_t}}
+\doxysubsubsection{\texorpdfstring{color\_mode}{color\_mode}}
+{\footnotesize\ttfamily int obsws\+\_\+log\+\_\+context\+\_\+t\+::color\+\_\+mode}
+
+
+
+Definition at line \mbox{\hyperlink{libwsv5_8c_source_l00287}{287}} of file \mbox{\hyperlink{libwsv5_8c_source}{libwsv5.\+c}}.
+
+\mbox{\Hypertarget{structobsws__log__context__t_a64a9070706fb6d6211ab29672df2db73}\label{structobsws__log__context__t_a64a9070706fb6d6211ab29672df2db73}} 
+\index{obsws\_log\_context\_t@{obsws\_log\_context\_t}!current\_file@{current\_file}}
+\index{current\_file@{current\_file}!obsws\_log\_context\_t@{obsws\_log\_context\_t}}
+\doxysubsubsection{\texorpdfstring{current\_file}{current\_file}}
+{\footnotesize\ttfamily FILE$\ast$ obsws\+\_\+log\+\_\+context\+\_\+t\+::current\+\_\+file}
+
+
+
+Definition at line \mbox{\hyperlink{libwsv5_8c_source_l00279}{279}} of file \mbox{\hyperlink{libwsv5_8c_source}{libwsv5.\+c}}.
+
+\mbox{\Hypertarget{structobsws__log__context__t_a6dda1a4a62728327da68b39f8db76a5f}\label{structobsws__log__context__t_a6dda1a4a62728327da68b39f8db76a5f}} 
+\index{obsws\_log\_context\_t@{obsws\_log\_context\_t}!current\_file\_date@{current\_file\_date}}
+\index{current\_file\_date@{current\_file\_date}!obsws\_log\_context\_t@{obsws\_log\_context\_t}}
+\doxysubsubsection{\texorpdfstring{current\_file\_date}{current\_file\_date}}
+{\footnotesize\ttfamily time\+\_\+t obsws\+\_\+log\+\_\+context\+\_\+t\+::current\+\_\+file\+\_\+date}
+
+
+
+Definition at line \mbox{\hyperlink{libwsv5_8c_source_l00281}{281}} of file \mbox{\hyperlink{libwsv5_8c_source}{libwsv5.\+c}}.
+
+\mbox{\Hypertarget{structobsws__log__context__t_a9b4f3165b222d9e7d7f73a0402562442}\label{structobsws__log__context__t_a9b4f3165b222d9e7d7f73a0402562442}} 
+\index{obsws\_log\_context\_t@{obsws\_log\_context\_t}!current\_filename@{current\_filename}}
+\index{current\_filename@{current\_filename}!obsws\_log\_context\_t@{obsws\_log\_context\_t}}
+\doxysubsubsection{\texorpdfstring{current\_filename}{current\_filename}}
+{\footnotesize\ttfamily char obsws\+\_\+log\+\_\+context\+\_\+t\+::current\+\_\+filename\mbox{[}PATH\+\_\+\+MAX\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{libwsv5_8c_source_l00280}{280}} of file \mbox{\hyperlink{libwsv5_8c_source}{libwsv5.\+c}}.
+
+\mbox{\Hypertarget{structobsws__log__context__t_a913b774ec9a15bf86a19e947109c7bc6}\label{structobsws__log__context__t_a913b774ec9a15bf86a19e947109c7bc6}} 
+\index{obsws\_log\_context\_t@{obsws\_log\_context\_t}!enabled@{enabled}}
+\index{enabled@{enabled}!obsws\_log\_context\_t@{obsws\_log\_context\_t}}
+\doxysubsubsection{\texorpdfstring{enabled}{enabled}}
+{\footnotesize\ttfamily bool obsws\+\_\+log\+\_\+context\+\_\+t\+::enabled}
+
+
+
+Definition at line \mbox{\hyperlink{libwsv5_8c_source_l00277}{277}} of file \mbox{\hyperlink{libwsv5_8c_source}{libwsv5.\+c}}.
+
+\mbox{\Hypertarget{structobsws__log__context__t_ad629dea673f599c7fac1634ae8e415d4}\label{structobsws__log__context__t_ad629dea673f599c7fac1634ae8e415d4}} 
+\index{obsws\_log\_context\_t@{obsws\_log\_context\_t}!is\_tty@{is\_tty}}
+\index{is\_tty@{is\_tty}!obsws\_log\_context\_t@{obsws\_log\_context\_t}}
+\doxysubsubsection{\texorpdfstring{is\_tty}{is\_tty}}
+{\footnotesize\ttfamily bool obsws\+\_\+log\+\_\+context\+\_\+t\+::is\+\_\+tty}
+
+
+
+Definition at line \mbox{\hyperlink{libwsv5_8c_source_l00289}{289}} of file \mbox{\hyperlink{libwsv5_8c_source}{libwsv5.\+c}}.
+
+\mbox{\Hypertarget{structobsws__log__context__t_abbb7b91b54826e8bc60ce80a86b38e03}\label{structobsws__log__context__t_abbb7b91b54826e8bc60ce80a86b38e03}} 
+\index{obsws\_log\_context\_t@{obsws\_log\_context\_t}!last\_rotation\_check@{last\_rotation\_check}}
+\index{last\_rotation\_check@{last\_rotation\_check}!obsws\_log\_context\_t@{obsws\_log\_context\_t}}
+\doxysubsubsection{\texorpdfstring{last\_rotation\_check}{last\_rotation\_check}}
+{\footnotesize\ttfamily time\+\_\+t obsws\+\_\+log\+\_\+context\+\_\+t\+::last\+\_\+rotation\+\_\+check}
+
+
+
+Definition at line \mbox{\hyperlink{libwsv5_8c_source_l00282}{282}} of file \mbox{\hyperlink{libwsv5_8c_source}{libwsv5.\+c}}.
+
+\mbox{\Hypertarget{structobsws__log__context__t_ab30ed6d955bd80df93301b6ab4bc31c3}\label{structobsws__log__context__t_ab30ed6d955bd80df93301b6ab4bc31c3}} 
+\index{obsws\_log\_context\_t@{obsws\_log\_context\_t}!log\_directory@{log\_directory}}
+\index{log\_directory@{log\_directory}!obsws\_log\_context\_t@{obsws\_log\_context\_t}}
+\doxysubsubsection{\texorpdfstring{log\_directory}{log\_directory}}
+{\footnotesize\ttfamily char obsws\+\_\+log\+\_\+context\+\_\+t\+::log\+\_\+directory\mbox{[}PATH\+\_\+\+MAX\mbox{]}}
+
+
+
+Definition at line \mbox{\hyperlink{libwsv5_8c_source_l00278}{278}} of file \mbox{\hyperlink{libwsv5_8c_source}{libwsv5.\+c}}.
+
+\mbox{\Hypertarget{structobsws__log__context__t_a63e70c6726a235c0f0a3d58785ce79de}\label{structobsws__log__context__t_a63e70c6726a235c0f0a3d58785ce79de}} 
+\index{obsws\_log\_context\_t@{obsws\_log\_context\_t}!max\_file\_size@{max\_file\_size}}
+\index{max\_file\_size@{max\_file\_size}!obsws\_log\_context\_t@{obsws\_log\_context\_t}}
+\doxysubsubsection{\texorpdfstring{max\_file\_size}{max\_file\_size}}
+{\footnotesize\ttfamily size\+\_\+t obsws\+\_\+log\+\_\+context\+\_\+t\+::max\+\_\+file\+\_\+size}
+
+
+
+Definition at line \mbox{\hyperlink{libwsv5_8c_source_l00285}{285}} of file \mbox{\hyperlink{libwsv5_8c_source}{libwsv5.\+c}}.
+
+\mbox{\Hypertarget{structobsws__log__context__t_af8b1457ca0ad44899de34a860fbcb185}\label{structobsws__log__context__t_af8b1457ca0ad44899de34a860fbcb185}} 
+\index{obsws\_log\_context\_t@{obsws\_log\_context\_t}!mutex@{mutex}}
+\index{mutex@{mutex}!obsws\_log\_context\_t@{obsws\_log\_context\_t}}
+\doxysubsubsection{\texorpdfstring{mutex}{mutex}}
+{\footnotesize\ttfamily pthread\+\_\+mutex\+\_\+t obsws\+\_\+log\+\_\+context\+\_\+t\+::mutex}
+
+
+
+Definition at line \mbox{\hyperlink{libwsv5_8c_source_l00291}{291}} of file \mbox{\hyperlink{libwsv5_8c_source}{libwsv5.\+c}}.
+
+\mbox{\Hypertarget{structobsws__log__context__t_ae8c6c75aca25cdebb2ec3333d2cc038e}\label{structobsws__log__context__t_ae8c6c75aca25cdebb2ec3333d2cc038e}} 
+\index{obsws\_log\_context\_t@{obsws\_log\_context\_t}!rotation\_hour@{rotation\_hour}}
+\index{rotation\_hour@{rotation\_hour}!obsws\_log\_context\_t@{obsws\_log\_context\_t}}
+\doxysubsubsection{\texorpdfstring{rotation\_hour}{rotation\_hour}}
+{\footnotesize\ttfamily int obsws\+\_\+log\+\_\+context\+\_\+t\+::rotation\+\_\+hour}
+
+
+
+Definition at line \mbox{\hyperlink{libwsv5_8c_source_l00284}{284}} of file \mbox{\hyperlink{libwsv5_8c_source}{libwsv5.\+c}}.
+
+\mbox{\Hypertarget{structobsws__log__context__t_ad750b9beda56b600251eb1a634b0fac4}\label{structobsws__log__context__t_ad750b9beda56b600251eb1a634b0fac4}} 
+\index{obsws\_log\_context\_t@{obsws\_log\_context\_t}!use\_timestamps@{use\_timestamps}}
+\index{use\_timestamps@{use\_timestamps}!obsws\_log\_context\_t@{obsws\_log\_context\_t}}
+\doxysubsubsection{\texorpdfstring{use\_timestamps}{use\_timestamps}}
+{\footnotesize\ttfamily bool obsws\+\_\+log\+\_\+context\+\_\+t\+::use\+\_\+timestamps}
+
+
+
+Definition at line \mbox{\hyperlink{libwsv5_8c_source_l00288}{288}} of file \mbox{\hyperlink{libwsv5_8c_source}{libwsv5.\+c}}.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+libwsv5.\+c\end{DoxyCompactItemize}

@@ -1,4 +1,0 @@
-<map id="event_thread_func" name="event_thread_func">
-<area shape="rect" id="node1" title="Background thread function that continuously processes WebSocket events." alt="" coords="175,5,317,32"/>
-<area shape="rect" id="node2" href="$d5/d27/library_8c.html#a7ed7225961f0989acb31ebbd9c099626" title="Establish a connection to OBS." alt="" coords="5,5,127,32"/>
-</map>

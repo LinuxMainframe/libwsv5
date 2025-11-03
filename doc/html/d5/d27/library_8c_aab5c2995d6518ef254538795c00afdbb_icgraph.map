@@ -1,7 +1,0 @@
-<map id="base64_encode" name="base64_encode">
-<area shape="rect" id="node1" title=" " alt="" coords="864,5,987,32"/>
-<area shape="rect" id="node2" href="$d5/d27/library_8c.html#acab761db577bf6b074b4e9be8be845b5" title=" " alt="" coords="633,5,816,32"/>
-<area shape="rect" id="node3" href="$d5/d27/library_8c.html#af183411517ec69b1d59f875fbb0245bd" title="Handle the initial HELLO handshake message from OBS." alt="" coords="415,5,585,32"/>
-<area shape="rect" id="node4" href="$d5/d27/library_8c.html#a0672da971c7e38224df11c34ef612f02" title="Route incoming WebSocket messages to appropriate handlers based on opcode." alt="" coords="159,5,367,32"/>
-<area shape="rect" id="node5" href="$d5/d27/library_8c.html#ac5c31c457dc3042f85a620d7998ebeee" title="libwebsockets callback &#45; routes WebSocket events to our handlers." alt="" coords="5,5,111,32"/>
-</map>

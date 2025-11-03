@@ -1,6 +1,0 @@
-<map id="obsws_response_free" name="obsws_response_free">
-<area shape="rect" id="node1" title="Free a response structure and all its allocated memory." alt="" coords="243,56,405,83"/>
-<area shape="rect" id="node2" href="$d5/d27/library_8c.html#aa8389ba6731e01a9426bd921180b7195" title="Disconnect and destroy a connection." alt="" coords="30,5,170,32"/>
-<area shape="rect" id="node3" href="$d5/d27/library_8c.html#a91bd5ceb5878431131513cb4624e935a" title="Query the currently active scene in OBS." alt="" coords="5,56,195,83"/>
-<area shape="rect" id="node4" href="$d5/d27/library_8c.html#a7cb91bbce42b458f267f79b9a7b293bf" title="Switch OBS to a specific scene." alt="" coords="6,107,194,133"/>
-</map>

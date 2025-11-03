@@ -1,5 +1,0 @@
-<map id="handle_hello_message" name="handle_hello_message">
-<area shape="rect" id="node1" title="Handle the initial HELLO handshake message from OBS." alt="" coords="415,5,585,32"/>
-<area shape="rect" id="node2" href="$d5/d27/library_8c.html#a0672da971c7e38224df11c34ef612f02" title="Route incoming WebSocket messages to appropriate handlers based on opcode." alt="" coords="159,5,367,32"/>
-<area shape="rect" id="node3" href="$d5/d27/library_8c.html#ac5c31c457dc3042f85a620d7998ebeee" title="libwebsockets callback &#45; routes WebSocket events to our handlers." alt="" coords="5,5,111,32"/>
-</map>

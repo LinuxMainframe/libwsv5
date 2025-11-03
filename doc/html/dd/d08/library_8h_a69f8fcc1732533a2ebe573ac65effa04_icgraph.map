@@ -1,8 +1,0 @@
-<map id="obsws_state_string" name="obsws_state_string">
-<area shape="rect" id="node1" title="Convert a connection state to a human&#45;readable string." alt="" coords="871,56,1017,83"/>
-<area shape="rect" id="node2" href="$d5/d27/library_8c.html#a2f13308e49322d01e479cbe14da7b575" title=" " alt="" coords="663,56,823,83"/>
-<area shape="rect" id="node3" href="$d5/d27/library_8c.html#af183411517ec69b1d59f875fbb0245bd" title="Handle the initial HELLO handshake message from OBS." alt="" coords="429,5,600,32"/>
-<area shape="rect" id="node5" href="$d5/d27/library_8c.html#ac5c31c457dc3042f85a620d7998ebeee" title="libwebsockets callback &#45; routes WebSocket events to our handlers." alt="" coords="5,81,111,108"/>
-<area shape="rect" id="node6" href="$d5/d27/library_8c.html#aad4174fe2c4665d21ae49896fc25be9e" title="Handle the IDENTIFIED confirmation message from OBS." alt="" coords="415,56,615,83"/>
-<area shape="rect" id="node4" href="$d5/d27/library_8c.html#a0672da971c7e38224df11c34ef612f02" title="Route incoming WebSocket messages to appropriate handlers based on opcode." alt="" coords="159,56,367,83"/>
-</map>

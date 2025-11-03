@@ -1,4 +1,0 @@
-<map id="handle_websocket_message" name="handle_websocket_message">
-<area shape="rect" id="node1" title="Route incoming WebSocket messages to appropriate handlers based on opcode." alt="" coords="159,5,367,32"/>
-<area shape="rect" id="node2" href="$d5/d27/library_8c.html#ac5c31c457dc3042f85a620d7998ebeee" title="libwebsockets callback &#45; routes WebSocket events to our handlers." alt="" coords="5,5,111,32"/>
-</map>

@@ -27,11 +27,11 @@ endif()
 
 # Source files
 set(SOURCES
-    library.c
+    libwsv5.c
 )
 
 set(HEADERS
-    library.h
+    libwsv5.h
 )
 
 # Create static library
@@ -66,11 +66,21 @@ target_compile_options(libwsv5 PRIVATE
 )
 
 # Optional: Build example/test program
-option(BUILD_EXAMPLES "Build example programs" ON)
+option(BUILD_EXAMPLES "Build example programs" OFF)
+option(BUILD_TESTS "Build test programs" OFF)
 
 if(BUILD_EXAMPLES)
     add_executable(obsws_example example.c)
     target_link_libraries(obsws_example libwsv5)
+endif()
+
+# Build test suite if requested
+if(BUILD_TESTS)
+    # Comprehensive test suite
+    add_executable(test tests/test.c)
+    target_link_libraries(test libwsv5)
+    target_include_directories(test PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
+    target_compile_options(test PRIVATE -lm)
 endif()
 
 # Installation
@@ -84,14 +94,17 @@ install(FILES ${HEADERS}
 )
 
 # Doxygen documentation generation
-find_package(Doxygen OPTIONAL_COMPONENTS dot)
+find_package(Doxygen REQUIRED OPTIONAL_COMPONENTS dot)
 
 if(DOXYGEN_FOUND)
-    # Configure Doxyfile
+    # Configure Doxyfile via CMake variables
     set(DOXYGEN_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/doc)
     set(DOXYGEN_HTML_OUTPUT html)
     set(DOXYGEN_LATEX_OUTPUT latex)
-    set(DOXYGEN_INPUT ${CMAKE_CURRENT_SOURCE_DIR}/library.h ${CMAKE_CURRENT_SOURCE_DIR}/library.c)
+    set(DOXYGEN_PROJECT_NAME "libwsv5")
+    set(DOXYGEN_PROJECT_NUMBER "1.1.0")  # Update this when bumping version
+    set(DOXYGEN_PROJECT_BRIEF "OBS WebSocket v5 Protocol C Library")
+    set(DOXYGEN_INPUT "${CMAKE_CURRENT_SOURCE_DIR}/libwsv5.h ${CMAKE_CURRENT_SOURCE_DIR}/libwsv5.c")
     set(DOXYGEN_EXCLUDE_PATTERNS "*/test/*" "*/.git/*")
     set(DOXYGEN_GENERATE_HTML YES)
     set(DOXYGEN_GENERATE_LATEX YES)
@@ -106,13 +119,17 @@ if(DOXYGEN_FOUND)
     set(DOXYGEN_CALLER_GRAPH YES)
     set(DOXYGEN_HAVE_DOT YES)
     set(DOXYGEN_MARKDOWN_SUPPORT YES)
+    set(DOXYGEN_HTML_TIMESTAMP YES)
+    set(DOXYGEN_SEARCHENGINE YES)
+    set(DOXYGEN_SERVER_BASED_SEARCH NO)
+    set(DOXYGEN_JAVADOC_AUTOBRIEF YES)
+    set(DOXYGEN_DOT_IMAGE_FORMAT svg)
+    set(DOXYGEN_INTERACTIVE_SVG YES)
     
-    # Add doc target
-    add_custom_target(doc
-        COMMAND ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile
-        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
-        COMMENT "Generating API documentation with Doxygen"
-        VERBATIM
+    # Add doc target using modern CMake approach
+    doxygen_add_docs(doc
+        libwsv5.h libwsv5.c
+        COMMENT "Generating API documentation with Doxygen (HTML + LaTeX/PDF)"
     )
     
     message(STATUS "Doxygen: Found - use 'make doc' to generate documentation")
@@ -124,7 +141,7 @@ endif()
 # Print configuration summary
 message(STATUS "")
 message(STATUS "libwsv5 Configuration Summary:")
-message(STATUS "  Version: 1.0.0")
+message(STATUS "  Version: 1.1.0")
 message(STATUS "  C Standard: ${CMAKE_C_STANDARD}")
 message(STATUS "  Build Type: ${CMAKE_BUILD_TYPE}")
 message(STATUS "")
