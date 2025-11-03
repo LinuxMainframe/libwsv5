@@ -30,7 +30,7 @@ jobs:
       - name: Install dependencies via Homebrew
         run: |
           brew update
-          brew install libwebsockets libcjson openssl cmake
+          brew install libwebsockets cjson openssl cmake
       
       - name: Configure build
         run: |

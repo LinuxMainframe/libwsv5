@@ -30,7 +30,7 @@ Install required dependencies:
 sudo apt-get install libwebsockets-dev libcjson-dev libssl-dev
 
 # macOS
-brew install libwebsockets libcjson openssl
+brew install libwebsockets cjson openssl
 
 # Fedora/RHEL
 sudo dnf install libwebsockets-devel cjson-devel openssl-devel
@@ -350,7 +350,7 @@ sudo make install
 
 ```bash
 # Install dependencies via Homebrew
-brew install libwebsockets libcjson openssl cmake
+brew install libwebsockets cjson openssl cmake
 
 # Clone repository
 git clone https://github.com/linuxmainframe/libwsv5.git
