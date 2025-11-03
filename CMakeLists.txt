@@ -93,6 +93,13 @@ foreach(target libwsv5_static libwsv5_shared)
         -Wpedantic
         -Wno-unused-parameter
     )
+    
+    # macOS specific flags for BSD type compatibility
+    if(APPLE)
+        target_compile_options(${target} PRIVATE
+            -D_DEFAULT_SOURCE
+        )
+    endif()
 endforeach()
 
 # Optional: Build test program
