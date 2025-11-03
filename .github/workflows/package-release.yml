@@ -75,7 +75,7 @@ jobs:
           ls -lh libwsv5_*
       
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: libwsv5-packages
           path: build/libwsv5_*
